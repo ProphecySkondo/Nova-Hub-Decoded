@@ -1,0 +1,2826 @@
+--Nova Lib(Final)
+repeat
+    wait()
+until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game:IsLoaded()
+
+wait(1)
+local Lib = {}
+Run = game:GetService("RunService")
+Int = game:GetService('TeleportService')
+ts = game:GetService('TweenService')
+http = game:GetService("HttpService")
+UIS = game:GetService('UserInputService')
+plr = game.Players.LocalPlayer
+Char = plr.Character
+local WindowOpened = false
+local Storage = {
+    FinalStandIds = {
+        536102540,
+        882399924,
+        478132461,
+        569994010,
+        2046990924,
+        535527772,
+        882375367,
+        3552158750 
+    },
+	Other = {},
+}
+
+function ToggleLib()
+    if game.CoreGui.Holder.Main.Visible == false then
+        game.CoreGui.Holder.Main.Visible = true
+        game.CoreGui.Holder['NovaLibSound']:Play()
+        game.Lighting['NovaBlur'].Enabled = true
+        workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
+        Char.HumanoidRootPart.Anchored = true
+    elseif game.CoreGui.Holder.Main.Visible == true then
+        game.CoreGui.Holder.Main.Visible = false
+        game.CoreGui.Holder.SettingMain.Visible = false
+        game.CoreGui.Holder['NovaLibSound']:Stop()
+        game.Lighting['NovaBlur'].Enabled = false
+        workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+        Char.HumanoidRootPart.Anchored = false
+    end
+end
+
+function Lib:Window()
+    local Holder = Instance.new("ScreenGui")
+    local Main = Instance.new("Frame")
+    local MainCorner = Instance.new("UICorner")
+    local LeftSection = Instance.new("Frame")
+    local TabContentHolder = Instance.new("Frame")
+    local TabSection = Instance.new("Frame")
+    local TabListLayout = Instance.new("UIListLayout")
+    local HomeTabButton = Instance.new("TextButton")
+    local HomeTabCorner = Instance.new("UICorner")
+    local home = Instance.new("ImageLabel")
+    local Title = Instance.new("ImageLabel")
+    local HomeTab = Instance.new("Frame")
+    local UniversalProperties = Instance.new("Frame")
+    local UniversalPropertiesCorner = Instance.new("UICorner")
+    local Weekday = Instance.new("TextLabel")
+    local MonthDate = Instance.new("TextLabel")
+    local DateInNumbers = Instance.new("TextLabel")
+    local PerfomancePropertiesTitles = Instance.new("TextLabel")
+    local PerfomanceProperties = Instance.new("Frame")
+    local FPSPerfomance = Instance.new("TextLabel")
+    local PerfomancePropertiesListLayOut = Instance.new("UIListLayout")
+    local PingPerfomance = Instance.new("TextLabel")
+    local CPUPerfomance = Instance.new("TextLabel")
+    local MemoryPerfomance = Instance.new("TextLabel")
+    local GPUPerfomance = Instance.new("TextLabel")
+    local SessionTime = Instance.new("TextLabel")
+    local SessionTimeValue = Instance.new("TextLabel")
+    local Time = Instance.new("TextLabel")
+    local GameProperties = Instance.new("Frame")
+    local GameImage = Instance.new("ImageLabel")
+    local GameTitle = Instance.new("TextLabel")
+    local PlayerCount = Instance.new("TextLabel")
+    local ServerRegion = Instance.new("TextLabel")
+    local ShaderProperties = Instance.new("Frame")
+    local ShaderPropertiesCorner = Instance.new("UICorner")
+    local ShaderPropertiesGradient = Instance.new("UIGradient")
+    local ShaderTitle = Instance.new("TextLabel")
+    local ShaderName = Instance.new("TextLabel")
+    local ThemeProperties = Instance.new("Frame")
+    local ThemePropertiesCorner = Instance.new("UICorner")
+    local ThemePropertiesGradient = Instance.new("UIGradient")
+    local ThemeTitle = Instance.new("TextLabel")
+    local ThemeName = Instance.new("TextLabel")
+    local ViewportFrame = Instance.new("ViewportFrame")
+    local FriendFormScrollingFrame = Instance.new("ScrollingFrame")
+    local FriendFormScrollingFrameLayOut = Instance.new("UIListLayout")
+    local MenuSound = Instance.new("Sound")
+    local MenuBlur = Instance.new("BlurEffect")
+    local currentopentab = "Home"
+
+    --Properties:
+
+    Holder.Name = "Holder"
+    Holder.Parent = game.CoreGui
+    Holder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    Main.Name = "Main"
+    Main.Parent = Holder
+    Main.BackgroundColor3 = Color3.fromRGB(13, 13, 13)
+    Main.BorderSizePixel = 0
+    Main.Position = UDim2.new(0.198191404, 0, 0.207017541, 0)
+    Main.Size = UDim2.new(0, 800, 0, 500)
+    Main.Visible = false
+
+    MainCorner.CornerRadius = UDim.new(0, 4)
+    MainCorner.Name = "MainCorner"
+    MainCorner.Parent = Main
+
+    LeftSection.Name = "LeftSection"
+    LeftSection.Parent = Main
+    LeftSection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    LeftSection.BackgroundTransparency = 1.000
+    LeftSection.Size = UDim2.new(0, 180, 0, 500)
+
+    TabContentHolder.Name = "TabContentHolder"
+    TabContentHolder.Parent = Main
+    TabContentHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TabContentHolder.BackgroundTransparency = 1.000
+    TabContentHolder.Position = UDim2.new(0.224999994, 0, 0.100000001, 0)
+    TabContentHolder.Size = UDim2.new(0, 620, 0, 450)
+
+    TabSection.Name = "TabSection"
+    TabSection.Parent = LeftSection
+    TabSection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TabSection.BackgroundTransparency = 1.000
+    TabSection.Position = UDim2.new(0.081249997, 0, 0.169999987, 0)
+    TabSection.Size = UDim2.new(0, 150, 0, 375)
+
+    TabListLayout.Name = "TabListLayout"
+    TabListLayout.Parent = TabSection
+    TabListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    TabListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    TabListLayout.Padding = UDim.new(0, 5)
+
+    HomeTabButton.Name = "HomeTabButton"
+    HomeTabButton.Parent = TabSection
+    HomeTabButton.BackgroundColor3 = Color3.fromRGB(78, 0, 121)
+    HomeTabButton.BorderSizePixel = 0
+    HomeTabButton.Position = UDim2.new(0.0500000007, 0, 0, 0)
+    HomeTabButton.Size = UDim2.new(0, 135, 0, 35)
+    HomeTabButton.Font = Enum.Font.Gotham
+    HomeTabButton.Text = "Home"
+    HomeTabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    HomeTabButton.TextSize = 14.000
+
+    HomeTabCorner.CornerRadius = UDim.new(0, 4)
+    HomeTabCorner.Name = "HomeTabCorner"
+    HomeTabCorner.Parent = HomeTabButton
+
+    home.Name = "home"
+    home.Parent = HomeTabButton
+    home.BackgroundTransparency = 1.000
+    home.Position = UDim2.new(0.0925926045, 0, 0.123809516, 0)
+    home.Size = UDim2.new(0, 25, 0, 25)
+    home.ZIndex = 2
+    home.Image = "rbxassetid://3926305904"
+    home.ImageRectOffset = Vector2.new(964, 204)
+    home.ImageRectSize = Vector2.new(36, 36)
+
+    Title.Name = "Title"
+    Title.Parent = LeftSection
+    Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Title.BackgroundTransparency = 1.000
+    Title.BorderColor3 = Color3.fromRGB(27, 42, 53)
+    Title.Position = UDim2.new(0, 0, 0.00600000005, 0)
+    Title.Size = UDim2.new(0, 170, 0, 93)
+    Title.Image = "rbxassetid://9305588555"
+    Title.ScaleType = Enum.ScaleType.Crop
+
+    HomeTab.Name = "HomeTab"
+    HomeTab.Parent = Main
+    HomeTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    HomeTab.BackgroundTransparency = 1.000
+    HomeTab.Position = UDim2.new(0.224999994, 0, 0, 0)
+    HomeTab.Size = UDim2.new(0, 620, 0, 500)
+
+    UniversalProperties.Name = "UniversalProperties"
+    UniversalProperties.Parent = HomeTab
+    UniversalProperties.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+    UniversalProperties.Position = UDim2.new(0.767741919, 0, 0.0860000029, 0)
+    UniversalProperties.Size = UDim2.new(0, 130, 0, 415)
+
+    UniversalPropertiesCorner.CornerRadius = UDim.new(0, 4)
+    UniversalPropertiesCorner.Name = "UniversalPropertiesCorner"
+    UniversalPropertiesCorner.Parent = UniversalProperties
+
+    Weekday.Name = "Weekday"
+    Weekday.Parent = UniversalProperties
+    Weekday.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Weekday.BackgroundTransparency = 1.000
+    Weekday.Position = UDim2.new(0.115384616, 0, 0, 0)
+    Weekday.Size = UDim2.new(0, 100, 0, 30)
+    Weekday.Font = Enum.Font.Gotham
+    Weekday.Text = "Monday"
+    Weekday.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Weekday.TextSize = 14.000
+    Weekday.TextWrapped = true
+
+    MonthDate.Name = "MonthDate"
+    MonthDate.Parent = Weekday
+    MonthDate.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    MonthDate.BackgroundTransparency = 1.000
+    MonthDate.Position = UDim2.new(0, 0, 0.699999988, 0)
+    MonthDate.Size = UDim2.new(0, 100, 0, 32)
+    MonthDate.Font = Enum.Font.Gotham
+    MonthDate.Text = "April 25, 2022"
+    MonthDate.TextColor3 = Color3.fromRGB(216, 216, 216)
+    MonthDate.TextSize = 13.000
+
+    DateInNumbers.Name = "DateInNumbers"
+    DateInNumbers.Parent = Weekday
+    DateInNumbers.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    DateInNumbers.BackgroundTransparency = 1.000
+    DateInNumbers.Position = UDim2.new(0.120000005, 0, 1.5333333, 0)
+    DateInNumbers.Size = UDim2.new(0, 75, 0, 15)
+    DateInNumbers.Font = Enum.Font.Gotham
+    DateInNumbers.Text = "4/25/2022"
+    DateInNumbers.TextColor3 = Color3.fromRGB(138, 138, 138)
+
+    PerfomancePropertiesTitles.Name = "PerfomancePropertiesTitles"
+    PerfomancePropertiesTitles.Parent = UniversalProperties
+    PerfomancePropertiesTitles.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PerfomancePropertiesTitles.BackgroundTransparency = 1.000
+    PerfomancePropertiesTitles.Position = UDim2.new(0.107692309, 0, 0.236044168, 0)
+    PerfomancePropertiesTitles.Size = UDim2.new(0, 100, 0, 25)
+    PerfomancePropertiesTitles.Font = Enum.Font.Gotham
+    PerfomancePropertiesTitles.Text = "Game Perfomance"
+    PerfomancePropertiesTitles.TextColor3 = Color3.fromRGB(255, 255, 255)
+    PerfomancePropertiesTitles.TextSize = 13.000
+
+    PerfomanceProperties.Name = "PerfomanceProperties"
+    PerfomanceProperties.Parent = PerfomancePropertiesTitles
+    PerfomanceProperties.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PerfomanceProperties.BackgroundTransparency = 1.000
+    PerfomanceProperties.Position = UDim2.new(-0.00461538136, 0, 0.982650638, 0)
+    PerfomanceProperties.Size = UDim2.new(0, 100, 0, 240)
+
+    FPSPerfomance.Name = "FPSPerfomance"
+    FPSPerfomance.Parent = PerfomanceProperties
+    FPSPerfomance.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    FPSPerfomance.BackgroundTransparency = 1.000
+    FPSPerfomance.Position = UDim2.new(-0.00230765343, 0, 0.000301197171, 0)
+    FPSPerfomance.Size = UDim2.new(0, 100, 0, 30)
+    FPSPerfomance.Font = Enum.Font.Gotham
+    FPSPerfomance.Text = "FPS:"
+    FPSPerfomance.TextColor3 = Color3.fromRGB(255, 255, 255)
+    FPSPerfomance.TextSize = 10.000
+    FPSPerfomance.TextXAlignment = Enum.TextXAlignment.Left
+
+    PerfomancePropertiesListLayOut.Name = "PerfomancePropertiesListLayOut"
+    PerfomancePropertiesListLayOut.Parent = PerfomanceProperties
+    PerfomancePropertiesListLayOut.SortOrder = Enum.SortOrder.LayoutOrder
+    PerfomancePropertiesListLayOut.Padding = UDim.new(0, 2)
+
+    PingPerfomance.Name = "PingPerfomance"
+    PingPerfomance.Parent = PerfomanceProperties
+    PingPerfomance.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PingPerfomance.BackgroundTransparency = 1.000
+    PingPerfomance.Position = UDim2.new(-0.00230765343, 0, 0.000301197171, 0)
+    PingPerfomance.Size = UDim2.new(0, 100, 0, 30)
+    PingPerfomance.Font = Enum.Font.Gotham
+    PingPerfomance.Text = "Ping:"
+    PingPerfomance.TextColor3 = Color3.fromRGB(255, 255, 255)
+    PingPerfomance.TextSize = 10.000
+    PingPerfomance.TextXAlignment = Enum.TextXAlignment.Left
+
+    CPUPerfomance.Name = "CPUPerfomance"
+    CPUPerfomance.Parent = PerfomanceProperties
+    CPUPerfomance.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    CPUPerfomance.BackgroundTransparency = 1.000
+    CPUPerfomance.Position = UDim2.new(-0.00230765343, 0, 0.000301197171, 0)
+    CPUPerfomance.Size = UDim2.new(0, 100, 0, 30)
+    CPUPerfomance.Font = Enum.Font.Gotham
+    CPUPerfomance.Text = "CPU Usage(MS):"
+    CPUPerfomance.TextColor3 = Color3.fromRGB(255, 255, 255)
+    CPUPerfomance.TextSize = 10.000
+    CPUPerfomance.TextXAlignment = Enum.TextXAlignment.Left
+
+    MemoryPerfomance.Name = "MemoryPerfomance"
+    MemoryPerfomance.Parent = PerfomanceProperties
+    MemoryPerfomance.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    MemoryPerfomance.BackgroundTransparency = 1.000
+    MemoryPerfomance.Position = UDim2.new(-0.00230765343, 0, 0.000301197171, 0)
+    MemoryPerfomance.Size = UDim2.new(0, 100, 0, 30)
+    MemoryPerfomance.Font = Enum.Font.Gotham
+    MemoryPerfomance.Text = "Memory Usage:"
+    MemoryPerfomance.TextColor3 = Color3.fromRGB(255, 255, 255)
+    MemoryPerfomance.TextSize = 9.000
+    MemoryPerfomance.TextXAlignment = Enum.TextXAlignment.Left
+
+    GPUPerfomance.Name = "GPUPerfomance"
+    GPUPerfomance.Parent = PerfomanceProperties
+    GPUPerfomance.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    GPUPerfomance.BackgroundTransparency = 1.000
+    GPUPerfomance.Position = UDim2.new(-0.00230765343, 0, 0.000301197171, 0)
+    GPUPerfomance.Size = UDim2.new(0, 100, 0, 30)
+    GPUPerfomance.Font = Enum.Font.Gotham
+    GPUPerfomance.Text = "GPU Usage(MS):"
+    GPUPerfomance.TextColor3 = Color3.fromRGB(255, 255, 255)
+    GPUPerfomance.TextSize = 10.000
+    GPUPerfomance.TextXAlignment = Enum.TextXAlignment.Left
+
+    SessionTime.Name = "SessionTime"
+    SessionTime.Parent = UniversalProperties
+    SessionTime.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    SessionTime.BackgroundTransparency = 1.000
+    SessionTime.Position = UDim2.new(0.115384609, 0, 0.879518092, 0)
+    SessionTime.Size = UDim2.new(0, 100, 0, 25)
+    SessionTime.Font = Enum.Font.Gotham
+    SessionTime.Text = "Session Time"
+    SessionTime.TextColor3 = Color3.fromRGB(216, 216, 216)
+    SessionTime.TextSize = 14.000
+
+    SessionTimeValue.Name = "SessionTimeValue"
+    SessionTimeValue.Parent = SessionTime
+    SessionTimeValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    SessionTimeValue.BackgroundTransparency = 1.000
+    SessionTimeValue.Position = UDim2.new(0.119999997, 0, 0.75999999, 0)
+    SessionTimeValue.Size = UDim2.new(0, 75, 0, 25)
+    SessionTimeValue.Font = Enum.Font.Gotham
+    SessionTimeValue.Text = "00:00:00"
+    SessionTimeValue.TextColor3 = Color3.fromRGB(138, 138, 138)
+    SessionTimeValue.TextSize = 14.000
+
+    Time.Name = "Time"
+    Time.Parent = UniversalProperties
+    Time.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Time.BackgroundTransparency = 1.000
+    Time.Position = UDim2.new(0.230769217, 0, 0.142168671, 0)
+    Time.Size = UDim2.new(0, 70, 0, 25)
+    Time.Font = Enum.Font.Gotham
+    Time.Text = "00:00:00 PM"
+    Time.TextColor3 = Color3.fromRGB(176, 176, 176)
+    Time.TextSize = 11.000
+
+    GameProperties.Name = "GameProperties"
+    GameProperties.Parent = HomeTab
+    GameProperties.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    GameProperties.BackgroundTransparency = 1.000
+    GameProperties.Position = UDim2.new(0.0258064531, 0, 0.0920000002, 0)
+    GameProperties.Size = UDim2.new(0, 375, 0, 100)
+
+    GameImage.Name = "GameImage"
+    GameImage.Parent = GameProperties
+    GameImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    GameImage.Position = UDim2.new(0.017, 0,0.05, 0)
+    GameImage.Size = UDim2.new(0, 110, 0, 90)
+    GameImage.BorderSizePixel = 0
+    GameImage.Image = "https://www.roblox.com/asset-thumbnail/image?assetId="..game.PlaceId.."&width=768&height=432&format=png"
+    GameImage.ScaleType = Enum.ScaleType.Crop
+    
+    GameTitle.Name = "GameTitle"
+    GameTitle.Parent = GameProperties
+    GameTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    GameTitle.BackgroundTransparency = 1.000
+    GameTitle.Position = UDim2.new(0.335999995, 0, 0.049999997, 0)
+    GameTitle.Size = UDim2.new(0, 190, 0, 27)
+    GameTitle.Font = Enum.Font.GothamBold
+    GameTitle.Text = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+    GameTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    GameTitle.TextSize = 19.000
+    GameTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+    PlayerCount.Name = "PlayerCount"
+    PlayerCount.Parent = GameTitle
+    PlayerCount.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerCount.BackgroundTransparency = 1.000
+    PlayerCount.Position = UDim2.new(0.05026315812, 0, 1, 0)
+    PlayerCount.Size = UDim2.new(0, 125, 0, 26)
+    PlayerCount.Font = Enum.Font.Gotham
+    PlayerCount.Text = "Player Count:"
+    PlayerCount.TextColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerCount.TextSize = 12.000
+    PlayerCount.TextXAlignment = Enum.TextXAlignment.Left
+
+    ServerRegion.Name = "ServerRegion"
+    ServerRegion.Parent = GameTitle
+    ServerRegion.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ServerRegion.BackgroundTransparency = 1.000
+    ServerRegion.Position = UDim2.new(0.05026315812, 0, 1.96296299, 0)
+    ServerRegion.Size = UDim2.new(0, 190, 0, 26)
+    ServerRegion.Font = Enum.Font.Gotham
+    ServerRegion.Text = "Server Region:"
+    ServerRegion.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ServerRegion.TextSize = 12.000
+    ServerRegion.TextXAlignment = Enum.TextXAlignment.Left
+
+    ShaderProperties.Name = "ShaderProperties"
+    ShaderProperties.Parent = HomeTab
+    ShaderProperties.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+    ShaderProperties.Position = UDim2.new(0.535483897, 0, 0.310000002, 0)
+    ShaderProperties.Size = UDim2.new(0, 123, 0, 117)
+
+    ShaderPropertiesCorner.Name = "ShaderPropertiesCorner"
+    ShaderPropertiesCorner.Parent = ShaderProperties
+
+    ShaderPropertiesGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(59, 99, 191))}
+    ShaderPropertiesGradient.Rotation = 45
+    ShaderPropertiesGradient.Name = "ShaderPropertiesGradient"
+    ShaderPropertiesGradient.Parent = ShaderProperties
+
+    ShaderTitle.Name = "ShaderTitle"
+    ShaderTitle.Parent = ShaderProperties
+    ShaderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ShaderTitle.BackgroundTransparency = 1.000
+    ShaderTitle.Position = UDim2.new(0.154471546, 0, 0.145299152, 0)
+    ShaderTitle.Size = UDim2.new(0, 85, 0, 28)
+    ShaderTitle.Font = Enum.Font.Gotham
+    ShaderTitle.Text = "Current Shader"
+    ShaderTitle.TextColor3 = Color3.fromRGB(138, 138, 138)
+    ShaderTitle.TextSize = 10.000
+    ShaderTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+    ShaderName.Name = "ShaderName"
+    ShaderName.Parent = ShaderTitle
+    ShaderName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ShaderName.BackgroundTransparency = 1.000
+    ShaderName.Position = UDim2.new(-0.119560033, 0, 0.839438319, 0)
+    ShaderName.Size = UDim2.new(0, 95, 0, 30)
+    ShaderName.Font = Enum.Font.Gotham
+    ShaderName.Text = "Default"
+    ShaderName.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ShaderName.TextSize = 22.000
+
+    ThemeProperties.Name = "ThemeProperties"
+    ThemeProperties.Parent = HomeTab
+    ThemeProperties.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+    ThemeProperties.Position = UDim2.new(0.31774193, 0, 0.310000002, 0)
+    ThemeProperties.Size = UDim2.new(0, 123, 0, 117)
+
+    ThemePropertiesCorner.Name = "ThemePropertiesCorner"
+    ThemePropertiesCorner.Parent = ThemeProperties
+
+    ThemePropertiesGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))}
+    ThemePropertiesGradient.Rotation = 45
+    ThemePropertiesGradient.Name = "ThemePropertiesGradient"
+    ThemePropertiesGradient.Parent = ThemeProperties
+
+    ThemeTitle.Name = "ThemeTitle"
+    ThemeTitle.Parent = ThemeProperties
+    ThemeTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ThemeTitle.BackgroundTransparency = 1.000
+    ThemeTitle.Position = UDim2.new(0.154471546, 0, 0.145299152, 0)
+    ThemeTitle.Size = UDim2.new(0, 85, 0, 28)
+    ThemeTitle.Font = Enum.Font.Gotham
+    ThemeTitle.Text = "Current Theme"
+    ThemeTitle.TextColor3 = Color3.fromRGB(138, 138, 138)
+    ThemeTitle.TextSize = 10.000
+    ThemeTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+    ThemeName.Name = "ThemeName"
+    ThemeName.Parent = ThemeTitle
+    ThemeName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ThemeName.BackgroundTransparency = 1.000
+    ThemeName.Position = UDim2.new(-0.119560033, 0, 0.839438319, 0)
+    ThemeName.Size = UDim2.new(0, 95, 0, 30)
+    ThemeName.Font = Enum.Font.Gotham
+    ThemeName.Text = "Shadow"
+    ThemeName.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ThemeName.TextSize = 22.000
+
+    FriendFormScrollingFrame.Name = "FriendFormScrollingFrame"
+    FriendFormScrollingFrame.Parent = HomeTab
+    FriendFormScrollingFrame.Active = true
+    FriendFormScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    FriendFormScrollingFrame.BackgroundTransparency = 1.000
+    FriendFormScrollingFrame.BorderSizePixel = 0
+    FriendFormScrollingFrame.Position = UDim2.new(0.0258064512, 0, 0.310000002, 0)
+    FriendFormScrollingFrame.Size = UDim2.new(0, 165, 0, 136)
+    FriendFormScrollingFrame.ScrollBarThickness = 0
+
+    FriendFormScrollingFrameLayOut.Name = "FriendFormScrollingFrameLayOut"
+    FriendFormScrollingFrameLayOut.Parent = FriendFormScrollingFrame
+    FriendFormScrollingFrameLayOut.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    FriendFormScrollingFrameLayOut.SortOrder = Enum.SortOrder.LayoutOrder
+    FriendFormScrollingFrameLayOut.Padding = UDim.new(0, 5)
+
+    local TabsFolder = Instance.new('Folder')
+
+	TabsFolder.Name = 'TabsFolder'
+	TabsFolder.Parent = TabContentHolder
+
+    if table.find(Storage.FinalStandIds, game.PlaceId) then
+        function Lib:StatCheckFS(Target)
+            for i, v in pairs(workspace.Live:GetChildren()) do
+                if string.match(Target, v.Name) then
+                    for m , x in pairs(v:GetChildren()) do
+                        if x.ClassName == "Model" then
+                            if string.find(x.Name, "Prestige: ") then
+                                local prespp = string.sub(x.Name, 18, 1000)
+                                local noprespp = string.sub(x.Name, 5, 1000)
+                                local StatFrame = Instance.new("Frame")
+                                local StatFrameCorner = Instance.new("UICorner")
+                                local StatFrameTitle = Instance.new("TextLabel")
+                                local shadowHolder = Instance.new("Frame")
+                                local umbraShadow = Instance.new("ImageLabel")
+                                local penumbraShadow = Instance.new("ImageLabel")
+                                local ambientShadow = Instance.new("ImageLabel")
+                                local InfoHolder = Instance.new("Frame")
+                                local InfoHolderLayOut = Instance.new("UIListLayout")
+                                local NameLabel = Instance.new("TextLabel")
+                                local LevelLabel = Instance.new("TextLabel")
+                                local HealthLabel = Instance.new("TextLabel")
+                                local KiMaxLabel = Instance.new("TextLabel")
+                                local MeleeDamageLabel = Instance.new("TextLabel")
+                                local KiDamageLabel = Instance.new("TextLabel")
+                                local MeleeResLabel = Instance.new("TextLabel")
+                                local KiResLabel = Instance.new("TextLabel")
+                                local Speedabel = Instance.new("TextLabel")
+                                local call_merge = Instance.new("ImageButton")
+                                local StatFrameGradient = Instance.new("UIGradient")
+                                local Title = Instance.new("ImageLabel")
+                                
+                                --Properties:
+                                
+                                StatFrame.Name = "StatFrame"
+                                StatFrame.Parent = Holder
+                                StatFrame.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+                                StatFrame.BorderSizePixel = 0
+                                StatFrame.Position = UDim2.new(0.0129573168, 0, 0.266666681, 0)
+                                StatFrame.Size = UDim2.new(0, 200, 0, 365)
+                                StatFrame.BackgroundTransparency = 1.000
+                                
+                                StatFrameCorner.CornerRadius = UDim.new(0, 4)
+                                StatFrameCorner.Name = "StatFrameCorner"
+                                StatFrameCorner.Parent = StatFrame
+                                
+                                StatFrameTitle.Name = "StatFrameTitle"
+                                StatFrameTitle.Parent = StatFrame
+                                StatFrameTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                StatFrameTitle.BackgroundTransparency = 1.000
+                                StatFrameTitle.Position = UDim2.new(0.174999997, 0, 0.00821917877, 0)
+                                StatFrameTitle.Size = UDim2.new(0, 130, 0, 21)
+                                StatFrameTitle.Font = Enum.Font.GothamBold
+                                StatFrameTitle.Text = "Player Stats"
+                                StatFrameTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                StatFrameTitle.TextSize = 14.000
+                                StatFrameTitle.TextTransparency = 1.000
+                                
+                                shadowHolder.Name = "shadowHolder"
+                                shadowHolder.Parent = StatFrame
+                                shadowHolder.BackgroundTransparency = 1.000
+                                shadowHolder.Size = UDim2.new(1, 0, 1, 0)
+                                
+                                umbraShadow.Name = "umbraShadow"
+                                umbraShadow.Parent = shadowHolder
+                                umbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+                                umbraShadow.BackgroundTransparency = 1.000
+                                umbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+                                umbraShadow.Size = UDim2.new(1, 10, 1, 10)
+                                umbraShadow.Image = "rbxassetid://1316045217"
+                                umbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+                                umbraShadow.ImageTransparency = 0.860
+                                umbraShadow.ScaleType = Enum.ScaleType.Slice
+                                umbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+                                
+                                penumbraShadow.Name = "penumbraShadow"
+                                penumbraShadow.Parent = shadowHolder
+                                penumbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+                                penumbraShadow.BackgroundTransparency = 1.000
+                                penumbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+                                penumbraShadow.Size = UDim2.new(1, 10, 1, 10)
+                                penumbraShadow.Image = "rbxassetid://1316045217"
+                                penumbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+                                penumbraShadow.ImageTransparency = 0.880
+                                penumbraShadow.ScaleType = Enum.ScaleType.Slice
+                                penumbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+                                
+                                ambientShadow.Name = "ambientShadow"
+                                ambientShadow.Parent = shadowHolder
+                                ambientShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+                                ambientShadow.BackgroundTransparency = 1.000
+                                ambientShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+                                ambientShadow.Size = UDim2.new(1, 10, 1, 10)
+                                ambientShadow.Image = "rbxassetid://1316045217"
+                                ambientShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+                                ambientShadow.ImageTransparency = 0.880
+                                ambientShadow.ScaleType = Enum.ScaleType.Slice
+                                ambientShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+                                
+                                InfoHolder.Name = "InfoHolder"
+                                InfoHolder.Parent = StatFrame
+                                InfoHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                InfoHolder.BackgroundTransparency = 1.000
+                                InfoHolder.Position = UDim2.new(0.075000003, 0, 0.172602743, 0)
+                                InfoHolder.Size = UDim2.new(0, 135, 0, 240)
+                                
+                                InfoHolderLayOut.Name = "InfoHolderLayOut"
+                                InfoHolderLayOut.Parent = InfoHolder
+                                InfoHolderLayOut.SortOrder = Enum.SortOrder.LayoutOrder
+                                InfoHolderLayOut.Padding = UDim.new(0, 5)
+                                
+                                NameLabel.Name = "NameLabel"
+                                NameLabel.Parent = InfoHolder
+                                NameLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                NameLabel.BackgroundTransparency = 1.000
+                                NameLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                NameLabel.Size = UDim2.new(0, 120, 0, 25)
+                                NameLabel.Font = Enum.Font.Gotham
+                                NameLabel.Text = "Name: "..v.Name
+                                NameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                NameLabel.TextSize = 12.000
+                                NameLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                NameLabel.TextTransparency = 1.000
+                                
+                                LevelLabel.Name = "LevelLabel"
+                                LevelLabel.Parent = InfoHolder
+                                LevelLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                LevelLabel.BackgroundTransparency = 1.000
+                                LevelLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                LevelLabel.Size = UDim2.new(0, 120, 0, 25)
+                                LevelLabel.Font = Enum.Font.Gotham
+                                LevelLabel.Text = "Level: "..prespp
+                                LevelLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                LevelLabel.TextSize = 12.000
+                                LevelLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                LevelLabel.TextTransparency = 1.000
+                                
+                                HealthLabel.Name = "HealthLabel"
+                                HealthLabel.Parent = InfoHolder
+                                HealthLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                HealthLabel.BackgroundTransparency = 1.000
+                                HealthLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                HealthLabel.Size = UDim2.new(0, 120, 0, 25)
+                                HealthLabel.Font = Enum.Font.Gotham
+                                HealthLabel.Text = "Health Max: "..workspace.Live[v.Name].Stats["Health-Max"].Value
+                                HealthLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                HealthLabel.TextSize = 12.000
+                                HealthLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                HealthLabel.TextTransparency = 1.000
+                                
+                                KiMaxLabel.Name = "KiMaxLabel"
+                                KiMaxLabel.Parent = InfoHolder
+                                KiMaxLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                KiMaxLabel.BackgroundTransparency = 1.000
+                                KiMaxLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                KiMaxLabel.Size = UDim2.new(0, 120, 0, 25)
+                                KiMaxLabel.Font = Enum.Font.Gotham
+                                KiMaxLabel.Text = "Ki Max: "..workspace.Live[v.Name].Stats["Ki-Max"].Value
+                                KiMaxLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                KiMaxLabel.TextSize = 12.000
+                                KiMaxLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                KiMaxLabel.TextTransparency = 1.000
+                                
+                                MeleeDamageLabel.Name = "MeleeDamageLabel"
+                                MeleeDamageLabel.Parent = InfoHolder
+                                MeleeDamageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                MeleeDamageLabel.BackgroundTransparency = 1.000
+                                MeleeDamageLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                MeleeDamageLabel.Size = UDim2.new(0, 120, 0, 25)
+                                MeleeDamageLabel.Font = Enum.Font.Gotham
+                                MeleeDamageLabel.Text = "Melee Damage: "..workspace.Live[v.Name].Stats["Phys-Damage"].Value
+                                MeleeDamageLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                MeleeDamageLabel.TextSize = 12.000
+                                MeleeDamageLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                MeleeDamageLabel.TextTransparency = 1.000
+                                
+                                KiDamageLabel.Name = "KiDamageLabel"
+                                KiDamageLabel.Parent = InfoHolder
+                                KiDamageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                KiDamageLabel.BackgroundTransparency = 1.000
+                                KiDamageLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                KiDamageLabel.Size = UDim2.new(0, 120, 0, 25)
+                                KiDamageLabel.Font = Enum.Font.Gotham
+                                KiDamageLabel.Text = "Ki Damage: "..workspace.Live[v.Name].Stats["Ki-Damage"].Value
+                                KiDamageLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                KiDamageLabel.TextSize = 12.000
+                                KiDamageLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                KiDamageLabel.TextTransparency = 1.000
+                                
+                                MeleeResLabel.Name = "MeleeResLabel"
+                                MeleeResLabel.Parent = InfoHolder
+                                MeleeResLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                MeleeResLabel.BackgroundTransparency = 1.000
+                                MeleeResLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                MeleeResLabel.Size = UDim2.new(0, 120, 0, 25)
+                                MeleeResLabel.Font = Enum.Font.Gotham
+                                MeleeResLabel.Text = "Melee Resistance: "..workspace.Live[v.Name].Stats["Phys-Resist"].Value
+                                MeleeResLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                MeleeResLabel.TextSize = 12.000
+                                MeleeResLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                MeleeResLabel.TextTransparency = 1.000
+                                
+                                KiResLabel.Name = "KiResLabel"
+                                KiResLabel.Parent = InfoHolder
+                                KiResLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                KiResLabel.BackgroundTransparency = 1.000
+                                KiResLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                KiResLabel.Size = UDim2.new(0, 120, 0, 25)
+                                KiResLabel.Font = Enum.Font.Gotham
+                                KiResLabel.Text = "Ki Resistance: "..workspace.Live[v.Name].Stats["Ki-Resist"].Value
+                                KiResLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                KiResLabel.TextSize = 12.000
+                                KiResLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                KiResLabel.TextTransparency = 1.000
+                                
+                                Speedabel.Name = "Speedabel"
+                                Speedabel.Parent = InfoHolder
+                                Speedabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                Speedabel.BackgroundTransparency = 1.000
+                                Speedabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                Speedabel.Size = UDim2.new(0, 120, 0, 25)
+                                Speedabel.Font = Enum.Font.Gotham
+                                Speedabel.Text = "Speed: "..workspace.Live[v.Name].Stats["Speed"].Value
+                                Speedabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                Speedabel.TextSize = 12.000
+                                Speedabel.TextXAlignment = Enum.TextXAlignment.Left
+                                Speedabel.TextTransparency = 1.000
+                                
+                                call_merge.Name = "call_merge"
+                                call_merge.Parent = StatFrame
+                                call_merge.BackgroundTransparency = 1.000
+                                call_merge.Position = UDim2.new(0.435000002, 0, 0.0698629394, 0)
+                                call_merge.Size = UDim2.new(0, 25, 0, 25)
+                                call_merge.ZIndex = 2
+                                call_merge.Image = "rbxassetid://3926307971"
+                                call_merge.ImageRectOffset = Vector2.new(884, 164)
+                                call_merge.ImageRectSize = Vector2.new(36, 36)
+                                
+                                StatFrameGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 0, 255))}
+                                StatFrameGradient.Rotation = 45
+                                StatFrameGradient.Name = "StatFrameGradient"
+                                StatFrameGradient.Parent = StatFrame
+                                
+                                Title.Name = "Title"
+                                Title.Parent = StatFrame
+                                Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                Title.BackgroundTransparency = 1.000
+                                Title.BorderColor3 = Color3.fromRGB(27, 42, 53)
+                                Title.Position = UDim2.new(0.0350000001, 0, 0.370383561, 0)
+                                Title.Size = UDim2.new(0, 170, 0, 93)
+                                Title.ZIndex = -2
+                                Title.Image = "rbxassetid://9305588555"
+                                Title.ImageTransparency = 0.800
+                                Title.ScaleType = Enum.ScaleType.Crop
+
+                                ts:create(StatFrame, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+                                ts:create(StatFrameTitle, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait(1)
+                                ts:create(NameLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(LevelLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(HealthLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(KiMaxLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(MeleeDamageLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(KiDamageLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(MeleeResLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(KiResLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(Speedabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait(5)
+                                ts:create(NameLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(LevelLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(HealthLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(KiMaxLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(MeleeDamageLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(KiDamageLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(MeleeResLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(KiResLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(Speedabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait(1)
+                                ts:create(StatFrame, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+                                ts:create(StatFrameTitle, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait(.8)
+                                StatFrame:Destroy()
+                            else
+                                local noprespp = string.sub(x.Name, 5, 1000)
+                                local Holder = Instance.new("ScreenGui", game.CoreGui)
+                                local StatFrame = Instance.new("Frame")
+                                local StatFrameCorner = Instance.new("UICorner")
+                                local StatFrameTitle = Instance.new("TextLabel")
+                                local shadowHolder = Instance.new("Frame")
+                                local umbraShadow = Instance.new("ImageLabel")
+                                local penumbraShadow = Instance.new("ImageLabel")
+                                local ambientShadow = Instance.new("ImageLabel")
+                                local InfoHolder = Instance.new("Frame")
+                                local InfoHolderLayOut = Instance.new("UIListLayout")
+                                local NameLabel = Instance.new("TextLabel")
+                                local LevelLabel = Instance.new("TextLabel")
+                                local HealthLabel = Instance.new("TextLabel")
+                                local KiMaxLabel = Instance.new("TextLabel")
+                                local MeleeDamageLabel = Instance.new("TextLabel")
+                                local KiDamageLabel = Instance.new("TextLabel")
+                                local MeleeResLabel = Instance.new("TextLabel")
+                                local KiResLabel = Instance.new("TextLabel")
+                                local Speedabel = Instance.new("TextLabel")
+                                local call_merge = Instance.new("ImageButton")
+                                local StatFrameGradient = Instance.new("UIGradient")
+                                local Title = Instance.new("ImageLabel")
+                                
+                                --Properties:
+                                
+                                StatFrame.Name = "StatFrame"
+                                StatFrame.Parent = Holder
+                                StatFrame.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+                                StatFrame.BorderSizePixel = 0
+                                StatFrame.Position = UDim2.new(0.0129573168, 0, 0.266666681, 0)
+                                StatFrame.Size = UDim2.new(0, 200, 0, 365)
+                                StatFrame.BackgroundTransparency = 1.000
+                                
+                                StatFrameCorner.CornerRadius = UDim.new(0, 4)
+                                StatFrameCorner.Name = "StatFrameCorner"
+                                StatFrameCorner.Parent = StatFrame
+                                
+                                StatFrameTitle.Name = "StatFrameTitle"
+                                StatFrameTitle.Parent = StatFrame
+                                StatFrameTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                StatFrameTitle.BackgroundTransparency = 1.000
+                                StatFrameTitle.Position = UDim2.new(0.174999997, 0, 0.00821917877, 0)
+                                StatFrameTitle.Size = UDim2.new(0, 130, 0, 21)
+                                StatFrameTitle.Font = Enum.Font.GothamBold
+                                StatFrameTitle.Text = "Player Stats"
+                                StatFrameTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                StatFrameTitle.TextSize = 14.000
+                                StatFrameTitle.TextTransparency = 1.000
+                                
+                                shadowHolder.Name = "shadowHolder"
+                                shadowHolder.Parent = StatFrame
+                                shadowHolder.BackgroundTransparency = 1.000
+                                shadowHolder.Size = UDim2.new(1, 0, 1, 0)
+                                
+                                umbraShadow.Name = "umbraShadow"
+                                umbraShadow.Parent = shadowHolder
+                                umbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+                                umbraShadow.BackgroundTransparency = 1.000
+                                umbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+                                umbraShadow.Size = UDim2.new(1, 10, 1, 10)
+                                umbraShadow.Image = "rbxassetid://1316045217"
+                                umbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+                                umbraShadow.ImageTransparency = 0.860
+                                umbraShadow.ScaleType = Enum.ScaleType.Slice
+                                umbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+                                
+                                penumbraShadow.Name = "penumbraShadow"
+                                penumbraShadow.Parent = shadowHolder
+                                penumbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+                                penumbraShadow.BackgroundTransparency = 1.000
+                                penumbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+                                penumbraShadow.Size = UDim2.new(1, 10, 1, 10)
+                                penumbraShadow.Image = "rbxassetid://1316045217"
+                                penumbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+                                penumbraShadow.ImageTransparency = 0.880
+                                penumbraShadow.ScaleType = Enum.ScaleType.Slice
+                                penumbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+                                
+                                ambientShadow.Name = "ambientShadow"
+                                ambientShadow.Parent = shadowHolder
+                                ambientShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+                                ambientShadow.BackgroundTransparency = 1.000
+                                ambientShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+                                ambientShadow.Size = UDim2.new(1, 10, 1, 10)
+                                ambientShadow.Image = "rbxassetid://1316045217"
+                                ambientShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+                                ambientShadow.ImageTransparency = 0.880
+                                ambientShadow.ScaleType = Enum.ScaleType.Slice
+                                ambientShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+                                
+                                InfoHolder.Name = "InfoHolder"
+                                InfoHolder.Parent = StatFrame
+                                InfoHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                InfoHolder.BackgroundTransparency = 1.000
+                                InfoHolder.Position = UDim2.new(0.075000003, 0, 0.172602743, 0)
+                                InfoHolder.Size = UDim2.new(0, 135, 0, 240)
+                                
+                                InfoHolderLayOut.Name = "InfoHolderLayOut"
+                                InfoHolderLayOut.Parent = InfoHolder
+                                InfoHolderLayOut.SortOrder = Enum.SortOrder.LayoutOrder
+                                InfoHolderLayOut.Padding = UDim.new(0, 5)
+                                
+                                NameLabel.Name = "NameLabel"
+                                NameLabel.Parent = InfoHolder
+                                NameLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                NameLabel.BackgroundTransparency = 1.000
+                                NameLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                NameLabel.Size = UDim2.new(0, 120, 0, 25)
+                                NameLabel.Font = Enum.Font.Gotham
+                                NameLabel.Text = "Name: "..v.Name
+                                NameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                NameLabel.TextSize = 12.000
+                                NameLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                NameLabel.TextTransparency = 1.000
+                                
+                                LevelLabel.Name = "LevelLabel"
+                                LevelLabel.Parent = InfoHolder
+                                LevelLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                LevelLabel.BackgroundTransparency = 1.000
+                                LevelLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                LevelLabel.Size = UDim2.new(0, 120, 0, 25)
+                                LevelLabel.Font = Enum.Font.Gotham
+                                LevelLabel.Text = "Level: "..noprespp
+                                LevelLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                LevelLabel.TextSize = 12.000
+                                LevelLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                LevelLabel.TextTransparency = 1.000
+                                
+                                HealthLabel.Name = "HealthLabel"
+                                HealthLabel.Parent = InfoHolder
+                                HealthLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                HealthLabel.BackgroundTransparency = 1.000
+                                HealthLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                HealthLabel.Size = UDim2.new(0, 120, 0, 25)
+                                HealthLabel.Font = Enum.Font.Gotham
+                                HealthLabel.Text = "Health Max: "..workspace.Live[v.Name].Stats["Health-Max"].Value
+                                HealthLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                HealthLabel.TextSize = 12.000
+                                HealthLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                HealthLabel.TextTransparency = 1.000
+                                
+                                KiMaxLabel.Name = "KiMaxLabel"
+                                KiMaxLabel.Parent = InfoHolder
+                                KiMaxLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                KiMaxLabel.BackgroundTransparency = 1.000
+                                KiMaxLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                KiMaxLabel.Size = UDim2.new(0, 120, 0, 25)
+                                KiMaxLabel.Font = Enum.Font.Gotham
+                                KiMaxLabel.Text = "Ki Max: "..workspace.Live[v.Name].Stats["Ki-Max"].Value
+                                KiMaxLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                KiMaxLabel.TextSize = 12.000
+                                KiMaxLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                KiMaxLabel.TextTransparency = 1.000
+                                
+                                MeleeDamageLabel.Name = "MeleeDamageLabel"
+                                MeleeDamageLabel.Parent = InfoHolder
+                                MeleeDamageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                MeleeDamageLabel.BackgroundTransparency = 1.000
+                                MeleeDamageLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                MeleeDamageLabel.Size = UDim2.new(0, 120, 0, 25)
+                                MeleeDamageLabel.Font = Enum.Font.Gotham
+                                MeleeDamageLabel.Text = "Melee Damage: "..workspace.Live[v.Name].Stats["Phys-Damage"].Value
+                                MeleeDamageLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                MeleeDamageLabel.TextSize = 12.000
+                                MeleeDamageLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                MeleeDamageLabel.TextTransparency = 1.000
+                                
+                                KiDamageLabel.Name = "KiDamageLabel"
+                                KiDamageLabel.Parent = InfoHolder
+                                KiDamageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                KiDamageLabel.BackgroundTransparency = 1.000
+                                KiDamageLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                KiDamageLabel.Size = UDim2.new(0, 120, 0, 25)
+                                KiDamageLabel.Font = Enum.Font.Gotham
+                                KiDamageLabel.Text = "Ki Damage: "..workspace.Live[v.Name].Stats["Ki-Damage"].Value
+                                KiDamageLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                KiDamageLabel.TextSize = 12.000
+                                KiDamageLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                KiDamageLabel.TextTransparency = 1.000
+                                
+                                MeleeResLabel.Name = "MeleeResLabel"
+                                MeleeResLabel.Parent = InfoHolder
+                                MeleeResLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                MeleeResLabel.BackgroundTransparency = 1.000
+                                MeleeResLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                MeleeResLabel.Size = UDim2.new(0, 120, 0, 25)
+                                MeleeResLabel.Font = Enum.Font.Gotham
+                                MeleeResLabel.Text = "Melee Resistance: "..workspace.Live[v.Name].Stats["Phys-Resist"].Value
+                                MeleeResLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                MeleeResLabel.TextSize = 12.000
+                                MeleeResLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                MeleeResLabel.TextTransparency = 1.000
+                                
+                                KiResLabel.Name = "KiResLabel"
+                                KiResLabel.Parent = InfoHolder
+                                KiResLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                KiResLabel.BackgroundTransparency = 1.000
+                                KiResLabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                KiResLabel.Size = UDim2.new(0, 120, 0, 25)
+                                KiResLabel.Font = Enum.Font.Gotham
+                                KiResLabel.Text = "Ki Resistance: "..workspace.Live[v.Name].Stats["Ki-Resist"].Value
+                                KiResLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                KiResLabel.TextSize = 12.000
+                                KiResLabel.TextXAlignment = Enum.TextXAlignment.Left
+                                KiResLabel.TextTransparency = 1.000
+                                
+                                Speedabel.Name = "Speedabel"
+                                Speedabel.Parent = InfoHolder
+                                Speedabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                Speedabel.BackgroundTransparency = 1.000
+                                Speedabel.Position = UDim2.new(0.0549999997, 0, 0.14794521, 0)
+                                Speedabel.Size = UDim2.new(0, 120, 0, 25)
+                                Speedabel.Font = Enum.Font.Gotham
+                                Speedabel.Text = "Speed: "..workspace.Live[v.Name].Stats["Speed"].Value
+                                Speedabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                Speedabel.TextSize = 12.000
+                                Speedabel.TextXAlignment = Enum.TextXAlignment.Left
+                                Speedabel.TextTransparency = 1.000
+                                
+                                call_merge.Name = "call_merge"
+                                call_merge.Parent = StatFrame
+                                call_merge.BackgroundTransparency = 1.000
+                                call_merge.Position = UDim2.new(0.435000002, 0, 0.0698629394, 0)
+                                call_merge.Size = UDim2.new(0, 25, 0, 25)
+                                call_merge.ZIndex = 2
+                                call_merge.Image = "rbxassetid://3926307971"
+                                call_merge.ImageRectOffset = Vector2.new(884, 164)
+                                call_merge.ImageRectSize = Vector2.new(36, 36)
+                                
+                                StatFrameGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 0, 255))}
+                                StatFrameGradient.Rotation = 45
+                                StatFrameGradient.Name = "StatFrameGradient"
+                                StatFrameGradient.Parent = StatFrame
+                                
+                                Title.Name = "Title"
+                                Title.Parent = StatFrame
+                                Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                                Title.BackgroundTransparency = 1.000
+                                Title.BorderColor3 = Color3.fromRGB(27, 42, 53)
+                                Title.Position = UDim2.new(0.0350000001, 0, 0.370383561, 0)
+                                Title.Size = UDim2.new(0, 170, 0, 93)
+                                Title.ZIndex = -2
+                                Title.Image = "rbxassetid://9305588555"
+                                Title.ImageTransparency = 0.800
+                                Title.ScaleType = Enum.ScaleType.Crop
+
+                                ts:create(StatFrame, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+                                ts:create(StatFrameTitle, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait(1)
+                                ts:create(NameLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(LevelLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(HealthLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(KiMaxLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(MeleeDamageLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(KiDamageLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(MeleeResLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(KiResLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait()
+                                ts:create(Speedabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                                wait(5)
+                                ts:create(NameLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(LevelLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(HealthLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(KiMaxLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(MeleeDamageLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(KiDamageLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(MeleeResLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(KiResLabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait()
+                                ts:create(Speedabel, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait(1)
+                                ts:create(StatFrame, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+                                ts:create(StatFrameTitle, TweenInfo.new(.7, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+                                wait(.8)
+                                StatFrame:Destroy()
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    function Lib:Notification(NotifMsg)
+        local NotifyFrame = Instance.new("Frame")
+        local NotifyTitle = Instance.new("TextLabel")
+        local NotifyCorner = Instance.new("UICorner")
+        local notifications = Instance.new("ImageButton")
+        local shadowHolder = Instance.new("Frame")
+        local umbraShadow = Instance.new("ImageLabel")
+        local penumbraShadow = Instance.new("ImageLabel")
+        local ambientShadow = Instance.new("ImageLabel")
+
+        --Properties:
+
+        NotifyFrame.Name = "Notify"
+        NotifyFrame.Parent = Holder
+        NotifyFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+        NotifyFrame.Position = UDim2.new(0, -550,0, 900)
+        NotifyFrame.Size = UDim2.new(0, 265, 0, 50)
+        NotifyFrame.Visible = true
+
+        NotifyTitle.Name = "NotifyTitle"
+        NotifyTitle.Parent = NotifyFrame
+        NotifyTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        NotifyTitle.BackgroundTransparency = 1.000
+        NotifyTitle.Position = UDim2.new(0.0339622647, 0, 0.239999995, 0)
+        NotifyTitle.Size = UDim2.new(0, 215, 0, 25)
+        NotifyTitle.Font = Enum.Font.Gotham
+        NotifyTitle.Text = NotifMsg
+        NotifyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        NotifyTitle.TextSize = 14.000
+        NotifyTitle.TextXAlignment = Enum.TextXAlignment.Left
+        NotifyTitle.TextTransparency = 1.000
+
+        NotifyCorner.CornerRadius = UDim.new(0, 4)
+        NotifyCorner.Name = "NotifyCorner"
+        NotifyCorner.Parent = NotifyFrame
+
+        notifications.Name = "notifications"
+        notifications.Parent = NotifyFrame
+        notifications.BackgroundTransparency = 1.000
+        notifications.Position = UDim2.new(0.869811296, 0, 0.24000001, 0)
+        notifications.Size = UDim2.new(0, 25, 0, 25)
+        notifications.ZIndex = 2
+        notifications.Image = "rbxassetid://3926305904"
+        notifications.ImageRectOffset = Vector2.new(844, 564)
+        notifications.ImageRectSize = Vector2.new(36, 36)
+
+        shadowHolder.Name = "shadowHolder"
+        shadowHolder.Parent = NotifyFrame
+        shadowHolder.BackgroundTransparency = 1.000
+        shadowHolder.Size = UDim2.new(1, 0, 1, 0)
+
+        umbraShadow.Name = "umbraShadow"
+        umbraShadow.Parent = shadowHolder
+        umbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        umbraShadow.BackgroundTransparency = 1.000
+        umbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+        umbraShadow.Size = UDim2.new(1, 10, 1, 10)
+        umbraShadow.Image = "rbxassetid://1316045217"
+        umbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        umbraShadow.ImageTransparency = 0.860
+        umbraShadow.ScaleType = Enum.ScaleType.Slice
+        umbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+        penumbraShadow.Name = "penumbraShadow"
+        penumbraShadow.Parent = shadowHolder
+        penumbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        penumbraShadow.BackgroundTransparency = 1.000
+        penumbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+        penumbraShadow.Size = UDim2.new(1, 10, 1, 10)
+        penumbraShadow.Image = "rbxassetid://1316045217"
+        penumbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        penumbraShadow.ImageTransparency = 0.880
+        penumbraShadow.ScaleType = Enum.ScaleType.Slice
+        penumbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+        ambientShadow.Name = "ambientShadow"
+        ambientShadow.Parent = shadowHolder
+        ambientShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        ambientShadow.BackgroundTransparency = 1.000
+        ambientShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+        ambientShadow.Size = UDim2.new(1, 10, 1, 10)
+        ambientShadow.Image = "rbxassetid://1316045217"
+        ambientShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        ambientShadow.ImageTransparency = 0.880
+        ambientShadow.ScaleType = Enum.ScaleType.Slice
+        ambientShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+        ts:create(NotifyFrame, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2.new(0, 20,0, 900)}):Play()
+        ts:create(NotifyTitle, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+        wait(2)
+        ts:create(NotifyTitle, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+        ts:create(NotifyFrame, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2.new(0, -550,0, 900)}):Play()
+        wait(.7)
+        NotifyFrame:Destroy()
+    end
+    function Lib:InternalNotification(Type, NotifDesc)
+        local TitleTxt
+        local Img
+        local Pos
+        
+        if Type == "Good" then
+            Img = "http://www.roblox.com/asset/?id=8589545938"
+            TitleTxt = "Success!"
+            Pos = UDim2.new(0.092, 0,0.067, 0)
+        elseif Type == "Warning" then
+            Img = "http://www.roblox.com/asset/?id=1764960410"
+            TitleTxt = "Warning!"
+            Pos = UDim2.new(0.0833333358, 0, 0.00833333284, 0)
+        elseif Type == "Bad" then
+            Img = "http://www.roblox.com/asset/?id=4595009422"
+            TitleTxt = "Uh Oh, something went wrong"
+            Pos = UDim2.new(0.092, 0,0.067, 0)
+        end
+
+        local AppNotification = Instance.new("Frame")
+        local NotificationFrame = Instance.new("Frame")
+        local NotificationFrameCorner = Instance.new("UICorner")
+        local NotificationTitle = Instance.new("TextLabel")
+        local NotificationDesc = Instance.new("TextLabel")
+        local NotificationPictureFrame = Instance.new("Frame")
+        local NotificatioPictureFrameCorner = Instance.new("UICorner")
+        local NotifcationImage = Instance.new("ImageLabel")
+        local ReactButton = Instance.new("TextButton")
+        local ReactButtonCorner = Instance.new("UICorner")
+        local ReactButtonHoverSound = Instance.new("Sound", ReactButton)
+        local ReactButtonClickSound = Instance.new("Sound", ReactButton)
+
+        ReactButtonHoverSound.Name = "HoverSound"
+        ReactButtonHoverSound.SoundId = "rbxassetid://1238528678"
+        ReactButtonHoverSound.Volume = 1
+        
+        ReactButtonClickSound.Name = "ClickSound"
+        ReactButtonClickSound.SoundId = "rbxassetid://177266782"
+        ReactButtonClickSound.Volume = 1
+
+        --Properties:
+
+        AppNotification.Name = "AppNotification"
+        AppNotification.Parent = Main
+        AppNotification.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        AppNotification.BackgroundTransparency = 0.500
+        AppNotification.Size = UDim2.new(0, 800, 0, 500)
+
+        NotificationFrame.Name = "NotificationFrame"
+        NotificationFrame.Parent = AppNotification
+        NotificationFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+        NotificationFrame.BorderSizePixel = 0
+        NotificationFrame.Position = UDim2.new(0.25, 0, 0.200000003, 0)
+        NotificationFrame.Size = UDim2.new(0, 400, 0, 300)
+
+        NotificationFrameCorner.CornerRadius = UDim.new(0, 4)
+        NotificationFrameCorner.Name = "NotificationFrameCorner"
+        NotificationFrameCorner.Parent = NotificationFrame
+
+        NotificationTitle.Name = "NotificationTitle"
+        NotificationTitle.Parent = NotificationFrame
+        NotificationTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        NotificationTitle.BackgroundTransparency = 1.000
+        NotificationTitle.Position = UDim2.new(0.25, 0, 0.469999999, 0)
+        NotificationTitle.Size = UDim2.new(0, 200, 0, 25)
+        NotificationTitle.Font = Enum.Font.Gotham
+        NotificationTitle.Text = TitleTxt
+        NotificationTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        NotificationTitle.TextScaled = true
+        NotificationTitle.TextSize = 15.000
+        NotificationTitle.TextWrapped = true
+
+        NotificationDesc.Name = "NotificationDesc"
+        NotificationDesc.Parent = NotificationTitle
+        NotificationDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        NotificationDesc.BackgroundTransparency = 1.000
+        NotificationDesc.Position = UDim2.new(-0.164999992, 0, 0.799999952, 0)
+        NotificationDesc.Size = UDim2.new(0, 265, 0, 53)
+        NotificationDesc.Font = Enum.Font.Gotham
+        NotificationDesc.Text = NotifDesc
+        NotificationDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+        NotificationDesc.TextSize = 14.000
+        NotificationDesc.TextWrapped = true
+
+        NotificationPictureFrame.Name = "NotificationPictureFrame"
+        NotificationPictureFrame.Parent = NotificationFrame
+        NotificationPictureFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        NotificationPictureFrame.Position = UDim2.new(0.347499996, 0, 0.0399999991, 0)
+        NotificationPictureFrame.Size = UDim2.new(0, 120, 0, 120)
+
+        NotificatioPictureFrameCorner.CornerRadius = UDim.new(0, 90)
+        NotificatioPictureFrameCorner.Name = "NotificatioPictureFrameCorner"
+        NotificatioPictureFrameCorner.Parent = NotificationPictureFrame
+
+        NotifcationImage.Name = "NotifcationImage"
+        NotifcationImage.Parent = NotificationPictureFrame
+        NotifcationImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        NotifcationImage.BackgroundTransparency = 1.000
+        NotifcationImage.Position = Pos
+        NotifcationImage.Size = UDim2.new(0, 100, 0, 100)
+        NotifcationImage.Image = Img
+        NotifcationImage.ImageTransparency = 0.100
+
+        ReactButton.Name = "ReactButton"
+        ReactButton.Parent = NotificationFrame
+        ReactButton.BackgroundColor3 = Color3.fromRGB(78, 0, 121)
+        ReactButton.BorderSizePixel = 0
+        ReactButton.Position = UDim2.new(0.292499989, 0, 0.74333334, 0)
+        ReactButton.Size = UDim2.new(0, 165, 0, 33)
+        ReactButton.Font = Enum.Font.Gotham
+        ReactButton.Text = "Okay!"
+        ReactButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ReactButton.TextSize = 18.000
+
+        ReactButtonCorner.CornerRadius = UDim.new(0, 4)
+        ReactButtonCorner.Name = "ReactButtonCorner"
+        ReactButtonCorner.Parent = ReactButton
+
+        ReactButton.MouseButton1Click:connect(function()
+            AppNotification:Destroy()
+        end)
+    end
+
+    for _, v in pairs(plr:GetFriendsOnline()) do
+        local FriendForm = Instance.new("Frame")
+        local FriendFormCorner = Instance.new("UICorner")
+        local FriendFromGradient = Instance.new("UIGradient")
+        local FriendName = Instance.new("TextLabel")
+        local FriendDisplayName = Instance.new("TextLabel")
+        local FriendStatus = Instance.new("TextLabel")
+        local TeleportButton = Instance.new("TextButton")
+        local TeleportButtonCorner = Instance.new("UICorner")
+        local FriendGame = Instance.new("TextLabel")
+        local IntId
+
+        if v.PlaceId == nil then
+            IntId = "Not Displayed"
+        else
+            IntId = game:GetService("MarketplaceService"):GetProductInfo(v.PlaceId).Name
+        end
+            
+        --Properties:
+
+        FriendForm.Name = "FriendForm"
+        FriendForm.Parent = FriendFormScrollingFrame
+        FriendForm.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+        FriendForm.Position = UDim2.new(0.0790322497, 0, 0.582000017, 0)
+        FriendForm.Size = UDim2.new(0, 160, 0, 117)
+
+        FriendFormCorner.Name = "FriendFormCorner"
+        FriendFormCorner.Parent = FriendForm
+
+        FriendFromGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 255, 0))}
+        FriendFromGradient.Rotation = 45
+        FriendFromGradient.Name = "FriendFromGradient"
+        FriendFromGradient.Parent = FriendForm
+
+        FriendName.Name = "FriendName"
+        FriendName.Parent = FriendForm
+        FriendName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        FriendName.BackgroundTransparency = 1.000
+        FriendName.Position = UDim2.new(0.025000006, 0, -0.0073399432, 0)
+        FriendName.Size = UDim2.new(0, 75, 0, 31)
+        FriendName.Font = Enum.Font.GothamBold
+        FriendName.Text = v.UserName
+        FriendName.TextColor3 = Color3.fromRGB(255, 255, 255)
+        FriendName.TextSize = 11.000
+
+        FriendDisplayName.Name = "FriendDisplayName"
+        FriendDisplayName.Parent = FriendName
+        FriendDisplayName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        FriendDisplayName.BackgroundTransparency = 1.000
+        FriendDisplayName.Position = UDim2.new(0.173333332, 0, 0.580645144, 0)
+        FriendDisplayName.Size = UDim2.new(0, 49, 0, 21)
+        FriendDisplayName.Font = Enum.Font.Gotham
+        FriendDisplayName.Text = v.DisplayName
+        FriendDisplayName.TextColor3 = Color3.fromRGB(161, 161, 161)
+        FriendDisplayName.TextSize = 10.000
+        FriendDisplayName.TextXAlignment = Enum.TextXAlignment.Left
+
+        FriendStatus.Name = "FriendStatus"
+        FriendStatus.Parent = FriendForm
+        FriendStatus.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        FriendStatus.BackgroundTransparency = 1.000
+        FriendStatus.Position = UDim2.new(0.652884686, 0, -0.0100854076, 0)
+        FriendStatus.Size = UDim2.new(0, 39, 0, 25)
+        FriendStatus.Font = Enum.Font.Gotham
+        FriendStatus.Text = "Online"
+        FriendStatus.TextColor3 = Color3.fromRGB(255, 255, 255)
+        FriendStatus.TextSize = 11.000
+        FriendStatus.TextXAlignment = Enum.TextXAlignment.Left
+
+        TeleportButton.Name = "TeleportButton"
+        TeleportButton.Parent = FriendForm
+        TeleportButton.BackgroundColor3 = Color3.fromRGB(0, 117, 56)
+        TeleportButton.Position = UDim2.new(0.273076922, 0, 0.741452992, 0)
+        TeleportButton.Size = UDim2.new(0, 72, 0, 20)
+        TeleportButton.Font = Enum.Font.Gotham
+        TeleportButton.Text = "Teleport"
+        TeleportButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        TeleportButton.TextSize = 12.000
+
+        TeleportButtonCorner.Name = "TeleportButtonCorner"
+        TeleportButtonCorner.Parent = TeleportButton
+
+        FriendGame.Name = "FriendGame"
+        FriendGame.Parent = FriendForm
+        FriendGame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        FriendGame.BackgroundTransparency = 1.000
+        FriendGame.Position = UDim2.new(0.0437499993, 0, 0.358974367, 0)
+        FriendGame.Size = UDim2.new(0, 117, 0, 32)
+        FriendGame.Font = Enum.Font.Gotham
+        FriendGame.Text = "Game: "..IntId
+        FriendGame.TextColor3 = Color3.fromRGB(255, 255, 255)
+        FriendGame.TextSize = 13.000
+        FriendGame.TextWrapped = true
+        FriendGame.TextXAlignment = Enum.TextXAlignment.Left
+
+        MenuSound.Name = "NovaLibSound"
+        MenuSound.Parent = Holder
+        MenuSound.SoundId = "rbxassetid://9046865270"
+        MenuSound.Looped = true
+
+        MenuBlur.Name = "NovaBlur"
+        MenuBlur.Parent = game.Lighting
+        MenuBlur.Enabled = false
+        MenuBlur.Size = 1000
+
+        TeleportButton.MouseButton1Click:connect(function()
+            game:GetService("TeleportService"):TeleportToPlaceInstance(v.PlaceId, v.GameId)
+        end)
+        if game.Players:FindFirstChild(v.UserName) then
+            FriendStatus.Text = "In Game"
+        else
+            FriendStatus.Text = "Online"
+        end
+    end
+
+	ServerRegion.Text = "Xeno Don't Support Http So Yea"
+
+	Run.Heartbeat:connect(function()
+		local seconds = math.floor(workspace.DistributedGameTime)
+        local minutes = math.floor(workspace.DistributedGameTime / 60)
+        local hours = math.floor(workspace.DistributedGameTime / 60 / 60)
+        local seconds = seconds - (minutes * 60)
+        local minutes = minutes - (hours * 60)
+        SessionTimeValue.Text = "" ..hours .. ":" .. minutes .. ":" .. seconds .. ""
+        MonthDate.Text = os.date("%B %d, %Y")
+        Weekday.Text = os.date("%A")
+        Time.Text = os.date("%I:%M:%S %p")
+		PlayerCount.Text = "Player Count: "..#game.Players:GetPlayers()
+	end)
+
+	game.Stats:WaitForChild("Network")
+	game.Stats.Network:WaitForChild("ServerStatsItem")
+	game.Stats.Network.ServerStatsItem:WaitForChild("Data Ping")
+
+	Run.Heartbeat:Connect(function()
+		ping = string.split(string.split(game.Stats.Network.ServerStatsItem["Data Ping"]:GetValueString(), " ")[1], ".")
+		fps = string.split(game.Stats.Workspace.Heartbeat:GetValueString(), ".")
+		memory = game:GetService'Stats':GetTotalMemoryUsageMb()
+		gpu = string.split(string.split(game.Stats.PerformanceStats["GPU"]:GetValueString(), " ")[1], ".")
+		cpu = string.split(string.split(game.Stats.PerformanceStats["CPU"]:GetValueString(), " ")[1], ".")
+		FPSPerfomance.Text = " FPS: "..fps[1]
+		PingPerfomance.Text = " Ping: "..ping[1]
+		MemoryPerfomance.Text = " Memory Usage: "..string.sub(tostring(memory), 1, 4)
+		GPUPerfomance.Text = " GPU Usage: "..gpu[1].." ms" 
+		CPUPerfomance.Text = " CPU Usage: "..cpu[1].." ms"
+        if MemoryPerfomance.Text == " Memory Usage:  1" then
+            MemoryPerfomance.Text = " Memory Usage:  1 GB"
+        end
+	end)
+    local HomeHoverSound = Instance.new("Sound", HomeTabButton)
+    local HomeClickSound = Instance.new("Sound", HomeTabButton)
+
+    HomeHoverSound.Name = "HoverSound"
+    HomeHoverSound.SoundId = "rbxassetid://1238528678"
+    HomeHoverSound.Volume = 1
+    
+    HomeClickSound.Name = "ClickSound"
+    HomeClickSound.SoundId = "rbxassetid://177266782"
+    HomeClickSound.Volume = 1
+
+    HomeTabButton.MouseEnter:connect(function()
+        if currentopentab ~= "Home" then
+            HomeHoverSound:Play()
+            ts:Create(HomeTabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+        end
+    end)
+    HomeTabButton.MouseLeave:connect(function()
+        if currentopentab ~= "Home" then
+            ts:Create(HomeTabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+        end
+    end)
+    HomeTabButton.MouseButton1Click:connect(function()
+        HomeClickSound:Play()
+        for i, v in next, TabSection:GetChildren() do
+            if v.ClassName == "TextButton" then
+                ts:Create(v, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+            end
+            ts:Create(HomeTabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+        end
+        currentopentab = "Home"
+        for i, v in next, TabsFolder:GetChildren() do
+            v.Visible = false
+        end 
+        HomeTab.Visible = true
+    end)
+    local SettingMain = Instance.new("Frame")
+    local NovaLogo = Instance.new("ImageLabel")
+    local Title = Instance.new("TextLabel")
+    local SettingsGradient = Instance.new("UIGradient")
+    local SettingsUnderFrame = Instance.new("Frame")
+    local AdminFrame = Instance.new("Frame")
+    local AdminTitle = Instance.new("TextLabel")
+    local AdminMain = Instance.new("Frame")
+    local MainCorner = Instance.new("UICorner")
+    local create = Instance.new("ImageButton")
+    local CmdTextBox = Instance.new("TextBox")
+    local EnterLabel = Instance.new("TextLabel")
+    local CmdPreview = Instance.new("Frame")
+    local CmdPreviewCorner = Instance.new("UICorner")
+    local CmdTitle = Instance.new("TextLabel")
+    local CmdDesc = Instance.new("TextLabel")
+    local shadowHolder = Instance.new("Frame")
+    local umbraShadow = Instance.new("ImageLabel")
+    local penumbraShadow = Instance.new("ImageLabel")
+    local ambientShadow = Instance.new("ImageLabel")
+    local AdminDescription = Instance.new("Frame")
+    local AdminDesc = Instance.new("TextLabel")
+    local EnableButton = Instance.new("TextButton")
+    local EnableButtonCorner = Instance.new("UICorner")
+    local ExitLabel = Instance.new("TextButton")
+    local keyboard_tab = Instance.new("ImageButton")
+
+    --Properties:
+
+    SettingMain.Name = "SettingMain"
+    SettingMain.Parent = Holder
+    SettingMain.BackgroundColor3 = Color3.fromRGB(13, 13, 13)
+    SettingMain.Position = UDim2.new(-3.7252903e-09, 0, 0, 0)
+    SettingMain.Size = UDim2.new(1, 0, 1, 0)
+    SettingMain.Visible = false
+
+    NovaLogo.Name = "NovaLogo"
+    NovaLogo.Parent = SettingMain
+    NovaLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    NovaLogo.BackgroundTransparency = 1.000
+    NovaLogo.Position = UDim2.new(-5.58793545e-09, 0, 0, 0)
+    NovaLogo.Size = UDim2.new(0, 119, 0, 60)
+    NovaLogo.Image = "rbxassetid://9305588555"
+    NovaLogo.ScaleType = Enum.ScaleType.Crop
+
+    Title.Name = "Title"
+    Title.Parent = SettingMain
+    Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Title.BackgroundTransparency = 1.000
+    Title.Position = UDim2.new(0.0116550112, 0, 0.0701754391, 0)
+    Title.Size = UDim2.new(0, 311, 0, 105)
+    Title.Font = Enum.Font.GothamBold
+    Title.Text = "Settings"
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.TextSize = 50.000
+
+    SettingsGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 0, 255))}
+    SettingsGradient.Name = "SettingsGradient"
+    SettingsGradient.Parent = Title
+
+    SettingsUnderFrame.Name = "SettingsUnderFrame"
+    SettingsUnderFrame.Parent = Title
+    SettingsUnderFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    SettingsUnderFrame.BorderSizePixel = 0
+    SettingsUnderFrame.Position = UDim2.new(0.167202547, 0, 0.790476203, 0)
+    SettingsUnderFrame.Size = UDim2.new(0, 207, 0, 2)
+
+    AdminFrame.Name = "AdminFrame"
+    AdminFrame.Parent = SettingMain
+    AdminFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    AdminFrame.BackgroundTransparency = 1.000
+    AdminFrame.Position = UDim2.new(0.0450660437, 0, 0.280701756, 0)
+    AdminFrame.Size = UDim2.new(0, 960, 0, 330)
+
+    AdminTitle.Name = "AdminTitle"
+    AdminTitle.Parent = AdminFrame
+    AdminTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    AdminTitle.BackgroundTransparency = 1.000
+    AdminTitle.Position = UDim2.new(0, 0, -0.116666675, 0)
+    AdminTitle.Size = UDim2.new(0, 200, 0, 50)
+    AdminTitle.Font = Enum.Font.GothamBold
+    AdminTitle.Text = "Command Bar"
+    AdminTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    AdminTitle.TextScaled = true
+    AdminTitle.TextSize = 24.000
+    AdminTitle.TextWrapped = true
+    AdminTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+    AdminMain.Name = "AdminMain"
+    AdminMain.Parent = AdminFrame
+    AdminMain.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+    AdminMain.BackgroundTransparency = 0.100
+    AdminMain.BorderSizePixel = 0
+    AdminMain.Position = UDim2.new(0.00861805677, 0, 0.0906431973, 0)
+    AdminMain.Size = UDim2.new(0, 600, 0, 35)
+
+    MainCorner.CornerRadius = UDim.new(0, 4)
+    MainCorner.Name = "MainCorner"
+    MainCorner.Parent = AdminMain
+
+    create.Name = "create"
+    create.Parent = AdminMain
+    create.BackgroundTransparency = 1.000
+    create.Position = UDim2.new(0.941666663, 0, 0.128571421, 0)
+    create.Size = UDim2.new(0, 25, 0, 25)
+    create.ZIndex = 2
+    create.Image = "rbxassetid://3926305904"
+    create.ImageRectOffset = Vector2.new(284, 644)
+    create.ImageRectSize = Vector2.new(36, 36)
+
+    CmdTextBox.Name = "CmdTextBox"
+    CmdTextBox.Parent = AdminMain
+    CmdTextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    CmdTextBox.BackgroundTransparency = 1.000
+    CmdTextBox.Position = UDim2.new(0.0333333351, 0, 0.128571436, 0)
+    CmdTextBox.Size = UDim2.new(0, 385, 0, 25)
+    CmdTextBox.Font = Enum.Font.Gotham
+    CmdTextBox.PlaceholderText = "Type command here."
+    CmdTextBox.Text = ""
+    CmdTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+    CmdTextBox.TextSize = 14.000
+    CmdTextBox.TextXAlignment = Enum.TextXAlignment.Left
+
+    EnterLabel.Name = "EnterLabel"
+    EnterLabel.Parent = AdminMain
+    EnterLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    EnterLabel.BackgroundTransparency = 1.000
+    EnterLabel.Position = UDim2.new(0.566666722, 0, 0.128571436, 0)
+    EnterLabel.Size = UDim2.new(0, 200, 0, 25)
+    EnterLabel.Font = Enum.Font.Gotham
+    EnterLabel.Text = "Tap Enter"
+    EnterLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    EnterLabel.TextSize = 14.000
+    EnterLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+    EnterLabel.TextStrokeTransparency = 0.800
+    EnterLabel.TextXAlignment = Enum.TextXAlignment.Right
+
+    CmdPreview.Name = "CmdPreview"
+    CmdPreview.Parent = AdminMain
+    CmdPreview.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+    CmdPreview.BackgroundTransparency = 0.400
+    CmdPreview.Position = UDim2.new(0.00333333318, 0, 1.31428576, 0)
+    CmdPreview.Size = UDim2.new(0, 595, 0, 60)
+
+    CmdPreviewCorner.CornerRadius = UDim.new(0, 4)
+    CmdPreviewCorner.Name = "CmdPreviewCorner"
+    CmdPreviewCorner.Parent = CmdPreview
+
+    CmdTitle.Name = "CmdTitle"
+    CmdTitle.Parent = CmdPreview
+    CmdTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    CmdTitle.BackgroundTransparency = 1.000
+    CmdTitle.Position = UDim2.new(0.0168067235, 0, 0.116666675, 0)
+    CmdTitle.Size = UDim2.new(0, 200, 0, 25)
+    CmdTitle.Font = Enum.Font.Gotham
+    CmdTitle.Text = "Cmds"
+    CmdTitle.TextColor3 = Color3.fromRGB(111, 111, 111)
+    CmdTitle.TextSize = 14.000
+    CmdTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+    CmdDesc.Name = "CmdDesc"
+    CmdDesc.Parent = CmdTitle
+    CmdDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    CmdDesc.BackgroundTransparency = 1.000
+    CmdDesc.Position = UDim2.new(0, 0, 1, 0)
+    CmdDesc.Size = UDim2.new(0, 200, 0, 25)
+    CmdDesc.Font = Enum.Font.Gotham
+    CmdDesc.Text = "Display commands."
+    CmdDesc.TextColor3 = Color3.fromRGB(111, 111, 111)
+    CmdDesc.TextSize = 14.000
+    CmdDesc.TextXAlignment = Enum.TextXAlignment.Left
+
+    shadowHolder.Name = "shadowHolder"
+    shadowHolder.Parent = AdminMain
+    shadowHolder.BackgroundTransparency = 1.000
+    shadowHolder.Size = UDim2.new(1, 0, 1, 0)
+    shadowHolder.ZIndex = -2
+
+    umbraShadow.Name = "umbraShadow"
+    umbraShadow.Parent = shadowHolder
+    umbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+    umbraShadow.BackgroundTransparency = 1.000
+    umbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+    umbraShadow.Size = UDim2.new(1, 10, 1, 10)
+    umbraShadow.ZIndex = -2
+    umbraShadow.Image = "rbxassetid://1316045217"
+    umbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+    umbraShadow.ImageTransparency = 0.860
+    umbraShadow.ScaleType = Enum.ScaleType.Slice
+    umbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+    penumbraShadow.Name = "penumbraShadow"
+    penumbraShadow.Parent = shadowHolder
+    penumbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+    penumbraShadow.BackgroundTransparency = 1.000
+    penumbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+    penumbraShadow.Size = UDim2.new(1, 10, 1, 10)
+    penumbraShadow.ZIndex = -2
+    penumbraShadow.Image = "rbxassetid://1316045217"
+    penumbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+    penumbraShadow.ImageTransparency = 0.880
+    penumbraShadow.ScaleType = Enum.ScaleType.Slice
+    penumbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+    ambientShadow.Name = "ambientShadow"
+    ambientShadow.Parent = shadowHolder
+    ambientShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+    ambientShadow.BackgroundTransparency = 1.000
+    ambientShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+    ambientShadow.Size = UDim2.new(1, 10, 1, 10)
+    ambientShadow.ZIndex = -2
+    ambientShadow.Image = "rbxassetid://1316045217"
+    ambientShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+    ambientShadow.ImageTransparency = 0.880
+    ambientShadow.ScaleType = Enum.ScaleType.Slice
+    ambientShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+    AdminDescription.Name = "AdminDescription"
+    AdminDescription.Parent = AdminFrame
+    AdminDescription.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    AdminDescription.BackgroundTransparency = 1.000
+    AdminDescription.Position = UDim2.new(0.660416722, 0, 0.055555556, 0)
+    AdminDescription.Size = UDim2.new(0, 300, 0, 288)
+
+    AdminDesc.Name = "AdminDesc"
+    AdminDesc.Parent = AdminDescription
+    AdminDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    AdminDesc.BackgroundTransparency = 1.000
+    AdminDesc.Position = UDim2.new(0, 0, -3.7252903e-09, 0)
+    AdminDesc.Size = UDim2.new(0, 300, 0, 125)
+    AdminDesc.Font = Enum.Font.Gotham
+    AdminDesc.Text = "This is the Nova Command/Admin Bar. This allows you to easily access scripts that are in the Normal GUI. Enabling This will Disable the Normal GUI. This can be Changed by typing the command \"Settings\". This also contains seperate commands. All Commands can be seen by typing \"cmd\"."
+    AdminDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+    AdminDesc.TextSize = 14.000
+    AdminDesc.TextWrapped = true
+    AdminDesc.TextXAlignment = Enum.TextXAlignment.Left
+
+    EnableButton.Name = "EnableButton"
+    EnableButton.Parent = AdminFrame
+    EnableButton.BackgroundColor3 = Color3.fromRGB(85, 0, 255)
+    EnableButton.Position = UDim2.new(0.82708329, 0, 0.848484814, 0)
+    EnableButton.Size = UDim2.new(0, 140, 0, 35)
+    EnableButton.Font = Enum.Font.GothamBold
+    EnableButton.Text = "Enable"
+    EnableButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    EnableButton.TextSize = 14.000
+
+    function Lib:AdminEnabled(callback)
+        local callback = callback or function() end
+        EnableButton.MouseButton1Click:connect(function()
+            pcall(callback)
+        end)
+    end
+
+    EnableButtonCorner.CornerRadius = UDim.new(0, 4)
+    EnableButtonCorner.Name = "EnableButtonCorner"
+    EnableButtonCorner.Parent = EnableButton
+
+    ExitLabel.Name = "ExitLabel"
+    ExitLabel.Parent = SettingMain
+    ExitLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ExitLabel.BackgroundTransparency = 1.000
+    ExitLabel.Position = UDim2.new(0.947592974, 0, 0.0192982554, 0)
+    ExitLabel.Size = UDim2.new(0, 50, 0, 25)
+    ExitLabel.Font = Enum.Font.Gotham
+    ExitLabel.Text = "Exit"
+    ExitLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ExitLabel.TextSize = 14.000
+    ExitLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    keyboard_tab.Name = "keyboard_tab"
+    keyboard_tab.Parent = SettingsHolder
+    keyboard_tab.BackgroundTransparency = 1.000
+    keyboard_tab.LayoutOrder = 10
+    keyboard_tab.Position = UDim2.new(0.971215367, 0, 0.0192982554, 0)
+    keyboard_tab.Size = UDim2.new(0, 25, 0, 25)
+    keyboard_tab.ZIndex = 2
+    keyboard_tab.Image = "rbxassetid://3926305904"
+    keyboard_tab.ImageRectOffset = Vector2.new(604, 444)
+    keyboard_tab.ImageRectSize = Vector2.new(36, 36)
+
+    local SettingsTabButton = Instance.new("TextButton")
+    local SettingsTabCorner = Instance.new("UICorner")
+    local settings = Instance.new("ImageButton")
+
+    --Properties:
+
+    SettingsTabButton.Name = "SettingsTabButton"
+    SettingsTabButton.Parent = LeftSection
+    SettingsTabButton.BackgroundColor3 = Color3.fromRGB(79, 5, 111)
+    SettingsTabButton.BackgroundTransparency = 1.000
+    SettingsTabButton.BorderSizePixel = 0
+    SettingsTabButton.Position = UDim2.new(0.12222223, 0, 0.904000044, 0)
+    SettingsTabButton.Size = UDim2.new(0, 135, 0, 35)
+    SettingsTabButton.Font = Enum.Font.Gotham
+    SettingsTabButton.Text = "Settings"
+    SettingsTabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    SettingsTabButton.TextSize = 14.000
+
+    SettingsTabCorner.CornerRadius = UDim.new(0, 4)
+    SettingsTabCorner.Name = "SettingsTabCorner"
+    SettingsTabCorner.Parent = SettingsTabButton
+
+    settings.Name = "settings"
+    settings.Parent = SettingsTabButton
+    settings.BackgroundTransparency = 1.000
+    settings.LayoutOrder = 1
+    settings.Position = UDim2.new(0.0481481515, 0, 0.128571421, 0)
+    settings.Size = UDim2.new(0, 25, 0, 25)
+    settings.ZIndex = 2
+    settings.Image = "rbxassetid://3926307971"
+    settings.ImageRectOffset = Vector2.new(324, 124)
+    settings.ImageRectSize = Vector2.new(36, 36)
+
+    ExitLabel.MouseButton1Click:connect(function()
+        SettingMain.Visible = false
+        ts:Create(SettingsTabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+        HomeTab.Visible = true
+    end)
+
+    SettingsTabButton.MouseEnter:connect(function()
+        if currentopentab ~= "Home" then
+            HomeHoverSound:Play()
+            ts:Create(SettingsTabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+        end
+    end)
+    SettingsTabButton.MouseLeave:connect(function()
+        if currentopentab ~= "Home" then
+            ts:Create(SettingsTabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+        end
+    end)
+    SettingsTabButton.MouseButton1Click:connect(function()
+        HomeClickSound:Play()
+        for i, v in next, TabSection:GetChildren() do
+            if v.ClassName == "TextButton" then
+                ts:Create(v, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+            end
+            ts:Create(SettingsTabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+        end
+        currentopentab = "Home"
+        for i, v in next, TabsFolder:GetChildren() do
+            v.Visible = false
+        end 
+        HomeTab.Visible = false
+        SettingMain.Visible = true
+    end)
+
+    game:service'UserInputService'.InputBegan:connect(function(current, pressed)
+        if not pressed then
+            if current.KeyCode.Name == "RightControl" then
+                ToggleLib()
+            end
+        end
+    end)
+
+    local Content = {}
+
+    function Content:Tab(TabTitle, Icon)
+        local Img
+		local Offset1
+		local Offset2
+		if Icon == "User" then
+			Img = "rbxassetid://3926307971"
+			Offset1 = Vector2.new(884, 4)
+			Offset2 = Vector2.new(36, 36)
+        end
+		if Icon == "Eye" then
+			Img = "rbxassetid://3926307971"
+			Offset1 = Vector2.new(44, 444)
+			Offset2 = Vector2.new(36, 36)
+        end
+		if Icon == "Planet" then
+			Img = "rbxassetid://3926305904"
+			Offset1 = Vector2.new(604, 324)
+			Offset2 = Vector2.new(36, 36)
+        end
+		if Icon == "Extra" then
+			Img = "rbxassetid://3926307971"
+			Offset1 = Vector2.new(404, 204)
+			Offset2 = Vector2.new(36, 36)
+        end
+		if Icon == "Money" then
+			Img = "rbxassetid://3926307971"
+			Offset1 = Vector2.new(964, 484)
+			Offset2 = Vector2.new(36, 36)
+        end
+        if Icon == "Auto" then
+            Img = "rbxassetid://3926307971"
+			Offset1 = Vector2.new(564, 444)
+			Offset2 = Vector2.new(36, 36)
+        end
+        if Icon == "Upgrade" then
+            Img = "rbxassetid://3926307971"
+			Offset1 = Vector2.new(884, 164)
+			Offset2 = Vector2.new(36, 36)
+		end
+        if Icon == "Star" then
+            Img = "rbxassetid://3926305904"
+			Offset1 = Vector2.new(116, 4)
+			Offset2 = Vector2.new(24, 24)
+        end
+        local TabButton = Instance.new("TextButton")
+        local TabCorner = Instance.new("UICorner")
+        local person = Instance.new("ImageButton")
+        local CurrentTab = Instance.new('ScrollingFrame') 
+		local List = Instance.new('UIListLayout')
+        local HoverSound = Instance.new("Sound", TabButton)
+        local ClickSound = Instance.new("Sound", TabButton)
+
+        TabButton.Name = TabTitle.."TabButton"
+        TabButton.Parent = TabSection
+        TabButton.BackgroundColor3 = Color3.fromRGB(78, 0, 121)
+        TabButton.BackgroundTransparency = 1.000
+        TabButton.BorderSizePixel = 0
+        TabButton.Position = UDim2.new(0.0500000007, 0, 0, 0)
+        TabButton.Size = UDim2.new(0, 135, 0, 35)
+        TabButton.Font = Enum.Font.Gotham
+        TabButton.Text = TabTitle
+        TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        TabButton.TextSize = 14.000
+
+        TabCorner.Name = "TabCorner"
+        TabCorner.Parent = TabButton
+        TabCorner.CornerRadius = UDim.new(0, 4)
+
+        person.Name = "person"
+        person.Parent = TabButton
+        person.BackgroundTransparency = 1.000
+        person.LayoutOrder = 6
+        person.Position = UDim2.new(0.092592597, 0, 0.0666666627, 0)
+        person.Size = UDim2.new(0, 25, 0, 25)
+        person.ZIndex = 2
+        person.Image = Img
+        person.ImageRectOffset = Offset1
+        person.ImageRectSize = Offset2
+
+        CurrentTab.Name = TabTitle..'Tab'
+		CurrentTab.Parent = TabsFolder
+		CurrentTab.Active = true
+		CurrentTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		CurrentTab.BackgroundTransparency = 1.000
+		CurrentTab.Size = UDim2.new(0, 620, 0, 450)
+		CurrentTab.ScrollBarThickness = 6
+        CurrentTab.BorderSizePixel = 0
+        CurrentTab.Visible = false
+        CurrentTab.ClipsDescendants = true
+
+		List.Name = 'List'
+		List.Parent = CurrentTab
+		List.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		List.SortOrder = Enum.SortOrder.LayoutOrder
+		List.Padding = UDim.new(0, 5)
+
+        HoverSound.Name = "HoverSound"
+        HoverSound.SoundId = "rbxassetid://1238528678"
+        HoverSound.Volume = 1
+        
+        ClickSound.Name = "ClickSound"
+        ClickSound.SoundId = "rbxassetid://177266782"
+        ClickSound.Volume = 1
+
+        TabButton.MouseEnter:connect(function()
+            if currentopentab ~= TabButton.Name then
+                HoverSound:Play()
+                ts:Create(TabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+            end
+        end)
+        TabButton.MouseLeave:connect(function()
+            if currentopentab ~= TabButton.Name then
+                ts:Create(TabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+            end
+        end)
+        TabButton.MouseButton1Click:connect(function()
+            ClickSound:Play()
+            for i, v in next, TabSection:GetChildren() do
+                if v.ClassName == "TextButton" then
+                    ts:Create(v, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+                    ts:Create(HomeTabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+                end
+                ts:Create(TabButton, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+            end
+            currentopentab = TabButton.Name
+            for i, v in next, TabsFolder:GetChildren() do
+                v.Visible = false
+                HomeTab.Visible = false
+            end
+            CurrentTab.Visible = true
+        end)
+
+        local TabContent = {}
+        
+        function TabContent:Section(SctnTitle)
+            local Section = Instance.new("Frame")
+            local SectionTitle = Instance.new("TextLabel")
+            local SectionCorner = Instance.new("UICorner")
+
+            --Properties:
+
+            Section.Name = "Section"
+            Section.Parent = CurrentTab
+            Section.BackgroundTransparency = 1.000
+            Section.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+            Section.Position = UDim2.new(0.0161290318, 0, 1, 0)
+            Section.Size = UDim2.new(0, 600, 0, 60)
+
+            SectionTitle.Name = "SectionTitle"
+            SectionTitle.Parent = Section
+            SectionTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            SectionTitle.BackgroundTransparency = 1.000
+            SectionTitle.BorderSizePixel = 0
+            SectionTitle.Position = UDim2.new(0.0166666675, 0, 0, 0)
+            SectionTitle.Size = UDim2.new(0, 575, 0, 60)
+            SectionTitle.Font = Enum.Font.GothamSemibold
+            SectionTitle.Text = SctnTitle
+            SectionTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            SectionTitle.TextSize = 22.000
+            SectionTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+            SectionCorner.CornerRadius = UDim.new(0, 4)
+            SectionCorner.Name = "SectionCorner"
+            SectionCorner.Parent = Section
+            
+            CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+        end
+        
+        function TabContent:Seperator()
+            local Seperator = Instance.new("Frame")
+
+            Seperator.Name = "Seperator"
+            Seperator.Parent = CurrentTab
+            Seperator.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+            Seperator.BorderColor3 = Color3.fromRGB(27, 42, 53)
+            Seperator.BorderSizePixel = 0
+            Seperator.Position = UDim2.new(0.0161290318, 0, 1.15555561, 0)
+            Seperator.Size = UDim2.new(0, 600, 0, 2)
+
+            CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+        end
+
+        function TabContent:Button(BtnTitle, BtnDesc, callback)
+            local callback = callback or function() end
+            local Button = Instance.new("TextButton")
+            local ButtonCorner = Instance.new("UICorner")
+            local ButtonTitle = Instance.new("TextLabel")
+            local ButtonDesc = Instance.new("TextLabel")
+            local touch_app = Instance.new("ImageButton")
+            local Sample = Instance.new("ImageLabel")
+
+            --Properties:
+
+            Button.Name = "Button"
+            Button.Parent = CurrentTab
+            Button.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+            Button.BackgroundTransparency = 1.000
+            Button.BorderSizePixel = 0
+            Button.Position = UDim2.new(0.0161290318, 0, 0.0311111119, 0)
+            Button.Size = UDim2.new(0, 600, 0, 60)
+            Button.Font = Enum.Font.SourceSans
+            Button.Text = ""
+            Button.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Button.TextSize = 1.000
+            Button.AutoButtonColor = false
+            Button.ClipsDescendants = true
+
+            ButtonCorner.CornerRadius = UDim.new(0, 4)
+            ButtonCorner.Name = "ButtonCorner"
+            ButtonCorner.Parent = Button
+
+            ButtonTitle.Name = BtnTitle.."ButtonTitle"
+            ButtonTitle.Parent = Button
+            ButtonTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ButtonTitle.BackgroundTransparency = 1.000
+            ButtonTitle.Position = UDim2.new(0.0333333313, 0, 0.106666565, 0)
+            ButtonTitle.Size = UDim2.new(0, 196, 0, 25)
+            ButtonTitle.Font = Enum.Font.Gotham
+            ButtonTitle.Text = BtnTitle
+            ButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ButtonTitle.TextSize = 14.000
+            ButtonTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+            ButtonDesc.Name = BtnTitle.."ButtonDesc"
+            ButtonDesc.Parent = ButtonTitle
+            ButtonDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ButtonDesc.BackgroundTransparency = 1.000
+            ButtonDesc.Position = UDim2.new(0, 0, 0.746666551, 0)
+            ButtonDesc.Size = UDim2.new(0, 196, 0, 25)
+            ButtonDesc.Font = Enum.Font.Gotham
+            ButtonDesc.Text = BtnDesc
+            ButtonDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ButtonDesc.TextSize = 12.000
+            ButtonDesc.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+            ButtonDesc.TextXAlignment = Enum.TextXAlignment.Left
+
+            touch_app.Name = "touch_app"
+            touch_app.Parent = Button
+            touch_app.BackgroundTransparency = 1.000
+            touch_app.LayoutOrder = 9
+            touch_app.Position = UDim2.new(0.935000002, 0, 0.283333331, 0)
+            touch_app.Size = UDim2.new(0, 25, 0, 25)
+            touch_app.ZIndex = 2
+            touch_app.Image = "rbxassetid://3926305904"
+            touch_app.ImageRectOffset = Vector2.new(84, 204)
+            touch_app.ImageRectSize = Vector2.new(36, 36)
+
+            Sample.Name = "Sample"
+            Sample.Parent = Button
+            Sample.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Sample.BackgroundTransparency = 1.000
+            Sample.Image = "http://www.roblox.com/asset/?id=4560909609"
+            Sample.ImageColor3 = Color3.fromRGB(81,81,81)
+            Sample.ImageTransparency = 0.600
+
+            
+            Button.MouseEnter:connect(function()
+                ts:Create(Button, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+            end)
+
+            Button.MouseLeave:connect(function()
+                ts:Create(Button, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+            end)
+
+            local ms = game.Players.LocalPlayer:GetMouse()
+            local btn = Button
+            local sample = Sample
+            Button.MouseButton1Click:Connect(function()
+                local c = sample:Clone()
+                c.Parent = btn
+                local x, y = (ms.X - c.AbsolutePosition.X), (ms.Y - c.AbsolutePosition.Y)
+                c.Position = UDim2.new(0, x, 0, y)
+                local len, size = 0.35, nil
+                if btn.AbsoluteSize.X >= btn.AbsoluteSize.Y then
+                    size = (btn.AbsoluteSize.X * 1.5)
+                else
+                    size = (btn.AbsoluteSize.Y * 1.5)
+                end
+                c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
+                for i = 1, 10 do
+                    c.ImageTransparency = c.ImageTransparency + 0.05
+                    wait(len / 12)
+                end
+                c:Destroy()
+                pcall(callback)
+            end)
+
+            CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+        end
+        function TabContent:Toggle(TglTitle, TglDesc, callback)
+            local callback = callback or function() end
+            local Toggle = Instance.new("Frame")
+            local ToggleCorner = Instance.new("UICorner")
+            local ToggleTitle = Instance.new("TextLabel")
+            local ToggleDesc = Instance.new("TextLabel")
+            local ToggleFrame = Instance.new("ImageLabel")
+            local ToggleButton = Instance.new("TextButton")
+            local ToggleCircle = Instance.new("ImageLabel")
+            local shuffle = Instance.new("ImageButton")
+            local toggled = false
+
+            --Properties:
+
+            Toggle.Name = "Toggle"
+            Toggle.Parent = CurrentTab
+            Toggle.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+            Toggle.BackgroundTransparency = 1.000
+            Toggle.Position = UDim2.new(0.0161290169, 0, 0.5088889, 0)
+            Toggle.Size = UDim2.new(0, 600, 0, 60)
+
+            ToggleCorner.CornerRadius = UDim.new(0, 4)
+            ToggleCorner.Name = "ToggleCorner"
+            ToggleCorner.Parent = Toggle
+
+            ToggleTitle.Name = "ToggleTitle"
+            ToggleTitle.Parent = Toggle
+            ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleTitle.BackgroundTransparency = 1.000
+            ToggleTitle.Position = UDim2.new(0.0333333313, 0, 0.106666565, 0)
+            ToggleTitle.Size = UDim2.new(0, 196, 0, 25)
+            ToggleTitle.Font = Enum.Font.Gotham
+            ToggleTitle.Text = TglTitle
+            ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleTitle.TextSize = 14.000
+            ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+            ToggleDesc.Name = "ToggleDesc"
+            ToggleDesc.Parent = ToggleTitle
+            ToggleDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleDesc.BackgroundTransparency = 1.000
+            ToggleDesc.Position = UDim2.new(0, 0, 0.746666551, 0)
+            ToggleDesc.Size = UDim2.new(0, 196, 0, 25)
+            ToggleDesc.Font = Enum.Font.Gotham
+            ToggleDesc.Text = TglDesc
+            ToggleDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleDesc.TextSize = 12.000
+            ToggleDesc.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleDesc.TextXAlignment = Enum.TextXAlignment.Left
+
+            ToggleFrame.Name = "Toggle"
+            ToggleFrame.Parent = Toggle
+            ToggleFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleFrame.BackgroundTransparency = 10.000
+            ToggleFrame.Position = UDim2.new(0.858479202, -23, 0.5, -11)
+            ToggleFrame.Size = UDim2.new(0, 46, 0, 22)
+            ToggleFrame.Image = "rbxassetid://3570695787"
+            ToggleFrame.ImageColor3 = Color3.fromRGB(79, 5, 111)
+            ToggleFrame.ScaleType = Enum.ScaleType.Slice
+            ToggleFrame.SliceCenter = Rect.new(100, 100, 100, 100)
+            ToggleFrame.SliceScale = 0.120
+
+            ToggleButton.Name = "ToggleButton"
+            ToggleButton.Parent = ToggleFrame
+            ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleButton.BackgroundTransparency = 1.000
+            ToggleButton.Size = UDim2.new(1, 0, 1, 0)
+            ToggleButton.Font = Enum.Font.SourceSans
+            ToggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+            ToggleButton.TextSize = 14.000
+            ToggleButton.TextTransparency = 1.000
+
+            ToggleCircle.Name = "ToggleCircle"
+            ToggleCircle.Parent = ToggleFrame
+            ToggleCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleCircle.BackgroundTransparency = 1.000
+            ToggleCircle.Position = UDim2.new(0.2, -5,0.087, 0)
+            ToggleCircle.Size = UDim2.new(0, 18, 0, 18)
+            ToggleCircle.Image = "rbxassetid://3570695787"
+            ToggleCircle.ScaleType = Enum.ScaleType.Slice
+            ToggleCircle.SliceCenter = Rect.new(100, 100, 100, 100)
+            ToggleCircle.SliceScale = 0.120
+
+            shuffle.Name = "shuffle"
+            shuffle.Parent = Toggle
+            shuffle.BackgroundTransparency = 1.000
+            shuffle.LayoutOrder = 7
+            shuffle.Position = UDim2.new(0.935000002, 0, 0.283333331, 0)
+            shuffle.Size = UDim2.new(0, 25, 0, 25)
+            shuffle.ZIndex = 2
+            shuffle.Image = "rbxassetid://3926307971"
+            shuffle.ImageRectOffset = Vector2.new(164, 44)
+            shuffle.ImageRectSize = Vector2.new(36, 36)
+
+            Toggle.MouseEnter:Connect(function()
+                ts:Create(Toggle, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+            end)
+            Toggle.MouseLeave:Connect(function()
+                ts:Create(Toggle, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+            end)
+                
+            ToggleButton.MouseButton1Click:Connect(function()
+                if toggled == false then
+                    ts:Create(ToggleFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(0, 255, 0)}):Play()
+                    ToggleCircle:TweenPosition(UDim2.new(0.677, -5,0.087, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
+                    wait(.1)
+                else
+                    ts:Create(ToggleFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(79, 5, 111)}):Play()
+                    ToggleCircle:TweenPosition(UDim2.new(0.2, -5,0.087, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
+                end
+                toggled = not toggled
+                pcall(callback, toggled)
+            end)
+
+            CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+        end
+        function TabContent:TextBox(TxtTitle, TxtDesc, Overlay, Indextable, callback)
+            local Index = Indextable or {}
+            local Display = Overlay or "..."
+            local callback = callback or function() end
+            local TextBox = Instance.new("Frame")
+            local TextBoxTitle = Instance.new("TextLabel")
+            local TextBoxDesc = Instance.new("TextLabel")
+            local TextBoxCorner = Instance.new("UICorner")
+            local WriteBox = Instance.new("TextBox")
+            local WriteBoxUnderFrame = Instance.new("Frame")
+            local text_format = Instance.new("ImageButton")
+
+            --Properties:
+
+            TextBox.Name = TxtTitle.."TextBox"
+            TextBox.Parent = CurrentTab
+            TextBox.BackgroundTransparency = 1.000
+            TextBox.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+            TextBox.Position = UDim2.new(0.0161290318, 0, 0.188888893, 0)
+            TextBox.Size = UDim2.new(0, 600, 0, 60)
+
+            TextBoxTitle.Name = TxtTitle.."TextBoxTitle"
+            TextBoxTitle.Parent = TextBox
+            TextBoxTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextBoxTitle.BackgroundTransparency = 1.000
+            TextBoxTitle.Position = UDim2.new(0.0333333313, 0, 0.106666565, 0)
+            TextBoxTitle.Size = UDim2.new(0, 196, 0, 25)
+            TextBoxTitle.Font = Enum.Font.Gotham
+            TextBoxTitle.Text = TxtTitle
+            TextBoxTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextBoxTitle.TextSize = 14.000
+            TextBoxTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+            TextBoxDesc.Name = TxtTitle.."TextBoxDesc"
+            TextBoxDesc.Parent = TextBoxTitle
+            TextBoxDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextBoxDesc.BackgroundTransparency = 1.000
+            TextBoxDesc.Position = UDim2.new(0, 0, 0.746666551, 0)
+            TextBoxDesc.Size = UDim2.new(0, 196, 0, 25)
+            TextBoxDesc.Font = Enum.Font.Gotham
+            TextBoxDesc.Text = TxtDesc
+            TextBoxDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextBoxDesc.TextSize = 12.000
+            TextBoxDesc.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+            TextBoxDesc.TextXAlignment = Enum.TextXAlignment.Left
+
+            TextBoxCorner.CornerRadius = UDim.new(0, 4)
+            TextBoxCorner.Name = "TextBoxCorner"
+            TextBoxCorner.Parent = TextBox
+
+            WriteBox.Name = "WriteBox"
+            WriteBox.Parent = TextBox
+            WriteBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            WriteBox.BackgroundTransparency = 1.000
+            WriteBox.Position = UDim2.new(0.566666663, 0, 0.238889053, 0)
+            WriteBox.Size = UDim2.new(0, 200, 0, 30)
+            WriteBox.Font = Enum.Font.Gotham
+            WriteBox.PlaceholderText = Display
+            WriteBox.Text = ""
+            WriteBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+            WriteBox.TextSize = 14.000
+            WriteBox.TextXAlignment = Enum.TextXAlignment.Left
+
+            WriteBoxUnderFrame.Name = "WriteBoxUnderFrame"
+            WriteBoxUnderFrame.Parent = WriteBox
+            WriteBoxUnderFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            WriteBoxUnderFrame.BorderSizePixel = 0
+            WriteBoxUnderFrame.Position = UDim2.new(-0.0299999993, 0, 0.966666639, 0)
+            WriteBoxUnderFrame.Size = UDim2.new(0, 206, 0, 1)
+
+            text_format.Name = "text_format"
+            text_format.Parent = TextBox
+            text_format.BackgroundTransparency = 1.000
+            text_format.LayoutOrder = 7
+            text_format.Position = UDim2.new(0.935000002, 0, 0.316666663, 0)
+            text_format.Size = UDim2.new(0, 25, 0, 25)
+            text_format.ZIndex = 2
+            text_format.Image = "rbxassetid://3926305904"
+            text_format.ImageRectOffset = Vector2.new(804, 804)
+            text_format.ImageRectSize = Vector2.new(36, 36)
+
+            TextBox.MouseEnter:Connect(function()
+                ts:Create(TextBox, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+            end)
+            TextBox.MouseLeave:Connect(function()
+                ts:Create(TextBox, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+            end)
+            WriteBox.Focused:Connect(function()
+                ts:Create(WriteBoxUnderFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+            end)
+            WriteBox.FocusLost:Connect(function()
+                ts:Create(WriteBoxUnderFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = .75}):Play()
+            end)
+
+            WriteBox.FocusLost:Connect(function(enter)
+                if enter then
+                    if table.find(Index, WriteBox.Text) then
+                        if #WriteBox.Text > 0 then
+                            pcall(callback, WriteBox.Text)
+                            ts:Create(WriteBoxUnderFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+                            ts:Create(WriteBoxUnderFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundColor3 = Color3.fromRGB(102, 255, 0)}):Play()
+                            wait(1)
+                            ts:Create(WriteBoxUnderFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                            ts:Create(WriteBoxUnderFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = .75}):Play()
+                            ts:Create(TextBox, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+                        end
+                    else
+                        if #WriteBox.Text > 0 then
+                            local goback = WriteBox.Text
+                            ts:Create(WriteBoxUnderFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+                            ts:Create(WriteBoxUnderFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundColor3 = Color3.fromRGB(255, 0, 4)}):Play()
+                            WriteBox.PlaceholderText = "Not Found."
+                            WriteBox.Text = "Not Found."
+                            wait(1)
+                            WriteBox.Text = goback
+                            ts:Create(WriteBoxUnderFrame, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                            ts:Create(TextBox, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+                            WriteBox.PlaceholderText = "..."
+                        end
+                    end
+                end
+            end)
+            CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+        end
+        function TabContent:Slider(SldrTitle, SldrDesc, min, max, callback)
+            min = min or 0
+            max = max or 100
+            local mouse = plr:GetMouse()
+            local uis = game:service'UserInputService'
+            local Value;
+            local Slider = Instance.new("Frame")
+            local SliderCorner = Instance.new("UICorner")
+            local SliderTitle = Instance.new("TextLabel")
+            local SliderDesc = Instance.new("TextLabel")
+            local gesture = Instance.new("ImageButton")
+            local SliderOutter = Instance.new("ImageButton")
+            local SliderOutterCorner = Instance.new("UICorner")
+            local Inner = Instance.new("ImageLabel")
+            local InnerCorner = Instance.new("UICorner")
+            local PercentageCounter = Instance.new("TextLabel")
+
+            --Properties:
+
+            Slider.Name = SldrTitle.."Slider"
+            Slider.Parent = CurrentTab
+            Slider.BackgroundTransparency = 1.000
+            Slider.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+            Slider.Position = UDim2.new(0.0161290169, 0, 0.346666694, 0)
+            Slider.Size = UDim2.new(0, 600, 0, 60)
+
+            SliderCorner.CornerRadius = UDim.new(0, 4)
+            SliderCorner.Name = "SliderCorner"
+            SliderCorner.Parent = Slider
+
+            SliderTitle.Name = "SliderTitle"
+            SliderTitle.Parent = Slider
+            SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            SliderTitle.BackgroundTransparency = 1.000
+            SliderTitle.Position = UDim2.new(0.0333333313, 0, 0.106666565, 0)
+            SliderTitle.Size = UDim2.new(0, 196, 0, 25)
+            SliderTitle.Font = Enum.Font.Gotham
+            SliderTitle.Text = SldrTitle
+            SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            SliderTitle.TextSize = 14.000
+            SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+            SliderDesc.Name = "SliderDesc"
+            SliderDesc.Parent = SliderTitle
+            SliderDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            SliderDesc.BackgroundTransparency = 1.000
+            SliderDesc.Position = UDim2.new(0, 0, 0.746666551, 0)
+            SliderDesc.Size = UDim2.new(0, 196, 0, 25)
+            SliderDesc.Font = Enum.Font.Gotham
+            SliderDesc.Text = SldrDesc
+            SliderDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+            SliderDesc.TextSize = 12.000
+            SliderDesc.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+            SliderDesc.TextXAlignment = Enum.TextXAlignment.Left
+
+            gesture.Name = "gesture"
+            gesture.Parent = Slider
+            gesture.BackgroundTransparency = 1.000
+            gesture.LayoutOrder = 5
+            gesture.Position = UDim2.new(0.935000002, 0, 0.283333331, 0)
+            gesture.Size = UDim2.new(0, 25, 0, 25)
+            gesture.ZIndex = 2
+            gesture.Image = "rbxassetid://3926305904"
+            gesture.ImageRectOffset = Vector2.new(4, 84)
+            gesture.ImageRectSize = Vector2.new(36, 36)
+
+            SliderOutter.Name = "SliderOutter"
+            SliderOutter.Parent = Slider
+            SliderOutter.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+            SliderOutter.BorderSizePixel = 0
+            SliderOutter.Position = UDim2.new(0.495094329, 0, 0.42200014, 0)
+            SliderOutter.Size = UDim2.new(0, 242, 0, 8) 
+            SliderOutter.Image = ""
+
+            SliderOutterCorner.Name = "SliderOutterCorner"
+            SliderOutterCorner.Parent = SliderOutter
+
+            Inner.Name = "Inner"
+            Inner.Parent = SliderOutter
+            Inner.BackgroundColor3 = Color3.fromRGB(79, 5, 111)
+            Inner.Size = UDim2.new(0, 19, 0, 8)
+            Inner.Image = ""
+            Inner.ZIndex = 2
+
+            InnerCorner.Name = "InnerCorner"
+            InnerCorner.Parent = Inner
+
+            PercentageCounter.Name = "PercentageCounter"
+            PercentageCounter.Parent = Slider
+            PercentageCounter.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            PercentageCounter.BackgroundTransparency = 1.000
+            PercentageCounter.Position = UDim2.new(0.694999993, 0, 0.100000001, 0)
+            PercentageCounter.Size = UDim2.new(0, 130, 0, 11)
+            PercentageCounter.Font = Enum.Font.Gotham
+            PercentageCounter.Text = "0"
+            PercentageCounter.TextColor3 = Color3.fromRGB(255, 255, 255)
+            PercentageCounter.TextSize = 14.000
+
+            Slider.MouseEnter:Connect(function()
+                ts:Create(Slider, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+            end)
+            Slider.MouseLeave:Connect(function()
+                ts:Create(Slider, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+            end)
+            SliderOutter.MouseButton1Down:Connect(function()
+                Value = math.floor((((tonumber(max) - tonumber(min)) / 242) * Inner.AbsoluteSize.X) + tonumber(min)) or 0
+                pcall(function()
+                    callback(Value)
+                end)
+                Inner.Size = UDim2.new(0, math.clamp(mouse.X - Inner.AbsolutePosition.X, 0, 242), 0, 8)
+                moveconnection = mouse.Move:Connect(function()
+                    PercentageCounter.Text = Value
+                    Value = math.floor((((tonumber(max) - tonumber(min)) / 242) * Inner.AbsoluteSize.X) + tonumber(min))
+                    Inner.Size = UDim2.new(0, math.clamp(mouse.X - Inner.AbsolutePosition.X, 0, 242), 0, 8)
+                end)
+                releaseconnection = uis.InputEnded:Connect(function(Mouse)
+                    if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+                        Value = math.floor((((tonumber(max) - tonumber(min)) / 242) * Inner.AbsoluteSize.X) + tonumber(min))
+                        pcall(function()
+                            callback(Value)
+                        end)
+                        Inner.Size = UDim2.new(0, math.clamp(mouse.X - Inner.AbsolutePosition.X, 0, 242), 0, 8)
+                        moveconnection:Disconnect()
+                        releaseconnection:Disconnect()
+                    end
+                end)
+            end)
+            CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+        end
+        function TabContent:DropDown(DrpTitle, DrpDesc, DisplayThing, list, callback)
+            local itemcount = 0
+            local framesize = 0
+            local Dropped = false
+            local Show = DisplayThing or "..."
+            local callback = callback or function() end
+            local Dropdown = Instance.new("Frame")
+            local DropdownCorner = Instance.new("UICorner")
+            local DropdownTitle = Instance.new("TextLabel")
+            local DropdownDesc = Instance.new("TextLabel")
+            local sortImage = Instance.new("ImageLabel")
+            local DropdownButton = Instance.new("TextButton")
+            local DropdownButtonCorner = Instance.new("UICorner")
+            local DropdownButtonTitle = Instance.new("TextLabel")
+            local DropdownButtonUnderFrame = Instance.new("Frame")
+            local DropdownFrame = Instance.new("ScrollingFrame")
+            local DropdownFrameListLayout = Instance.new("UIListLayout")
+            
+            --Properties:
+
+            Dropdown.Name = "Dropdown"
+            Dropdown.Parent = CurrentTab
+            Dropdown.BackgroundTransparency = 1.000
+            Dropdown.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+            Dropdown.Position = UDim2.new(0.0161290169, 0, 0.664444447, 0)
+            Dropdown.Size = UDim2.new(0, 600, 0, 60)
+
+            DropdownCorner.CornerRadius = UDim.new(0, 4)
+            DropdownCorner.Name = "DropdownCorner"
+            DropdownCorner.Parent = Dropdown
+
+            DropdownTitle.Name = "DropdownTitle"
+            DropdownTitle.Parent = Dropdown
+            DropdownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownTitle.BackgroundTransparency = 1.000
+            DropdownTitle.Position = UDim2.new(0.0333333313, 0, 0.106666565, 0)
+            DropdownTitle.Size = UDim2.new(0, 196, 0, 25)
+            DropdownTitle.Font = Enum.Font.Gotham
+            DropdownTitle.Text = DrpTitle
+            DropdownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownTitle.TextSize = 14.000
+            DropdownTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+            DropdownDesc.Name = "DropdownDesc"
+            DropdownDesc.Parent = DropdownTitle
+            DropdownDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownDesc.BackgroundTransparency = 1.000
+            DropdownDesc.Position = UDim2.new(0, 0, 0.746666551, 0)
+            DropdownDesc.Size = UDim2.new(0, 196, 0, 25)
+            DropdownDesc.Font = Enum.Font.Gotham
+            DropdownDesc.Text = DrpDesc
+            DropdownDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownDesc.TextSize = 12.000
+            DropdownDesc.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownDesc.TextXAlignment = Enum.TextXAlignment.Left
+
+            sortImage.Name = "sort"
+            sortImage.Parent = Dropdown
+            sortImage.BackgroundTransparency = 1.000
+            sortImage.Position = UDim2.new(0.935000002, 0, 0.283333331, 0)
+            sortImage.Size = UDim2.new(0, 25, 0, 25)
+            sortImage.ZIndex = 2
+            sortImage.Image = "rbxassetid://3926307971"
+            sortImage.ImageRectOffset = Vector2.new(404, 44)
+            sortImage.ImageRectSize = Vector2.new(36, 36)
+
+            DropdownButton.Name = "DropdownButton"
+            DropdownButton.Parent = Dropdown
+            DropdownButton.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+            DropdownButton.BackgroundTransparency = 1.000
+            DropdownButton.BorderSizePixel = 0
+            DropdownButton.Position = UDim2.new(0.433427721, 0, 0.267778516, 0)
+            DropdownButton.Size = UDim2.new(0, 250, 0, 25)
+            DropdownButton.Font = Enum.Font.Gotham
+            DropdownButton.Text = ""
+            DropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownButton.TextSize = 14.000
+
+            DropdownButtonCorner.CornerRadius = UDim.new(0, 5)
+            DropdownButtonCorner.Name = "DropdownButtonCorner"
+            DropdownButtonCorner.Parent = DropdownButton
+
+            DropdownButtonTitle.Name = "DropdownButtonTitle"
+            DropdownButtonTitle.Parent = DropdownButton
+            DropdownButtonTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownButtonTitle.BackgroundTransparency = 1.000
+            DropdownButtonTitle.Position = UDim2.new(0.128000006, 0, 0, 0)
+            DropdownButtonTitle.Size = UDim2.new(0, 200, 0, 25)
+            DropdownButtonTitle.Font = Enum.Font.Gotham
+            DropdownButtonTitle.Text = Show
+            DropdownButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownButtonTitle.TextSize = 14.000
+            DropdownButtonTitle.TextXAlignment = Enum.TextXAlignment.Right
+
+            DropdownButtonUnderFrame.Name = "DropdownButtonUnderFrame"
+            DropdownButtonUnderFrame.Parent = DropdownButton
+            DropdownButtonUnderFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownButtonUnderFrame.BorderSizePixel = 0
+            DropdownButtonUnderFrame.Position = UDim2.new(-3.7252903e-09, 0, 0.959999979, 0)
+            DropdownButtonUnderFrame.Size = UDim2.new(0, 242, 0, 1)
+
+            DropdownFrame.Name = "DropdownFrame"
+            DropdownFrame.Parent = Dropdown
+            DropdownFrame.Active = true
+            DropdownFrame.Visible = false
+            DropdownFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownFrame.BackgroundTransparency = 1.000
+            DropdownFrame.BorderSizePixel = 0
+            DropdownFrame.Position = UDim2.new(0.043333333, 0, 0.351724148, 0)
+            DropdownFrame.Size = UDim2.new(0, 490, 0, 90)
+            DropdownFrame.ScrollBarThickness = 0
+
+            DropdownFrameListLayout.Parent = DropdownFrame
+            DropdownFrameListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+            DropdownFrameListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+            DropdownFrameListLayout.Padding = UDim.new(0, 5)
+
+            Dropdown.MouseEnter:Connect(function()
+                ts:Create(Dropdown, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+            end)
+            Dropdown.MouseLeave:Connect(function()
+                ts:Create(Dropdown, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+            end)
+
+            DropdownButton.MouseButton1Click:Connect(function()
+                if Dropped == false then
+                    DropdownFrame.Visible = true
+                    Dropdown.Size = UDim2.new(0, 600, 0, 145)
+                    DropdownButton.Position = UDim2.new(0.443, 0,0.109, 0)
+                    DropdownTitle.Position = UDim2.new(0.033, 0,0.051, 0)
+                    CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+                    sortImage.Position = UDim2.new(0.935, 0,0.104, 0)
+                else
+                    sortImage.Position = UDim2.new(0.935000002, 0, 0.283333331, 0)
+                    Dropdown.Size = UDim2.new(0, 600, 0, 60)
+                    DropdownButton.Position = UDim2.new(0.433427721, 0, 0.267778516, 0)
+                    DropdownTitle.Position = UDim2.new(0.0333333313, 0, 0.106666565, 0)
+                    DropdownFrame.Visible = false
+                    ts:Create(Dropdown, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+                    CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+                end
+                Dropped = not Dropped
+            end)
+            for i,v in next, list do
+                itemcount = itemcount + 1
+                
+                if itemcount == 1 then
+                    framesize = 29
+                elseif itemcount == 2 then
+                    framesize = 58
+                elseif itemcount >= 3 then
+                    framesize = 87
+                end
+                
+                local Item = Instance.new("TextButton")
+                local ItemCorner = Instance.new("UICorner")
+                local ItemTitle = Instance.new("TextLabel")
+    
+                Item.Name = "Item"
+                Item.Parent = DropdownFrame
+                Item.BackgroundTransparency = 1.000
+                Item.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+                Item.Position = UDim2.new(0.175510257, 0, -2.96896553, 0)
+                Item.Size = UDim2.new(0, 480, 0, 25)
+                Item.Font = Enum.Font.SourceSans
+                Item.Text = ""
+                Item.TextColor3 = Color3.fromRGB(0, 0, 0)
+                Item.TextSize = 14.000
+                Item.AutoButtonColor = false
+                
+                ItemCorner.CornerRadius = UDim.new(0, 4)
+                ItemCorner.Name = "ItemCorner"
+                ItemCorner.Parent = Item
+                
+                ItemTitle.Name = "ItemTitle"
+                ItemTitle.Parent = Item
+                ItemTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                ItemTitle.BackgroundTransparency = 1.000
+                ItemTitle.Position = UDim2.new(0.556249976, 0, 0, 0)
+                ItemTitle.Size = UDim2.new(0, 200, 0, 25)
+                ItemTitle.Font = Enum.Font.Gotham
+                ItemTitle.Text = v
+                ItemTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+                ItemTitle.TextSize = 14.000
+                ItemTitle.TextXAlignment = Enum.TextXAlignment.Right
+                ItemTitle.TextTransparency = .5
+
+                DropdownFrame.CanvasSize = UDim2.new(0,0,0,DropdownFrameListLayout.AbsoluteContentSize.Y)
+                
+                Item.MouseEnter:Connect(function()
+                    ts:Create(Item, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+                    ts:Create(ItemTitle, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
+                end)
+                
+                Item.MouseLeave:Connect(function()
+                    ts:Create(Item, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+                    ts:Create(ItemTitle, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{TextTransparency = 0.55}):Play()
+                end)
+                
+                Item.MouseButton1Click:Connect(function()
+                    DropdownButtonTitle.Text = v
+                    pcall(callback, v)
+                    sortImage.Position = UDim2.new(0.935000002, 0, 0.283333331, 0)
+                    Dropdown.Size = UDim2.new(0, 600, 0, 60)
+                    DropdownButton.Position = UDim2.new(0.433427721, 0, 0.267778516, 0)
+                    DropdownTitle.Position = UDim2.new(0.0333333313, 0, 0.106666565, 0)
+                    DropdownFrame.Visible = false
+                    ts:Create(Dropdown, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+                    CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+                    Dropped = not Dropped
+                end)
+            end
+            CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+        end
+
+        function TabContent:KeyBind(KeyBndTitle, KeybndDesc, Binding, callback)
+            local callback = callback or function() end
+            local Key = Binding.Name
+            local KeyBind = Instance.new("Frame")
+            local KeyBindTitle = Instance.new("TextLabel")
+            local KeyBindDesc = Instance.new("TextLabel")
+            local KeyBindCorner = Instance.new("UICorner")
+            local explicit = Instance.new("ImageButton")
+            local KeyBindLabel = Instance.new("TextButton")
+            local KeyBindLabelUnderFrame = Instance.new("Frame")
+
+            --Properties:
+
+            KeyBind.Name = "KeyBind"
+            KeyBind.Parent = CurrentTab
+            KeyBind.BackgroundTransparency = 1.000
+            KeyBind.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+            KeyBind.Position = UDim2.new(0.0146370828, 0, -0.310444474, 0)
+            KeyBind.Size = UDim2.new(0, 600, 0, 60)
+
+            KeyBindTitle.Name = "KeyBindTitle"
+            KeyBindTitle.Parent = KeyBind
+            KeyBindTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            KeyBindTitle.BackgroundTransparency = 1.000
+            KeyBindTitle.Position = UDim2.new(0.0333333313, 0, 0.106666565, 0)
+            KeyBindTitle.Size = UDim2.new(0, 196, 0, 25)
+            KeyBindTitle.Font = Enum.Font.Gotham
+            KeyBindTitle.Text = KeyBndTitle
+            KeyBindTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            KeyBindTitle.TextSize = 14.000
+            KeyBindTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+            KeyBindDesc.Name = "KeyBindDesc"
+            KeyBindDesc.Parent = KeyBindTitle
+            KeyBindDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            KeyBindDesc.BackgroundTransparency = 1.000
+            KeyBindDesc.Position = UDim2.new(0, 0, 0.746666551, 0)
+            KeyBindDesc.Size = UDim2.new(0, 196, 0, 25)
+            KeyBindDesc.Font = Enum.Font.Gotham
+            KeyBindDesc.Text = KeybndDesc
+            KeyBindDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+            KeyBindDesc.TextSize = 12.000
+            KeyBindDesc.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+            KeyBindDesc.TextXAlignment = Enum.TextXAlignment.Left
+
+            KeyBindCorner.CornerRadius = UDim.new(0, 4)
+            KeyBindCorner.Name = "KeyBindCorner"
+            KeyBindCorner.Parent = KeyBind
+
+            explicit.Name = "explicit"
+            explicit.Parent = KeyBind
+            explicit.BackgroundTransparency = 1.000
+            explicit.Position = UDim2.new(0.935000002, 0, 0.283333331, 0)
+            explicit.Size = UDim2.new(0, 25, 0, 25)
+            explicit.ZIndex = 2
+            explicit.Image = "rbxassetid://3926305904"
+            explicit.ImageRectOffset = Vector2.new(364, 284)
+            explicit.ImageRectSize = Vector2.new(36, 36)
+
+            KeyBindLabel.Name = "KeyBindLabel"
+            KeyBindLabel.Parent = KeyBind
+            KeyBindLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            KeyBindLabel.BackgroundTransparency = 1.000
+            KeyBindLabel.Position = UDim2.new(0.556666613, 0, 0.200000018, 0)
+            KeyBindLabel.Size = UDim2.new(0, 200, 0, 30)
+            KeyBindLabel.Font = Enum.Font.Gotham
+            KeyBindLabel.Text = Binding.Name
+            KeyBindLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            KeyBindLabel.TextSize = 18.000
+            KeyBindLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+            KeyBindLabelUnderFrame.Name = "KeyBindLabelUnderFrame"
+            KeyBindLabelUnderFrame.Parent = KeyBindLabel
+            KeyBindLabelUnderFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            KeyBindLabelUnderFrame.BorderSizePixel = 0
+            KeyBindLabelUnderFrame.Position = UDim2.new(-0.0149999997, 0, 0.966666639, 0)
+            KeyBindLabelUnderFrame.Size = UDim2.new(0, 206, 0, 1)
+
+            KeyBind.MouseEnter:Connect(function()
+                ts:Create(KeyBind, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+            end)
+            KeyBind.MouseLeave:Connect(function()
+                ts:Create(KeyBind, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+            end)
+
+            KeyBindLabel.MouseButton1Click:Connect(function()
+                KeyBindLabel.Text = 'Insert Key...'
+                local inputwait = game:service'UserInputService'.InputBegan:wait()
+                if inputwait.KeyCode.Name ~= 'Unknown' then
+                    KeyBindLabel.Text = inputwait.KeyCode.Name
+                    Key = inputwait.KeyCode.Name
+                end
+                ts:Create(KeyBind, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+            end)
+            
+            game:service'UserInputService'.InputBegan:connect(function(current, pressed)
+                if not pressed then
+                    if current.KeyCode.Name == Key then
+                        pcall(callback)
+                    end
+                end
+            end)
+            CurrentTab.CanvasSize = UDim2.new(0,0,0,List.AbsoluteContentSize.Y)
+        end
+        return TabContent
+    end
+    return Content
+end
+return Lib
