@@ -5,11 +5,11 @@ until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game:I
 
 wait(1)
 local Lib = {}
-Run = game:GetService("RunService")
-Int = game:GetService('TeleportService')
-ts = game:GetService('TweenService')
-http = game:GetService("HttpService")
-UIS = game:GetService('UserInputService')
+Run = game:service'RunService'
+Int = game:service'TeleportService'
+ts = game:service'TweenService'
+http = game:service'HttpService'
+UIS = game:service'UserInputService'
 plr = game.Players.LocalPlayer
 Char = plr.Character
 local WindowOpened = false
