@@ -737,7 +737,7 @@ function Lib:Window()
                                 Title.Position = UDim2.new(0.0350000001, 0, 0.370383561, 0)
                                 Title.Size = UDim2.new(0, 170, 0, 93)
                                 Title.ZIndex = -2
-                                Title.Image = "rbxassetid://9305588555"
+                                Title.Image = "rbxassetid://104921730169154" -- 
                                 Title.ImageTransparency = 0.800
                                 Title.ScaleType = Enum.ScaleType.Crop
 
@@ -1028,7 +1028,7 @@ function Lib:Window()
                                 Title.Position = UDim2.new(0.0350000001, 0, 0.370383561, 0)
                                 Title.Size = UDim2.new(0, 170, 0, 93)
                                 Title.ZIndex = -2
-                                Title.Image = "rbxassetid://9305588555"
+                                Title.Image = "rbxassetid://104921730169154"
                                 Title.ImageTransparency = 0.800
                                 Title.ScaleType = Enum.ScaleType.Crop
 
@@ -1527,7 +1527,7 @@ function Lib:Window()
     NovaLogo.BackgroundTransparency = 1.000
     NovaLogo.Position = UDim2.new(-5.58793545e-09, 0, 0, 0)
     NovaLogo.Size = UDim2.new(0, 119, 0, 60)
-    NovaLogo.Image = "rbxassetid://9305588555"
+    NovaLogo.Image = "rbxassetid://104921730169154"
     NovaLogo.ScaleType = Enum.ScaleType.Crop
 
     Title.Name = "Title"
