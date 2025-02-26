@@ -171,7 +171,7 @@ function Lib:Window()
     Title.BorderColor3 = Color3.fromRGB(27, 42, 53)
     Title.Position = UDim2.new(0, 0, 0.00600000005, 0)
     Title.Size = UDim2.new(0, 170, 0, 93)
-    Title.Image = "rbxassetid://9305588555"
+    Title.Image = "rbxassetid://104921730169154"
     Title.ScaleType = Enum.ScaleType.Crop
 
     HomeTab.Name = "HomeTab"
