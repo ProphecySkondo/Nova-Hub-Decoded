@@ -1,0 +1,3408 @@
+--[[ Decompiled By BLACK WOLF | REWORKED FOR XENO BY SAI ]]--
+
+
+plr = game:service"Players".LocalPlayer
+Char = plr.Character or plr.CharacterAdded:Wait()
+HRP = Char:WaitForChild"HumanoidRootPart"
+Hum = Char:WaitForChild"Humanoid"
+Int = game:service"TeleportService"
+Light = game:service"Lighting"
+Run = game:service"RunService"
+ts = game:service"TweenService"
+mouse = plr:GetMouse()
+Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProphecySkondo/Nova-Hub-Decoded/refs/heads/main/Nova"))()
+local Settings = {}
+local Http = game:service("HttpService")
+local GotLoaded
+local Autorj
+local AB
+local TOP
+local Shaders
+local AutoFarmNPC
+local HTCMoves
+local QueueAuto
+local ABGrab
+local ABInvis
+local ABForm
+local ABMoves
+local ABPlace
+local SPAMMoves
+local StatDist
+local Admin
+local Keybnd
+local ballsacks
+
+pcall(function()
+	Settings = Http:JSONDecode(readfile("Settings.lua"))
+end)
+
+GotLoaded = Settings["1stLoaded"] or false
+AB = Settings["AutoBroly"] or false
+ABForm = Settings["ABForm"] or "none"
+ABMoves = Settings["ABMoves"] or {'','','','','','','',''}
+Autorj = Settings["AutoRejoin"] or false
+AutoFarmNPC = Settings["AutoFarmNPC"] or {'', '', '', ''}
+HTCMoves = Settings["HTCMoves"] or {'','','','','','',''}
+SPAMMoves = Settings["SPAMMoves"] or {'', '', '', '', '', '', '', '', '',}
+StatDist = Settings["AutoStat"] or ''
+Admin = Settings["Admin"] or false
+Keybnd = Settings["Prefix"] or ','
+local function SaveInfo()
+	Settings["1stLoaded"] = GotLoaded
+    Settings["AutoBroly"] = AB
+    Settings["AutoRejoin"] = Autorj
+    Settings["HTCMoves"] = HTCMoves
+    Settings["ABMoves"] = ABMoves
+    Settings["SPAMMoves"] = SPAMMoves
+    Settings["Admin"] = Admin
+    Settings['Prefix'] = Keybnd
+    writefile("Settings.lua", Http:JSONEncode(Settings))
+end
+SaveInfo()
+if Settings["AutoRejoin"] == true then
+    if not game:IsLoaded() then
+        game.Loaded:Wait()
+    end
+    Place = 536102540
+    game:GetService("RunService").Heartbeat:connect(function()
+        game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:connect(function(child)
+            if child.Name == "ErrorPrompt" and child:FindFirstChild("MessageArea") and child.MessageArea:FindFirstChild("ErrorFrame") then
+                game:GetService("TeleportService"):Teleport(Place, LocalPlayer)
+            end
+        end)
+    end)
+end
+if Settings["AutoBroly"] == true then
+    repeat
+        wait()
+    until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game:IsLoaded()
+    --- Settings
+    Moves = {
+        'Blaster Meteor',
+        'Flash Skewer',
+        'Sudden Storm',
+        'Anger Rush',
+        'Meteor Crash',
+    }
+    Queue = true
+    --- Settings
+    
+    
+    local plr = game.Players.LocalPlayer
+    local Char = plr.Character
+    local Hum = Char:WaitForChild("Humanoid")
+    local HRP = Char:WaitForChild("HumanoidRootPart")
+    
+    local Int = game:service'TeleportService'
+    local Run = game:service'RunService'
+    local ts = game:service'TweenService'
+    
+    local function BodyV()
+        BodyVel = Instance.new("BodyVelocity")
+        BodyVel.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+        BodyVel.Velocity = Vector3.new(0, 0, 0)
+        BodyVel.Parent = HRP
+    end
+    local function Spam()
+        for _, Move in next, plr.Backpack:GetChildren() do
+            if table.find(Settings["ABMoves"], Move.Name) then
+                Move.Parent = workspace.Live[plr.Name]
+                Move:Activate()
+                wait()
+                Move.Parent = plr.Backpack
+            end
+        end
+    end
+    function noclip()
+        for i,v in pairs(workspace:GetDescendants()) do
+            if v:IsA('Part') then
+                if v.CanCollide == true then
+                    v.CanCollide = false
+                end
+            end
+        end
+    end
+    local Place = {
+        536102540,
+        3565304751,
+        2050207304,
+    }
+    
+    if not table.find(Place, game.PlaceId) then
+        if Queue == true then
+            Int:Teleport(Place[2])
+        else
+            Int:Teleport(Place[1])
+        end
+    end
+    
+    if game.PlaceId == Place[1] then
+        if Queue == true then
+            Int:Teleport(Place[2])
+        else
+            wait(1)
+            if not game.Workspace.Live:FindFirstChild(plr.Name) then
+                ServerHop()
+            end
+            Char:WaitForChild("PowerOutput"):Destroy()
+            Run.Heartbeat:connect(function()
+                HRP.CFrame = CFrame.new(2751, 3945, -2271)
+            end)
+            wait(40)
+            Int:Teleport(Place[1])
+        end
+    end
+    
+    if game.PlaceId == Place[2] then
+        if Queue == false then
+            Int:Teleport(Place[1])
+        else
+            if not game.Workspace.Live:FindFirstChild(plr.Name) then
+                ServerHop()
+            end
+            Char:WaitForChild("PowerOutput"):Destroy()
+            wait(.4)
+            HRP.CFrame = CFrame.new(3440, 238, 172)
+            wait(.4)
+            Char.LowerTorso:BreakJoints()
+            local Numbers  = {1, 2, 3, 4, 5, 6, 7}
+            local RandomNumber = math.random(1, #Numbers)
+            
+            Run.Heartbeat:connect(function()
+                if RandomNumber == 1 then
+                    HRP.CFrame = CFrame.new(-27, 238, -143)
+                elseif RandomNumber == 2 then
+                    HRP.CFrame = CFrame.new(-27, 238, -286)
+                elseif RandomNumber == 3 then
+                    HRP.CFrame = CFrame.new(-28, 238, -420)
+                elseif RandomNumber == 4 then
+                    HRP.CFrame = CFrame.new(-26, 238, -590)
+                elseif RandomNumber == 5 then
+                    HRP.CFrame = CFrame.new(-27, 238, -731)
+                elseif RandomNumber == 6 then
+                    HRP.CFrame = CFrame.new(-27, 238, -881)
+                elseif RandomNumber == 7 then
+                    HRP.CFrame = CFrame.new(-27, 238, -1048)
+                end
+            end)
+            wait(25)
+            Int:Teleport(Place[2])
+        end
+    end
+    
+    if game.PlaceId == Place[3] then
+        local Broly = game.Workspace.Live:WaitForChild('Broly BR')
+        BodyV()
+        noclip()
+        Broly.Head.Anchored = true
+        Broly.HumanoidRootPart.Anchored = true
+        wait(1)
+        HRP.CFrame = Broly.Head.CFrame * CFrame.new(0, -2, 2)
+        workspace.CurrentCamera.CFrame = Broly.Head.CFrame
+        Hum:EquipTool(plr.Backpack["Dragon Throw"])
+        wait(.5)
+        Run.Stepped:connect(function()
+            if Char:FindFirstChild('Dragon Throw') then
+                Char["Dragon Throw"]:Activate()
+                if Char["Dragon Throw"].Activator:FindFirstChild("Flip") then
+                    Char["Dragon Throw"].Activator.Flip:Destroy()
+                end
+            end
+        end)
+        wait(1.3)
+        if not Broly:FindFirstChild('MoveStart') then
+            if Queue == false then
+                Int:Teleport(World[1])
+            else
+                Int:Teleport(World[2])
+            end
+        end
+        Run.Heartbeat:connect(function()
+            for i, v in pairs(Char:GetChildren()) do
+                if v.Name == "Action" or v.Name == "Attacking" then
+                    v:Destroy()
+                end
+            end
+        end)
+        wait(.2)
+        Run.Heartbeat:connect(function()
+            HRP.CFrame = CFrame.new(-19, -127, -16)
+            Spam()
+            plr.Backpack.ServerTraits.EatSenzu:FireServer(true)
+            if Char.Ki.Value / Char.Ki.MaxValue * 100 <= 5 then
+                plr.Backpack.ServerTraits.Input:FireServer({[1] = "m2"}, CFrame.new(0, 0, 0), nil, false)
+            end
+        end)
+        Run.Heartbeat:connect(function()
+            if Char.Ki.Value / Char.Ki.MaxValue * 100 <= 5 then
+                if Char.Race.Value == "Android" then
+                    plr.Backpack.ServerTraits.Transform:FireServer('g')
+                end
+                if Char.Race.Value ~= "Android" then
+                    plr.Backpack.ServerTraits.Transform:FireServer('h')
+                end
+            end
+        end)
+        Run.Heartbeat:connect(function()
+            if Char.Humanoid.Health <= Char.Humanoid.MaxHealth * 0.2 then
+                plr.Backpack.ServerTraits.Use:InvokeServer(game.Workspace.Live[plr.name]:FindFirstChild('Ki').Value)
+                plr.Backpack.ServerTraits.Transform:FireServer('g')
+            end
+        end)
+        Run.Heartbeat:connect(function()
+            if Broly.Humanoid.Health == 0 then
+                if Queue == true then
+                    wait(.2)
+                    Int:Teleport(Place[2])
+                else
+                    wait(.2)
+                    Int:Teleport(Place[1])
+                end
+            end
+            if Hum.Health == 0 then
+                if Queue == true then
+                    wait(.2)
+                    Int:Teleport(Place[2])
+                else
+                    wait(.2)
+                    Int:Teleport(Place[1])
+                end
+            end
+        end)
+        Run.Heartbeat:connect(function()
+            His = Broly:WaitForChild("HumanoidRootPart")
+            for i, v in pairs(game.Workspace:GetChildren()) do
+                if v:FindFirstChild("Ki") and v:FindFirstChild("Mesh") then
+                    v.CFrame = His.CFrame
+                end
+            end
+            for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v:FindFirstChild("Ki") and v:FindFirstChild("Mesh") then
+                    v.CFrame = His.CFrame
+                end
+            end
+        end)
+    end
+end
+local Main = Lib:Window()
+game.CoreGui.Holder.Main.Visible = true
+
+local plrs = {}
+local NPCs = {
+	"Snake",
+	"Bear",
+	"Gorilla",
+	"Scorpion",
+	"Black Scorpion",
+	"Red Ribbon Soldier",
+	"Tank",
+	"Red Ribbion Gunner",
+	"Shielded Tank",
+	"Brute",
+	"Thug",
+	"Corrupt Officer",
+	"Galactic Patrol",
+	"Saibablue",
+	"Saibaman",
+	"Alien",
+	"Kung Fu Master",
+	"Android Protoype S",
+	"Android Protoype A",
+	"Android Protoype B",
+	"Chi Expert",
+	"Kick Boxer",
+	"Purple Boxer",
+	"Universal Champoin",
+	"Saibared",
+	"Evil Saiyan",
+	"Evil Crane Student",
+	"Imperfect Cell",
+	"Evil Namekian",
+	"Mad Scientist",
+	"Android 18",
+	"Android 19",
+	"Yeti",
+	"Evil Majin",
+}
+MovesTable = {
+	"Mach Kick",
+	"Wolf Fang Fist",
+	"Neo Wolf Fang Fist",
+	"Meteor Crash",
+	"Strong Kick",
+	"Anger Rush",
+	"Flash Skewer",
+	"TS Molotov",
+	"Vital Strike",
+	"Flash Strike",
+	"Dragon Throw",
+	"Dragon Crush",
+	"Trash?",
+	"Trash???",
+	"Punisher Drive",
+	"Kick Barrage",
+	"GOD Slicer",
+	"Spirit Splash",
+	"Spirit Bomb Sword",
+	"Emperor's Edge",
+	"Deadly Dance",
+	"Sweep Kick",
+	"Sledgehammer",
+	"Eraser Cannon",
+	"GOD Hakai",
+	"Super Volley",
+	"Hellzone Gernade",
+	"Chain Destructo Dick",
+	"Destructo Dick",
+	"Death Saucer",
+	"Finish Breaker",
+	"Sudden Storm",
+	"Demon Flash",
+	"Burning Blast",
+	"Blaster Meteor",
+	"Crusher Ball",
+	"Genocide Shell",
+	"Justice Flash",
+	"Pressure Gauge",
+	"Spirit Ball",
+	"Big Bang Kamehameha",
+	"Unrelenting Volley",
+	"Explosive Grip",
+	"GOD Wrath"
+}
+for i, v in pairs(game.Players:GetPlayers()) do
+	table.insert(plrs, v.Name)
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+	table.insert(plrs, player.Name)
+end)
+
+
+--Functions.
+Gay = true
+function respawn()
+	Char:WaitForChild('HumanoidRootPart')
+	Gay = false
+	local CurrentFrame = workspace.Live[plr.Name].HumanoidRootPart
+	
+	plr.Backpack.ServerTraits.ChatStart:FireServer(workspace.FriendlyNPCs["Hair Stylist"])
+	wait(0.3)
+	plr.Backpack.ServerTraits.ChatAdvance:FireServer({"Yes"})
+	wait(0.3)
+	plr.Backpack.HairScript.RemoteEvent:FireServer("woah")
+	Step = Run.Hearbeat:Connect(function()
+		workspace.Live[plr.Name].HumanoidRootPart.CFrame = CurrentFrame.CFrame
+	end)
+	wait(.4)
+	Step:Disconnect()
+	Gay = true
+end
+CurrentPower = 100
+--Functions.
+------------------------------------------------------------------------------------------ USER TAB
+
+
+local User = Main:Tab("User", "User")
+User:Section("Main")--WOOOOOOOOOOOW
+User:Button("Xbox Chat", "Allows you to chat in Xbox and PC Chats", function()
+	game:GetService("ReplicatedStorage").Xbox:FireServer()
+	pcall(function()
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:Remove()
+	end)
+	plr.Chatted:Connect(function(message, recipient)
+		pcall(function()
+			args = {[1] = tostring(message)}
+			game:GetService("ReplicatedStorage").Talk:FireServer(unpack(args))
+		end)
+	end)
+	
+	plr.CharacterAdded:Connect(function()
+		pcall(function()
+			game:GetService("ReplicatedStorage").Xbox:FireServer()
+		end)
+	end)
+end)
+User:DropDown("Power Meter", "Adjusts your power meter.", "Select Percentage", {"100", "95", "90", "85", "80", "75", "70", "65", "60", "55", "50", "45", "40", "35", "30", "25", "20", "15", "10", "5"}, function(o)
+	local Options = {"100", "95", "90", "85", "80", "75", "70", "65", "60", "55", "50", "45", "40", "35", "30", "25", "20", "15", "10", "5"}
+	if table.find(Options, o) then
+		o = tonumber(o); CurrentPower = tonumber(CurrentPower)
+		if CurrentPower ~= o then
+			spawn(function()
+				if CurrentPower < o then
+					local Sub = o - CurrentPower
+					local Div = Sub / 5
+					for i = 1, Div do
+						plr.Backpack.ServerTraits.Input:FireServer({"increase"}, true)
+					end
+					CurrentPower = CurrentPower + Sub
+					Lib:Notification("Power Pecentage set to " .. o .."!")
+				elseif CurrentPower > o then
+					local Sub = CurrentPower - o
+					local Div = Sub / 5
+					for i = 1, Div do
+						plr.Backpack.ServerTraits.Input:FireServer({"decrease"}, true)
+					end
+					CurrentPower = CurrentPower - Sub
+					Lib:Notification("Power Pecentage set to " .. o .."!")
+				end
+			end)
+		else
+			Lib:Notification("Power Percentage Already " .. o .. "!")
+		end
+	end
+end)
+User:Button("Destroy fusion", "Destroys fusion Allowing you to play as if you're not fused.", function()
+	if not Char:FindFirstChild("FUSED") then
+		Lib:Notification("Not Fused!")
+	end
+	if Char:FindFirstChild("FUSED") then
+		Char:FindFirstChild("FUSED"):Destroy()
+		Lib:Notification("Fusion Destroyed!")
+	end
+end)
+User:Slider("Speed", "Changes Walk/Run Speed.", 10, 1000, function(s)
+	function setSpeed(walkspeedSet)
+		local plr = game:GetService"Players".LocalPlayer
+		local serverTraits = plr.Backpack:WaitForChild'ServerTraits'
+	
+		for i,v in next, getconnections(serverTraits.Input.OnClientEvent) do
+			local speed = (s*(walkspeedSet/44))-s
+			v:Fire({speed})
+			break
+		end
+		pp = speed
+	end
+	setSpeed(s)
+	
+	Run.Hearbeat:connect(function()
+		if Hum.WalkSpeed ~= s then
+			setSpeed(s)
+		end
+	end)
+end)
+User:Seperator()
+if game.PlaceId == 536102540 then
+	User:Toggle('God Mode', 'Enables God Mode.', function(state)
+		if state then
+			_G.GM = true
+			if _G.HairGod == true then
+				Lib:InternalNotification("Warning", "You cannot Apply 2 God Modes at once!")
+				_G.GM = false
+			end
+			Lib:Notification("Enabled.")
+			while _G.GM and Run.Heartbeat:wait() do
+				for i,p in pairs(Char:GetDescendants()) do
+					if p:IsA('BodyVelocity') and p.Name ~= "Flying" then
+						p:Destroy()
+					end
+				end
+				firetouchinterest(HRP, game.Workspace.Touchy.Part, 0)
+				firetouchinterest(HRP, game.Workspace.Touchy.Part, 1)
+				if plr.PlayerGui:FindFirstChild("Popup") then
+					plr.PlayerGui.Popup:Remove()
+				end
+			end
+		else
+			_G.GM = false
+			Lib:Notification("Diabled.")
+		end
+	end)
+	User:KeyBind("Respawn", "Respawns you at your current Position.", Enum.KeyCode.V, function()
+		local races = {"Saiyan", "Android", "Human"}
+		local Race = plr.Character.Race.Value
+		if not table.find(races, Race) then Lib:Notification("Race not compatible!") end
+		local Ping = game:GetService("CoreGui").Holder.Main.HomeTab.UniversalProperties.PerfomancePropertiesTitles.PerfomanceProperties.PingPerfomance.Text:gsub("Ping: ", "")
+		local proceedtime
+		local Tempshitvariablerenameme1
+
+		if tonumber(Ping) > 180 then
+			proceedtime = .7
+		else
+			proceedtime = .32
+		end
+	
+		local CurrentFrame1 = plr.Character.HumanoidRootPart.CFrame
+		plr.Backpack.ServerTraits.ChatStart:FireServer(workspace.FriendlyNPCs["Hair Stylist"])
+		wait(proceedtime)
+		plr.Backpack.ServerTraits.ChatAdvance:FireServer({"Yes"})
+		wait(proceedtime)
+		plr.Backpack.HairScript.RemoteEvent:FireServer("woah")
+
+		Tempshitvariablerenameme = plr.CharacterAdded:Connect(function(Character)
+			local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+			repeat
+				wait()
+				HumanoidRootPart.CFrame = CurrentFrame1
+			until Character:FindFirstChild("PowerOutput")
+			Tempshitvariablerenameme:Disconnect()
+			CurrentFrame1 = nil
+		end)
+	end)
+	User:Toggle("Spam Beans/Jars", "Spams Beans/Jars", function(state)
+		if state then
+			local Ping = game:GetService("CoreGui").Holder.Main.HomeTab.UniversalProperties.PerfomancePropertiesTitles.PerfomanceProperties.PingPerfomance.Text:gsub("Ping: ", "")
+			local proceedtime
+
+			if tonumber(Ping) > 180 then
+				proceedtime = .1
+			else
+				proceedtime = .35
+			end
+			_G.SpamBean =  true
+			local currentframe2 = workspace.Live[game.Players.LocalPlayer.Name].HumanoidRootPart
+
+			game:service'RunService'.Stepped:Connect(function()
+				if _G.SpamBean == true then
+					workspace.Live[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame = currentframe2.CFrame
+					if workspace.FriendlyNPCs:FindFirstChild'Hair Stylist' then
+						plr.Backpack.ServerTraits.EatSenzu:FireServer(true)
+						plr.Backpack.ServerTraits.ChatStart:FireServer(workspace.FriendlyNPCs["Hair Stylist"])
+						wait(proceedtime)
+						plr.Backpack.ServerTraits.ChatAdvance:FireServer({"Yes"})
+						repeat
+							wait(proceedtime)
+						until
+						plr.Backpack.HairScript.RemoteEvent:FireServer("woah")
+					end
+				end
+			end)
+		else
+			_G.SpamBean = false
+		end
+	end)
+end
+User:Button("Ranked / HTC God Mode", "Enables Ranked / HTC God.", function()
+	Char.Stats['Phys-Resist']:Destroy()
+	Char.Stats['Ki-Resist']:Destroy()
+end)
+User:Section('General')
+if game.PlaceId == 536102540 then
+	User:DropDown("Slot Changer", "Changes Your Slot.", "Select a Slot.", {"Slot 1", "Slot 2", "Slot 3"}, function(o)
+		local Ping = game:GetService("CoreGui").Holder.Main.HomeTab.UniversalProperties.PerfomancePropertiesTitles.PerfomanceProperties.PingPerfomance.Text:gsub("Ping: ", "")
+		local proceedtime
+
+		if tonumber(Ping) > 180 then
+			proceedtime = .7
+		else
+			proceedtime = .32
+		end
+		if o == "Slot 1" then
+			if game.Workspace.FriendlyNPCs:FindFirstChild('Character Slot Changer') then
+				plr.Backpack.ServerTraits.ChatStart:FireServer(game.Workspace.FriendlyNPCs['Character Slot Changer'])
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "Yes"})
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "k"})
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "Slot1"})
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "k"})
+				wait(1)
+				Lib:Notifcation("Switched to Slot 1")
+			end
+		end
+		if o == "Slot 2" then
+			if game.Workspace.FriendlyNPCs:FindFirstChild('Character Slot Changer') then
+				plr.Backpack.ServerTraits.ChatStart:FireServer(game.Workspace.FriendlyNPCs['Character Slot Changer'])
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "Yes"})
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "k"})
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "Slot2"})
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "k"})
+				wait(1)
+				Lib:Notifcation("Switched to Slot 2")
+			end
+		end
+		if o == "Slot 3" then
+			if game.Workspace.FriendlyNPCs:FindFirstChild('Character Slot Changer') then
+				plr.Backpack.ServerTraits.ChatStart:FireServer(game.Workspace.FriendlyNPCs['Character Slot Changer'])
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "Yes"})
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "k"})
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "Slot3"})
+				wait(proceedtime)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = "k"})
+				wait(1)
+				Lib:Notifcation("Switched to Slot 3")
+			end
+		end
+	end)
+	User:Button("Anti Kick", "Prevents you from getting kicked!", function()
+		Place = 536102540
+		game:GetService("RunService").Heartbeat:connect(function()
+			game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:connect(function(child)
+				if child.Name == "ErrorPrompt" and child:FindFirstChild("MessageArea") and child.MessageArea:FindFirstChild("ErrorFrame") then
+					game:GetService("TeleportService"):Teleport(Place, LocalPlayer)
+				end
+			end)
+		end)
+		Autorj = true
+		SaveInfo()
+		Lib:Notifcation("Anti Kick Loaded.")
+	end)
+	User:Toggle("Anti Glitch", "Prevents you from getting glitched!", function(state)
+		if state then
+			local Tempshitvariablerenameme3
+			local Ping = game:GetService("CoreGui").Holder.Main.HomeTab.UniversalProperties.PerfomancePropertiesTitles.PerfomanceProperties.PingPerfomance.Text:gsub("Ping: ", "")
+			local proceedtime
+
+			if tonumber(Ping) > 180 then
+				proceedtime = .7
+			else
+				proceedtime = .32
+			end
+			_G.DontGlitchMe = true
+			
+			local char = plr.Character
+
+
+			function AntiGlitch()
+				char.DescendantAdded:connect(function(v)
+					game:GetService("RunService").Stepped:wait()
+					if (not v:FindFirstAncestorWhichIsA("Tool") and 
+						v:IsA("BodyVelocity") and v.Name~="Flying") then
+						v:Destroy()
+					end
+					local Hum = char:FindFirstChildOfClass("Humanoid") or char:FindFirstChildOfClass("AnimationController")
+						
+					for i,v in next, Hum:GetPlayingAnimationTracks() do
+						v:Stop()
+					end
+				end)
+			end
+
+			Run.Heartbeat:connect(function()
+				if _G.DontGlitchMe == true then
+    				for i, v in pairs(workspace.Live[plr.Name]:GetChildren()) do
+						if v.Name == "MoveStart" then
+    						AntiGlitch()
+							
+							local CurrentFrame3 = plr.Character.HumanoidRootPart.CFrame
+							plr.Backpack.ServerTraits.ChatStart:FireServer(workspace.FriendlyNPCs["Hair Stylist"])
+							wait(proceedtime)
+							plr.Backpack.ServerTraits.ChatAdvance:FireServer({"Yes"})
+							wait(proceedtime)
+							plr.Backpack.HairScript.RemoteEvent:FireServer("woah")
+			
+
+							Tempshitvariablerenameme3 = plr.CharacterAdded:Connect(function(Character)
+								local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+								repeat
+									wait()
+									HumanoidRootPart.CFrame = CurrentFrame3
+								until Character:FindFirstChild("PowerOutput")
+								Tempshitvariablerenameme:Disconnect()
+								CurrentFrame3 = nil
+								Lib:Notification("Respawned!")
+							end)
+    					end
+    				end
+				end
+			end)
+		else
+			_G.DontGlitchMe = false
+		end
+	end)
+end
+if game.PlaceId == 535527772 then
+	User:Button("Respawn", "Respawns you In TOP", function()
+		if not workspace.Live[plr.Name]:FindFirstChild("SuperAction") then
+			Lib:Notifcation("You're Not Dead.")
+		end
+		if workspace.Live[plr.Name]:FindFirstChild("SuperAction") then
+			workspace.Live[plr.Name]:FindFirstChild("SuperAction"):Destroy()
+			ts:create(workspace.Live[plr.Name].HumanoidRootPart, TweenInfo.new(.3), {CFrame = CFrame.new(100, 100, 100)}):Play()
+			wait(.5)
+			Lib:Notifcation("Respawned!")
+		end
+	end)
+end
+User:Toggle("No Slow", "Removes Slow Values.", function(state)
+	if state then
+		NS = false
+		if NS == false then
+			NS = true
+			SteppyNigger = Run.RenderStepped:connect(function()
+				if NS == true then
+					for i, p in pairs(workspace.Live[plr.Name]:GetDescendants()) do
+						if p:IsA("BodyVelocity") and p.Name~= "Flying" then
+							p:Destroy()
+						end
+					end
+					for i, v in pairs(workspace.Live[plr.Name]:GetChildren()) do
+						if v.Name == "Justice Combination" then
+							local action = Char:WaitForChild("Action")
+							if action then
+								wait()
+							action:Destroy()
+						end
+					end
+					if v.Name == "Action" or v.Name == "Attacking" or v.Name == "Using" or v.Name == "hyper" or v.Name == "Hyper" or v.Name == "KiBlasted" or v.Name == "Tele" or v.Name == "tele" or v.Name == "Killed"
+					or v.Name == "Slow" or v.Name == "MoveStart" or v.Name == "KnockBacked" or v.Name == "Dodging" or v.Name == "zDASZzxc" or v.Name == "evasive" or v.Name == "BStun" or v.Name == "Ki Blasting"
+					or v.Name == "NotHardBack" or v.Name == "Velocity" then
+						v:Destroy()
+					end
+					if v.Name == "Block" and v.Value == true then
+						v.Value = false
+					end
+				end
+				end
+			end)
+		end
+	elseif NS == true then
+		NS = false
+		SteppyNigger:Disconnect()
+	end
+end)
+User:Toggle("Use Bean/Jar(s)", "Uses Bean/Jar(s) Every 30 Secs.", function(state)
+	if state then
+		_G.BS = true
+		while _G.BS and wait() do
+			plr.Backpack.ServerTraits.EatSenzu:FireServer(true)
+		end
+	else
+		_G.BS = false
+	end
+end)
+
+
+User:Section("Extras")
+
+User:Toggle("Anchored", "Toggles player anchoring", function(state)
+    if state then
+        plr.Character.HumanoidRootPart.Anchored = true
+        Lib:Notification("Anchored Enabled", "Your character is now anchored!")
+    else
+        plr.Character.HumanoidRootPart.Anchored = false
+        Lib:Notification("Anchored Disabled", "Your character is now unanchored!")
+    end
+end)
+
+
+------------------------------------------------------------------------------------------ VISUALS TAB
+local Visuals = Main:Tab("Visuals", "Eye")
+Visuals:Section("Shaders")
+if game.PlaceId ~= 478132461 then
+	Visuals:Button("Spring", "Applies a Spring theme to your experience.", function()
+		for Light, Value in pairs(Light:GetChildren()) do
+			if Value.Name ~= "Scouter" and Value.Name ~= "Water" and Value.Name ~= "SSJ" and Value.Name ~= "Sense" and Value.Name ~= "Stop" and Value.Name ~= "SSJ2" and Value.Name ~= "Flash" and Value.Name ~= "NovaBlur" then
+				Value:Destroy()
+			end
+		end
+		if _G.JPN == true then
+			_G.JPN = false 
+		elseif _G.JPNDark == true then
+			_G.JPNDark = false
+		elseif _G.Glxy == true then
+			_G.Glxy = false
+		end
+
+		Wait(1)
+		for Space, Mat in pairs(workspace:GetChildren()) do
+			if Mat:IsA "BasePart" and Mat.Material == Enum.Material.Grass then
+				Mat.Color = Color3.fromRGB(15, 185, 105)
+			end
+		end
+		
+		local Bloom = Instance.new("BloomEffect", Light)
+		local ColorCorrection = Instance.new("ColorCorrectionEffect", Light)
+		local Depth = Instance.new("DepthOfFieldEffect", Light)
+		local SunRay = Instance.new("SunRaysEffect", Light)
+		
+		sethiddenproperty(workspace.Terrain, "Decoration", true)
+		sethiddenproperty(Light, "Technology", "ShadowMap")
+		sethiddenproperty(Light, "ShadowSoftness", .2)
+		sethiddenproperty(Light, "Brightness", 3)
+		sethiddenproperty(Light, "ExposureCompensation", -.9)
+		
+		Light.Ambient = Color3.fromRGB(35, 35, 35)
+		Light.Brightness = .75
+		Light.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+		Light.ColorShift_Top = Color3.fromRGB(255, 245, 235)
+		
+		Bloom.Enabled = true
+		Bloom.Intensity = 0.3
+		Bloom.Size = 1900
+		Bloom.Threshold = 0.915
+		
+		ColorCorrection.Brightness = 0.2
+		ColorCorrection.Contrast = 0.40
+		ColorCorrection.Enabled = true
+		ColorCorrection.Saturation = 0.5
+		ColorCorrection.TintColor = Color3.fromRGB(255, 220, 150)
+		
+		Depth.Enabled = true
+		Depth.FarIntensity = 0.9
+		Depth.FocusDistance = 0.9
+		Depth.InFocusRadius = 200
+		Depth.NearIntensity = 0.5
+		
+		SunRay.Enabled = true
+		SunRay.Intensity = 0.05
+		SunRay.Spread = 0.145
+		
+		cors = {}
+		mas = Instance.new("Model", game:service("Lighting"))
+		Sky0 = Instance.new("Sky")
+		Sky0.Parent = mas
+		Sky0.SkyboxBk = "rbxassetid://6444884337"
+		Sky0.SkyboxDn = "rbxassetid://6444884785"
+		Sky0.SkyboxFt = "rbxassetid://6444884337"
+		Sky0.SkyboxLf = "rbxassetid://6444884337"
+		Sky0.SkyboxRt = "rbxassetid://6444884337"
+		Sky0.SkyboxUp = "rbxassetid://6412503613"
+		Sky0.SunAngularSize = 15
+		for i, v in pairs(mas:GetChildren()) do
+			v.Parent = Light
+			pcall(function()
+				v:MakeJoints()
+			end)
+		end
+		mas:Destroy()
+		for i, v in pairs(cors) do
+			spawn(function()
+				pcall(v)
+			end)
+		end
+		
+		game.CoreGui.Holder.Main.HomeTab.ShaderProperties.ShaderTitle.ShaderName.Text = "Spring"
+		game.CoreGui.Holder.Main.HomeTab.ShaderProperties.ShaderPropertiesGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(181, 152, 78))}
+		_G.Spring = true
+		Run.Heartbeat:connect(function()
+			if _G.Spring == true then
+				Light.FogEnd = 20000
+				Light.ClockTime = 17
+				for i, v in pairs(game.Workspace.Live:GetDescendants()) do
+					if v.ClassName == "ParticleEmitter" then
+						v.Brightness = 5
+					end
+				end
+			end
+		end)
+	end)
+	Visuals:Button("Japanese", "Applies a Japanese theme to your experience.", function()
+	for Light, Value in pairs(Light:GetChildren()) do
+			if Value.Name ~= "Scouter" and Value.Name ~= "Water" and Value.Name ~= "SSJ" and Value.Name ~= "Sense" and Value.Name ~= "Stop" and Value.Name ~= "SSJ2" and Value.Name ~= "Flash" and Value.Name ~= "NovaBlur" then
+				Value:Destroy()
+			end
+		end
+		if _G.Spring == true then
+			_G.Spring = false
+		elseif _G.JPNDark == true then
+			_G.JPNDark = false
+		elseif _G.Glxy == true then
+			_G.Glxy = false
+		end
+		wait(1)
+		for Space, Mat in pairs(workspace:GetChildren()) do
+			if Mat:IsA "BasePart" and Mat.Material == Enum.Material.Grass then
+				Mat.Color = Color3.fromRGB(15, 185, 105)
+			end
+		end
+		
+		local Bloom = Instance.new("BloomEffect", Light)
+		local ColorCorrection = Instance.new("ColorCorrectionEffect", Light)
+		local Depth = Instance.new("DepthOfFieldEffect", Light)
+		local SunRay = Instance.new("SunRaysEffect", Light)
+		
+		sethiddenproperty(workspace.Terrain, "Decoration", true)
+		sethiddenproperty(Light, "Technology", "ShadowMap")
+		sethiddenproperty(Light, "ShadowSoftness", .2)
+		sethiddenproperty(Light, "Brightness", 3)
+		sethiddenproperty(Light, "EnvironmentDiffuseScale", 0.2)
+		sethiddenproperty(Light, "EnvironmentSpecularScale", 1)
+		sethiddenproperty(Light, "ExposureCompensation", -1)
+		sethiddenproperty(Light, "GeographicLatitude", -20.356)
+		
+		Light.Ambient = Color3.fromRGB(59, 33, 27)
+		Light.Brightness = 2.14
+		Light.ColorShift_Bottom = Color3.fromRGB(11, 0, 20)
+		Light.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+		
+		Bloom.Enabled = true
+		Bloom.Intensity = 0.1
+		Bloom.Size = 100
+		Bloom.Threshold = 0
+		
+		ColorCorrection.Brightness = 0
+		ColorCorrection.Contrast = 0
+		ColorCorrection.Enabled = true
+		ColorCorrection.Saturation = 0.05
+		ColorCorrection.TintColor = Color3.fromRGB(255, 224, 219)
+		
+		Depth.Enabled = true
+		Depth.FarIntensity = 0.9
+		Depth.FocusDistance = 0.9
+		Depth.InFocusRadius = 200
+		Depth.NearIntensity = 0.5
+		
+		SunRay.Enabled = true
+		SunRay.Intensity = 0.05
+		SunRay.Spread = 1
+		
+		cors = {}
+		mas = Instance.new("Model", game:service("Lighting"))
+		Sky0 = Instance.new("Sky")
+		Sky0.Parent = mas
+		Sky0.SkyboxBk = "rbxassetid://323494035"
+		Sky0.SkyboxDn = "rbxassetid://323494368"
+		Sky0.SkyboxFt = "rbxassetid://323494130"
+		Sky0.SkyboxLf = "rbxassetid://323494252"
+		Sky0.SkyboxRt = "rbxassetid://323494067"
+		Sky0.SkyboxUp = "rbxassetid://323493360"
+		Sky0.SunAngularSize = 14
+		for i, v in pairs(mas:GetChildren()) do
+			v.Parent = Light
+			pcall(function()
+				v:MakeJoints()
+			end)
+		end
+		mas:Destroy()
+		for i, v in pairs(cors) do
+			spawn(function()
+				pcall(v)
+			end)
+		end
+		
+		game.CoreGui.Holder.Main.HomeTab.ShaderProperties.ShaderTitle.ShaderName.Text = "Japanese"
+		game.CoreGui.Holder.Main.HomeTab.ShaderProperties.ShaderPropertiesGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(118, 81, 93))}
+		
+		_G.JPN = true
+		Run.Heartbeat:connect(function()
+			if _G.JPN == true then
+				Light.FogEnd = 20000
+				Light.ClockTime = 6.7
+				for i, v in pairs(game.Workspace.Live:GetDescendants()) do
+					if v.ClassName == "ParticleEmitter" then
+						v.Brightness = 5
+					end
+				end
+			end
+		end)
+	end)
+	Visuals:Button("Japanese(Dark)", "Applies a Japanese theme to your experience.", function()
+		for Light, Value in pairs(Light:GetChildren()) do
+			if Value.Name ~= "Scouter" and Value.Name ~= "Water" and Value.Name ~= "SSJ" and Value.Name ~= "Sense" and Value.Name ~= "Stop" and Value.Name ~= "SSJ2" and Value.Name ~= "Flash" and Value.Name ~= "NovaBlur" then
+				Value:Destroy()
+			end
+		end
+
+		if _G.JPN == true then
+			_G.JPN = false
+		elseif _G.Spring == true then
+			_G.Spring = false
+		elseif _G.Glxy == true then
+			_G.Glxy = false
+		end
+		for Space, Mat in pairs(workspace:GetChildren()) do
+			if Mat:IsA "BasePart" and Mat.Material == Enum.Material.Grass then
+				Mat.Color = Color3.fromRGB(15, 185, 105)
+			end
+		end
+		
+		local Bloom = Instance.new("BloomEffect", Light)
+		local ColorCorrection = Instance.new("ColorCorrectionEffect", Light)
+		local Depth = Instance.new("DepthOfFieldEffect", Light)
+		local SunRay = Instance.new("SunRaysEffect", Light)
+		
+		sethiddenproperty(workspace.Terrain, "Decoration", true)
+		sethiddenproperty(Light, "Technology", "ShadowMap")
+		sethiddenproperty(Light, "ShadowSoftness", .2)
+		sethiddenproperty(Light, "Brightness", 3)
+		sethiddenproperty(Light, "EnvironmentDiffuseScale", 0.2)
+		sethiddenproperty(Light, "EnvironmentSpecularScale", 1)
+		sethiddenproperty(Light, "ExposureCompensation", -2)
+		sethiddenproperty(Light, "GeographicLatitude", -20.356)
+		
+		Light.Ambient = Color3.fromRGB(59, 33, 27)
+		Light.Brightness = 2.14
+		Light.ColorShift_Bottom = Color3.fromRGB(11, 0, 20)
+		Light.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+		
+		Bloom.Enabled = true
+		Bloom.Intensity = 0.1
+		Bloom.Size = 100
+		Bloom.Threshold = 0
+		
+		ColorCorrection.Brightness = 0
+		ColorCorrection.Contrast = 0
+		ColorCorrection.Enabled = true
+		ColorCorrection.Saturation = 0.5
+		ColorCorrection.TintColor = Color3.fromRGB(255, 224, 219)
+		
+		Depth.Enabled = true
+		Depth.FarIntensity = 0.9
+		Depth.FocusDistance = 0.9
+		Depth.InFocusRadius = 200
+		Depth.NearIntensity = 0.5
+		
+		SunRay.Enabled = true
+		SunRay.Intensity = 0.05
+		SunRay.Spread = 1
+		
+		cors = {}
+		mas = Instance.new("Model", game:service("Lighting"))
+		Sky0 = Instance.new("Sky")
+		Sky0.Parent = mas
+		Sky0.SkyboxBk = "rbxassetid://323494035"
+		Sky0.SkyboxDn = "rbxassetid://323494368"
+		Sky0.SkyboxFt = "rbxassetid://323494130"
+		Sky0.SkyboxLf = "rbxassetid://323494252"
+		Sky0.SkyboxRt = "rbxassetid://323494067"
+		Sky0.SkyboxUp = "rbxassetid://323493360"
+		Sky0.SunAngularSize = 14
+		for i, v in pairs(mas:GetChildren()) do
+			v.Parent = Light
+			pcall(function()
+				v:MakeJoints()
+			end)
+		end
+		mas:Destroy()
+		for i, v in pairs(cors) do
+			spawn(function()
+				pcall(v)
+			end)
+		end
+		
+		game.CoreGui.Holder.Main.HomeTab.ShaderProperties.ShaderTitle.ShaderName.Text = "Japanese \n (Dark)"
+		game.CoreGui.Holder.Main.HomeTab.ShaderProperties.ShaderPropertiesGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB())}
+		
+		_G.JPNDark = true
+		Run.Heartbeat:connect(function()
+			if _G.JPNDark == true then
+				Light.FogEnd = 20000
+				Light.ClockTime = 6.7
+				for i, v in pairs(game.Workspace.Live:GetDescendants()) do
+					if v.ClassName == "ParticleEmitter" then
+						v.Brightness = 10
+					end
+				end
+			end
+		end)
+	end)
+	Visuals:Button("Galaxy", "Applies a Galaxy theme to your experience.", function()
+		for Light, Value in pairs(Light:GetChildren()) do
+			if Value.Name ~= "Scouter" and Value.Name ~= "Water" and Value.Name ~= "SSJ" and Value.Name ~= "Sense" and Value.Name ~= "Stop" and Value.Name ~= "SSJ2" and Value.Name ~= "Flash" and Value.Name ~= "NovaBlur" then
+				Value:Destroy()
+			end
+		end
+
+		if _G.Spring == true then
+			_G.Spring = false
+		elseif _G.JPNDark == true then
+			_G.JPNDark = false
+		elseif _G.JPN == true then
+			_G.JPN = false
+		end
+
+		local Bloom = Instance.new("BloomEffect", Light)
+		local ColorCorrection = Instance.new("ColorCorrectionEffect", Light)
+		local Depth = Instance.new("DepthOfFieldEffect", Light)
+		local SunRay = Instance.new("SunRaysEffect", Light)
+		
+		sethiddenproperty(workspace.Terrain, "Decoration", true)
+		sethiddenproperty(Light, "Technology", "ShadowMap")
+		sethiddenproperty(Light, "ShadowSoftness", .2)
+		sethiddenproperty(Light, "Brightness", 3)
+		sethiddenproperty(Light, "EnvironmentDiffuseScale", 0.2)
+		sethiddenproperty(Light, "EnvironmentSpecularScale", 1)
+		sethiddenproperty(Light, "ExposureCompensation", -2)
+		sethiddenproperty(Light, "GeographicLatitude", -20.356)
+		
+		Light.Ambient = Color3.fromRGB(60, 30, 91)
+		Light.Brightness = 3
+		Light.ColorShift_Bottom = Color3.fromRGB(255, 255, 255)
+		Light.ColorShift_Top = Color3.fromRGB(255, 255, 255)
+		
+		Bloom.Enabled = true
+		Bloom.Intensity = 0.1
+		Bloom.Size = 100
+		Bloom.Threshold = 0
+		
+		ColorCorrection.Brightness = 0
+		ColorCorrection.Contrast = 0
+		ColorCorrection.Enabled = true
+		ColorCorrection.Saturation = 0
+		ColorCorrection.TintColor = Color3.fromRGB(255, 225, 255)
+		
+		Depth.Enabled = true
+		Depth.FarIntensity = 0.9
+		Depth.FocusDistance = 0.9
+		Depth.InFocusRadius = 200
+		Depth.NearIntensity = 0.5
+		
+		SunRay.Enabled = true
+		SunRay.Intensity = 0.05
+		SunRay.Spread = 1
+
+		_G.Glxy = true
+		Run.Heartbeat:connect(function()
+			if _G.Glxy == true then
+				Light.FogEnd = 20000
+				Light.ClockTime = 14.5
+				for i, v in pairs(game.Workspace.Live:GetDescendants()) do
+					if v.ClassName == "ParticleEmitter" then
+						v.Brightness = 10
+					end
+				end
+			end
+		end)
+		game.CoreGui.Holder.Main.HomeTab.ShaderProperties.ShaderTitle.ShaderName.Text = "Galaxy"
+		game.CoreGui.Holder.Main.HomeTab.ShaderProperties.ShaderPropertiesGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 0, 255))}
+
+		cors = {}
+		mas = Instance.new("Model", game:service("Lighting"))
+		Sky0 = Instance.new("Sky")
+		Sky0.Parent = mas
+		Sky0.SkyboxBk = "rbxassetid://2118763079"
+		Sky0.SkyboxDn = "rbxassetid://2118766919"
+		Sky0.SkyboxFt = "rbxassetid://2118765204"
+		Sky0.SkyboxLf = "rbxassetid://2118764070"
+		Sky0.SkyboxRt = "rbxassetid://2118761853"
+		Sky0.SkyboxUp = "rbxassetid://2118766003"
+		Sky0.SunAngularSize = 15
+		for i, v in pairs(mas:GetChildren()) do
+			v.Parent = Light
+			pcall(function()
+				v:MakeJoints()
+			end)
+		end
+		mas:Destroy()
+		for i, v in pairs(cors) do
+			spawn(function()
+				pcall(v)
+			end)
+		end
+	end)
+	Visuals:Section("Visuals")
+
+	Visuals:Toggle("Remove Fog", "Expands View.",function(state)
+		if state then
+			B = Run.RenderStepped:Connect(function()
+				Light.FogEnd = (9e9)
+			end)
+		else
+			B:Disconnect()
+			Light.FogEnd = (2000)
+		end
+	end)
+
+	Visuals:Toggle("Day", "Makes The Game Day.", function(state)
+		if state then
+			_G.DayTgl = true
+			if _G.NightTgl == true then
+				_G.NightTgl = false
+			end
+			Day = Run.Heartbeat:Connect(function()
+				if _G.DayTgl == true then
+					Light.ClockTime = 14
+				end
+			end)
+		else
+			_G.DayTgl = false
+			Day:Disconnect()
+		end
+	end)
+
+	Visuals:Toggle("Night", "Makes The Game Night.", function(state)
+		if state then
+			_G.NightTgl = true
+			if _G.DayTgl == true then
+				_G.DayTgl = false
+			end
+			Night = Run.Heartbeat:Connect(function()
+				if _G.NightTgl == true then
+					Light.ClockTime = 0
+				end
+			end)
+		else
+			_G.NightTgl = false
+			Night:Disconnect()
+		end
+	end)
+end
+
+Visuals:Button('Hide Wings/Halo', 'Hides Your Wings/Halo', function()
+	if workspace.Live[plr.Name]:FindFirstChild("RebirthWings") then
+		workspace.Live[plr.Name]["RebirthWings"].Handle:Destroy()
+		Lib:Notifcation("Rebirth Wings Destroyed.")
+	end
+	if workspace.Live[plr.Name]:FindFirstChild("RealHalo") then
+		workspace.Live[plr.Name]:FindFirstChild("RealHalo").Handle:Destroy()
+		Lib:Notifcation("Halo Destroyed.")
+	end
+end)
+
+Visuals:Button('Hide Level', 'Hides Your Level', function()
+	Lib:Notifcation("Level Hidden.")
+	for i,v in next, workspace.Live[plr.Name]:GetChildren() do
+		if (string.find(tostring(v.Name):lower(), 'lvl.')) then 
+			v:Destroy()
+		end
+	end
+end)
+
+Visuals:Button('Low GFX', 'Less Lag', function()
+
+    local decalsyeeted = true
+local g = game
+local w = g.Workspace
+local l = g.Lighting
+local t = w.Terrain
+t.WaterWaveSize = 0
+t.WaterWaveSpeed = 0
+t.WaterReflectance = 0
+t.WaterTransparency = 0
+l.GlobalShadows = false
+l.FogEnd = 9e9
+l.Brightness = 0
+settings().Rendering.QualityLevel = "Level01"
+for i, v in pairs(g:GetDescendants()) do
+    if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+    elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+        v.Transparency = 1
+    elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+        v.Lifetime = NumberRange.new(0)
+    elseif v:IsA("Explosion") then
+        v.BlastPressure = 1
+        v.BlastRadius = 1
+    elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+        v.Enabled = false
+    elseif v:IsA("MeshPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+        v.TextureID = 10385902758728957
+    end
+end
+for i, e in pairs(l:GetChildren()) do
+    if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+        e.Enabled = false
+    end
+end
+
+end)
+
+Visuals:Section('Accessories')
+Visuals:Toggle("Purple Scythe", "Equips a Scythe on your back.", function(state)
+	if state then   
+		function m()
+			s = Instance.new'MeshPart'
+			s.Parent = workspace
+			s.CFrame = Char.UpperTorso.CFrame * CFrame.new(0, 0, 1)
+			s.Anchored = true
+			s.MeshId = 'rbxassetid://9224065579'
+			s.Material = Enum.Material.Neon
+			s.Name = plr.Name .. 's'
+			s.CanCollide = false
+			s.Size = Vector3.new(3.7, 3.7, 3)
+			s.Color = Color3.fromRGB(222, 101, 255)
+		
+			a = Instance.new'ParticleEmitter'
+			a.Parent = workspace[plr.Name .. 's']
+			a.Texture = 'rbxasset://textures/particles/sparkles_main.dds'
+			a.Size = NumberSequence.new(.1)
+			a.LockedToPart = true 	
+			a.Rate = 20
+			a.Rotation = NumberRange.new(0, 0)
+			a.Lifetime = NumberRange.new(0.75, 0.75)
+			a.RotSpeed = NumberRange.new(0, 0)
+			a.SpreadAngle = Vector2.new(360, 360)
+			a.ZOffset = 6
+			a.LightEmission = 1
+			a.Color = ColorSequence.new(Color3.fromRGB(255, 0, 255))
+		
+			attach = Instance.new('Attachment')
+			attach.Name = "Poopy"
+			attach.Parent = HRP
+			attach.Position = Vector3.new(0, -3, 0)
+
+			b = Instance.new'ParticleEmitter'
+			b.Parent = attach
+			b.LockedToPart = true
+			b.Texture = 'rbxassetid://866471682'
+			b.Rate = 50
+			b.Rotation = NumberRange.new(180, 180)
+			b.Lifetime = NumberRange.new(0.75, 0.75)
+			b.RotSpeed = NumberRange.new(0, 0)
+			b.Speed = NumberRange.new(13, 13)
+			b.SpreadAngle = Vector2.new(360, 360)
+			b.Acceleration = Vector3.new(0, 40, 0)
+			b.ZOffset = 0
+			b.LightEmission = 1
+			b.Drag = 2.5
+			b.Color = ColorSequence.new(Color3.fromRGB(255, 0, 255))
+		end
+		
+		m()
+
+		Run.Heartbeat:connect(function()
+			s.Rotation = workspace.Live[plr.Name].UpperTorso.Rotation
+			s.CFrame = workspace.Live[plr.Name].UpperTorso.CFrame * CFrame.new(.45, 0, .6)
+		end)
+		Lib:Notifcation("Equipped.")
+	else
+		HRP["Poopy"]:Destroy()
+		workspace[plr.Name .. 's']:Destroy()
+		Lib:Notifcation("Unequipped.")
+	end
+end)
+
+
+Visuals:Toggle("Blue Scythe", "Equips a Scythe on your back.", function(state)
+    if state then   
+        function m()
+            -- Create the scythe
+            local s = Instance.new('MeshPart')
+            s.Parent = workspace
+            s.CFrame = Char.UpperTorso.CFrame * CFrame.new(0, 0, 1)
+            s.Anchored = false -- Allow attachment
+            s.MeshId = 'rbxassetid://9224065579'
+            s.Material = Enum.Material.Neon
+            s.Name = plr.Name .. 's'
+            s.CanCollide = false
+            s.Size = Vector3.new(3.7, 3.7, 3)
+            s.Color = Color3.fromRGB(0, 102, 255) -- Blue Color
+            
+            -- Attach scythe to UpperTorso
+            local weld = Instance.new("WeldConstraint")
+            weld.Part0 = Char.UpperTorso
+            weld.Part1 = s
+            weld.Parent = s
+
+            -- Add particle effect
+            local a = Instance.new('ParticleEmitter')
+            a.Parent = s
+            a.Texture = 'rbxasset://textures/particles/sparkles_main.dds'
+            a.Size = NumberSequence.new(.1)
+            a.LockedToPart = true 	
+            a.Rate = 20
+            a.Rotation = NumberRange.new(0, 0)
+            a.Lifetime = NumberRange.new(0.75, 0.75)
+            a.RotSpeed = NumberRange.new(0, 0)
+            a.SpreadAngle = Vector2.new(360, 360)
+            a.ZOffset = 6
+            a.LightEmission = 1
+            a.Color = ColorSequence.new(Color3.fromRGB(0, 102, 255)) -- Blue particles
+
+            -- Create attachment for trail particles
+            local attach = Instance.new('Attachment')
+            attach.Name = "Poopy"
+            attach.Parent = HRP
+            attach.Position = Vector3.new(0, -3, 0)
+
+            -- Add trail particles
+            local b = Instance.new('ParticleEmitter')
+            b.Parent = attach
+            b.LockedToPart = true
+            b.Texture = 'rbxassetid://866471682'
+            b.Rate = 50
+            b.Rotation = NumberRange.new(180, 180)
+            b.Lifetime = NumberRange.new(0.75, 0.75)
+            b.RotSpeed = NumberRange.new(0, 0)
+            b.Speed = NumberRange.new(13, 13)
+            b.SpreadAngle = Vector2.new(360, 360)
+            b.Acceleration = Vector3.new(0, 40, 0)
+            b.ZOffset = 0
+            b.LightEmission = 1
+            b.Drag = 2.5
+            b.Color = ColorSequence.new(Color3.fromRGB(0, 102, 255)) -- Blue trail particles
+        end
+        
+        m()
+
+        Lib:Notifcation("Equipped.")
+    else
+        -- Cleanup
+        HRP:FindFirstChild("Poopy"):Destroy()
+        local scythe = workspace:FindFirstChild(plr.Name .. 's')
+        if scythe then scythe:Destroy() end
+        Lib:Notifcation("Unequipped.")
+    end
+end)
+
+
+
+
+-- Section: Animations
+Visuals:Section("Animations")
+
+-- Button to Check and Play Animation
+Visuals:Button("Play Dragon Throw Animation", "You need to buy dragon throw", function()
+    local player = game:GetService("Players").LocalPlayer
+    local backpack = player:WaitForChild("Backpack")
+    local itemName = "Dragon Throw" -- Name of the required item
+
+    -- Check if the item exists in the backpack
+    local item = backpack:FindFirstChild(itemName)
+
+    if item and item:FindFirstChild("Activator") and item.Activator:FindFirstChild("Spinner") then
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        local animator = humanoid:FindFirstChildOfClass("Animator") or humanoid:WaitForChild("Animator")
+        local anim = item.Activator.Spinner
+
+        -- Play the animation
+        if anim:IsA("Animation") then
+            local animationTrack = animator:LoadAnimation(anim)
+            animationTrack:Play()
+            Lib:Notification("Animation Played", "The Dragon Throw animation has started.")
+        else
+            Lib:Notification("Error", "Animation asset is invalid!")
+        end
+    else
+        -- Notify the user to buy the missing item
+        Lib:Notification("Buy Dragon Throw!", "Buy " .. itemName .. " to use this feature!")
+    end
+end)
+
+local looping = false -- State to track looping
+
+Visuals:Button("Fake Justice Stack", "You Have To Buy Kick Barrage", function()
+    local player = game:GetService("Players").LocalPlayer
+    local backpack = player:WaitForChild("Backpack")
+    local itemName = "Kick Barrage" -- Required item name
+
+    -- Check if the item exists in the backpack
+    local item = backpack:FindFirstChild(itemName)
+
+    if item and item:FindFirstChild("Activator") and item.Activator:FindFirstChild("Anim1") then
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        local animator = humanoid:FindFirstChildOfClass("Animator") or humanoid:WaitForChild("Animator")
+        local anim = item.Activator.Anim1
+
+        -- Play the animation in a loop
+        if anim:IsA("Animation") then
+            looping = not looping -- Toggle looping state
+            if looping then
+                Lib:Notification("Started!", "Justice Stacking...")
+                while looping and task.wait() do
+                    local animationTrack = animator:LoadAnimation(anim)
+                    animationTrack:Play()
+                    animationTrack.Stopped:Wait() -- Wait for the animation to finish before restarting
+                end
+            else
+                Lib:Notification("Looping Stopped", "The Kick Barrage animation has stopped.")
+            end
+        else
+            Lib:Notification("Error", "Animation asset is invalid!")
+        end
+    else
+        Lib:Notification("Buy Kick Barrage!")
+    end
+end)
+
+
+------------------------------------------------------------------------------------------ FUN TAB
+local Fun = Main:Tab("Fun", "Star")
+Fun:Section("The Funny Stuff :)")
+Fun:Toggle("Vanish", "Spam Vanishes.", function(state)
+	if state then
+		_G.SpamVanish = true
+		while _G.SpamVanish == true and wait(.5) do
+			local args = {
+				[1] = 0.2
+				}
+			game:GetService("Players").LocalPlayer.Backpack.ServerTraits.Vanish:FireServer(unpack(args))
+		end
+	else
+		_G.SpamVanish = false
+	end
+end)
+Fun:Toggle("Fake Ultra Instinct", "Funny Ultra Instinct.", function(state)
+	if state then
+		HRP["UltraTrans"]:Play()
+		local form = Instance.new("Folder")
+		form.Name = "ui"
+		form.Parent = workspace.Live[plr.Name]
+	else
+		workspace.Live[plr.Name]:FindFirstChild("ui"):Destroy()
+	end
+end)
+Fun:Toggle("Invisible**PATCHED**", "Turns you Invisible(Uses Flash Strike)", function(state)
+	if state then
+		if not plr.Backpack:FindFirstChild("Flash Strike") then
+			Lib:Notifcation("Flash Strike not found!")
+			Lib:InternalNotification("Bad","Flash Strike Not Found! \n Attempting to buy Flash Strike.")
+			wait()
+			game:GetService("ReplicatedStorage").AttemptBuy:InvokeServer({[1] = "Flash Strike"})
+		end
+		if plr.Backpack:FindFirstChild("Flash Strike") then
+			plr.Backpack:FindFirstChild("Flash Strike").Parent = workspace.Live[plr.Name]
+			if workspace.Live[plr.Name]["Flash Strike"].Activator:FindFirstChild("Animation") then
+				workspace.Live[plr.Name]["Flash Strike"].Activator:FindFirstChild("Animation"):Destroy()
+			end
+			workspace.Live[plr.Name]["Flash Strike"]:Activate()
+		end
+	else
+		if workspace.Live[plr.Name].Race.Value == "Saiyan" or workspace.Live[plr.Name].Race.Value == "Human" or workspace.Live[plr.Name].Race.Value == "Android" then
+			local Tempshitvariablerenameme4
+			local Ping = game:GetService("CoreGui").Holder.Main.HomeTab.UniversalProperties.PerfomancePropertiesTitles.PerfomanceProperties.PingPerfomance.Text:gsub("Ping: ", "")
+			local proceedtime
+
+			if tonumber(Ping) > 180 then
+				proceedtime = .7
+			else
+				proceedtime = .32
+			end
+			local CurrentFrame4 = plr.Character.HumanoidRootPart.CFrame
+
+			plr.Backpack.ServerTraits.ChatStart:FireServer(workspace.FriendlyNPCs["Hair Stylist"])
+			wait(proceedtime)
+			plr.Backpack.ServerTraits.ChatAdvance:FireServer({"Yes"})
+			wait(proceedtime)
+			plr.Backpack.HairScript.RemoteEvent:FireServer("woah")
+
+			Tempshitvariablerenameme = plr.CharacterAdded:Connect(function(Character)
+				local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+				repeat
+					wait()
+					HumanoidRootPart.CFrame = CurrentFrame1
+				until Character:FindFirstChild("PowerOutput")
+				Tempshitvariablerenameme:Disconnect()
+				CurrentFrame1 = nil
+			end)
+			Lib:Notifcation("Respawned!")
+		else
+			workspace.Live[plr.Name].UpperTorso:Destroy()
+		end
+	end
+end)
+Fun:Seperator()	
+Fun:Slider("Field Of View (FOV)", "Changes Field Of View!", 70, 150, function(f)
+	workspace.CurrentCamera.FieldOfView = f
+end)
+Fun:Button("Normal Fov", "Changes your FOV to the Default FOV", function()
+	workspace.CurrentCamera.FieldOfView = 70
+end)
+Fun:Button("Transparent Body", "Makes your body Transparent(plr)", function()
+	for i, v in pairs(workspace.Live[plr.Name]:GetChildren()) do
+		if v:IsA("MeshPart") or v:IsA("Part") then
+			v.Material = "ForceField"
+			v.Color = Color3.fromRGB(255,255,255)
+		end
+	end
+	Lib:Notifcation("Transformed.")
+end)
+
+Fun:Button("Fling All", "Fling All Player (May not be 100% accurate)", function()
+    Lib:Notification("Flinging")
+    loadstring(game:HttpGet("https://pastebin.com/raw/zqyDSUWX"))()
+end)
+
+------------------------------------------------------------------------------------------ BUY TAB
+local Buy = Main:Tab("Buy", "Money")
+if game.PlaceId == 536102540 then
+	Buy:Section("Beans/Jars")
+	Buy:DropDown('Type', 'Type Of Beans/Jars!', "Select a Type", {'Beans', 'Jars'}, function(option)
+		if option == 'Beans' then
+			Type = 'Beans'
+		end
+		if option == 'Jars' then
+			Type = 'Jars'
+		end
+	end)
+	Buy:DropDown("Amount", "Bean/Jar Amount", "Select an Amount", {"8", "80"}, function(o)
+		if o == "8" then
+			if Type == "Jars" then
+				Lib:InternalNotification("Warning", "You Cannot Buy 8 Jars!")
+			else
+				Amount = "8"
+			end
+		end	
+		if o == "80" then
+			Amount = "80"
+		end
+	end)
+		
+	Buy:DropDown('Color', 'Color Of Beans/Jars', "Select a Color", {'Reds', 'Greens', 'Blues', 'Yellows'}, function(option)
+		if option == 'Reds' then
+			Color = 'Red'
+		end
+		if option == 'Blues' then
+			Color = 'Blue'
+		end
+		if option == 'Greens' then
+			Color = 'Green'
+		end
+		if option == 'Yellows' then
+			Color = 'Yellow'
+		end
+	end)
+
+	Buy:Toggle("Buy Beans","Begins Buying Beans!", function(state)
+		if state then
+			_G.BBuy = true 
+			while _G.BBuy and wait() do
+				plr.Backpack.ServerTraits.ChatStart:FireServer(workspace.FriendlyNPCs["Korin BEANS"])
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'k'})
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'k'})
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = Type })
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'k'})
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = Amount})
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'k'})
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = Color})
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'k'})
+				wait(.3)
+				if Amount == "8" then
+					plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'Use Zenni'})
+				else
+					plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'Yes'})
+				end
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'k'})
+				wait(1)
+			end	
+		else
+			_G.BBuy = false
+		end
+	end)
+	Buy:Toggle("Elder Kai", "Begins Auto Elder Kai!", function(state)
+		if state then
+			_G.KaiB = true
+			while _G.KaiB and wait() do
+				plr.Backpack.ServerTraits.ChatStart:FireServer(workspace.FriendlyNPCs['Elder Kai'])
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'k'})
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'Yes'})
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'k'})
+				wait(.3)
+				plr.Backpack.ServerTraits.ChatAdvance:FireServer({[1] = 'k'})
+				wait(1)
+			end
+		else
+			_G.KaiB = false
+		end
+	end)
+end
+Buy:Section("Form Buy")
+Buy:TextBox("Form Buy", "Form Name", "Race Exlcusive Form Name Here", function(form)
+	game:service'ReplicatedStorage'.AttemptBuy:InvokeServer(form)
+end)
+------------------------------------------------------------------------------------------ AUTO TAB
+local Auto = Main:Tab("Auto", "Auto")
+Auto:Section("Auto-Quest(Red)")
+Auto:Button("Collect Red Quests.", "Auto Collects Red Quests.", function()
+	game.workspace.FriendlyNPCs["Quest Giver"]:Destroy()
+	game.workspace.FriendlyNPCs["Quest Giver"]:Destroy()
+	local ChatStart = plr.Backpack.ServerTraits.ChatStart
+	ChatStart:FireServer(
+		workspace.FriendlyNPCs["Bulma"]
+	)
+	wait(0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "Yes"
+		}
+	)
+	wait(0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait(0.7)
+	local ChatStart = plr.Backpack.ServerTraits.ChatStart
+	ChatStart:FireServer(
+		workspace.FriendlyNPCs["Spaceship"]
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "No"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait(0.7)
+	--/////////////////////////////////////////////////////
+	wait()
+	local ChatStart = plr.Backpack.ServerTraits.ChatStart
+	ChatStart:FireServer(
+		workspace.FriendlyNPCs["Trunks [Future]"]
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "Yes"
+		}
+	)
+	wait(0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait(0.7)
+	local ChatStart = plr.Backpack.ServerTraits.ChatStart
+	ChatStart:FireServer(
+		workspace.FriendlyNPCs["TimeMachine"]
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "No"
+		}
+	)
+	wait(0.7)
+	local ChatStart = plr.Backpack.ServerTraits.ChatStart
+	ChatStart:FireServer(
+		workspace.FriendlyNPCs["Quest Giver"]
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "Yes"
+		}
+	)
+	wait(0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait(0.7)
+	wait()
+	local ChatStart = plr.Backpack.ServerTraits.ChatStart
+	ChatStart:FireServer(
+		workspace.FriendlyNPCs["NamekianShip"]
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "No"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait(0.7)
+	local ChatStart = plr.Backpack.ServerTraits.ChatStart
+	ChatStart:FireServer(
+		workspace.FriendlyNPCs["Elder Kai"]
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "Yes"
+		}
+	)
+	wait(0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait(2.5)
+	local ChatStart = plr.Backpack.ServerTraits.ChatStart
+	ChatStart:FireServer(
+		workspace.FriendlyNPCs["Korin"]
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait(0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait (0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "DRINK"
+		}
+	)
+	wait(0.5)
+	local ChatAdvance = plr.Backpack.ServerTraits.ChatAdvance
+	ChatAdvance:FireServer(
+		{
+			[1] = "k"
+		}
+	)
+	wait(7)
+	Lib:InternalNotification("Good", "Auto Quest Complete! \n Current Level: "..plr.PlayerGui.HUD.Bottom.Stats.LVL.Val.Text)
+end)
+
+Auto:Section("Auto-Farm")
+if game.PlaceId ~= 535527772 or game.PlaceId ~= 3552158750 or game.PlaceId ~= 2050207304 then
+	Auto:TextBox("NPC 1 ", "Auto Farm Option", "NPC 1 (Minimum)", NPCs, function(NPC1)
+		VNPC1 = NPC1
+	end)
+	Auto:TextBox("NPC 2 ", "Auto Farm Option", "NPC 2 (Recommended)", NPCs, function(NPC2)
+		VNPC2 = NPC2
+	end)
+	Auto:TextBox("NPC 3 ", "Auto Farm Option", "NPC 3 (Optional)", NPCs, function(NPC3)
+		VNPC3 = NPC3
+	end)
+	Auto:TextBox("NPC 4 ", "Auto Farm Option", "NPC 4 (Optional)", NPCs, function(NPC4)
+		VNPC4 = NPC4
+	end)
+	Auto:Toggle("Toggle Auto Farm", "Auto Farm Option", function(state)
+		if state then
+		-- Settings
+		npcs = {
+			VNPC1,
+			VNPC2,
+			VNPC3,
+			VNPC4
+		}
+		-- Settings
+		
+		
+		-- Services
+		run = game:service('RunService')
+		ts = game:service('TweenService')
+		-- Services
+		
+		-- Var
+		plr = game.Players.LocalPlayer
+		char = plr.Character
+		hrp = char:WaitForChild('HumanoidRootPart')
+		live = workspace.Live
+		ti = TweenInfo.new(30, Enum.EasingStyle.Circular, Enum.EasingDirection.Out)
+		cumshot = Instance.new('BodyVelocity')
+		mouse = plr:GetMouse()
+		-- Var
+		
+		-- functions
+		function afk()
+			plr.Idled:Connect(function()
+				game:service('VirtualUser'):MoveMouse(Vector2.new())
+			end)
+		end
+		
+		function noclip()
+			for i,v in pairs(workspace:GetDescendants()) do
+				if v:IsA('Part') then
+					if v.CanCollide == true then
+						v.CanCollide = false
+					end
+				end
+			end
+		end
+		
+		function godmode()
+			if game.PlaceId == 536102540 then
+				if workspace.Touchy.Part.Size ~= Vector3.new(100, 3, 100) then
+					workspace.Touchy.Part.Size = Vector3.new(100, 3, 100)
+				end
+				if char:FindFirstChild('HumanoidRootPart') then
+					workspace.Touchy.Part.CFrame = live[plr.Name].HumanoidRootPart.CFrame
+				end
+				if plr.PlayerGui:FindFirstChild('Popup') then
+					plr.PlayerGui.Popup:Destroy()
+				end
+			end
+		end
+		
+		function BV()
+			cumshot.Name = 'cum'
+			cumshot.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+			cumshot.P = 0
+			cumshot.Velocity = Vector3.new(0,0,0)
+			cumshot.Parent = workspace.Live[plr.Name].HumanoidRootPart
+		end
+		
+		function Tween()
+			if live[plr.Name].HumanoidRootPart.CFrame ~= CFrame.new(0,100,0) then
+				ts:Create(live[plr.Name].HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear), {CFrame = CFrame.new(0,100,0)}):Play()
+			end
+		end
+		
+		function Disconnects()
+			Demon = false
+			AutoFarm:Disconnect()
+			Tween:Pause()
+			workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+			live[plr.Name].HumanoidRootPart.cum:Destroy()
+			workspace.Touchy.Part.CFrame = CFrame.new(-746.526306, 25.8025646, -6415.6543)
+			workspace.Touchy.Part.Size = Vector3.new(20.45, 3.63, 2.54)
+			for i,v in pairs(workspace:GetDescendants()) do
+				if v:IsA('Part') then
+					if v.CanCollide == false then
+						v.CanCollide = true
+					end
+				end
+			end
+		end
+		-- functions
+		
+		-- AutoFarm
+		if live[plr.Name]:FindFirstChild("Animate") then
+			live[plr.Name].Animate:Remove()
+		end
+		Tween()
+		wait(2)
+		afk()
+		BV()
+		noclip()
+		
+		AutoFarm = run.Heartbeat:connect(function()
+			godmode()
+			if Target:FindFirstChild('Humanoid') then
+				if Target.Humanoid.Health > 0 then
+					local distance = (live[plr.Name].HumanoidRootPart.Position - Target.HumanoidRootPart.Position).magnitude
+					if distance <= 300 then
+						live[plr.Name].HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame + Target.HumanoidRootPart.CFrame.LookVector * -1.5
+					end
+					Tween = ts:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, ti, {CFrame = Target.HumanoidRootPart.CFrame * CFrame.new(0,0,2)})
+					Tween:Play()
+					workspace.CurrentCamera.CameraType = Enum.CameraType.Track
+					workspace.CurrentCamera.CFrame = live[plr.Name].HumanoidRootPart.CFrame * CFrame.new(1,1.5,10)
+				end
+			end
+		end)
+		
+		Demon = true
+		
+		while Demon do
+			wait()
+			cumshot = #npcs
+			names = {}
+			for i, v in pairs(live:GetChildren()) do
+				for cum = 1, cumshot do
+					if string.match(string.lower(v.Name), string.lower(npcs[cum])) then
+						table.insert(names, v)
+						Target = v
+						if v:FindFirstChild('Humanoid') then
+							while v.Humanoid.Health > 0 and Demon do
+								wait(0.33)
+								plr.Backpack.ServerTraits.Input:FireServer({'md'}, 'InputObject', 'InputObject', false)
+							end
+						end
+					end
+				end
+			end
+		end
+		else
+			Disconnects()
+		end
+	end)
+else
+	Auto:Section("Unavaialable.")
+end
+Auto:Section("Auto Time Chamber")
+Auto:TextBox("Move 1 (HTC)", "Auto HTC Option", "Move 1 (Minimum)", MovesTable, function(move)
+	HTCMoves[1] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 2 (HTC)", "Auto HTC Option", "Move 2 (Minimum)", MovesTable, function(move)
+	HTCMoves[2] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 3 (HTC)", "Auto HTC Option", "Move 3 (Minimum)", MovesTable, function(move)
+	HTCMoves[3] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 4 (HTC)", "Auto HTC Option", "Move 4 (Minimum)", MovesTable, function(move)
+	HTCMoves[4] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 5 (HTC)", "Auto HTC Option", "Move 5 (Recommended)", MovesTable, function(move)
+	HTCMoves[5] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 6 (HTC)", "Auto HTC Option", "Move 6 (Optional)", MovesTable,  function(move)
+	HTCMoves[6] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 7 (HTC)", "Auto HTC Option", "Move 7 (Optional)", MovesTable, function(move)
+	HTCMoves[7] = move
+	SaveInfo()
+end)
+Auto:Button("Begin Auto HTC", "Begins Auto HTC with the current settings", function()
+	if game.PlaceId ~= 882375367 then
+		Int:Teleport(882375367)
+	end
+	if game.PlaceId == 882375367 then
+	repeat
+		wait()
+	until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game:IsLoaded()
+		HRP.CFrame = CFrame.new(-59.8994, 237.834, -194.409)
+		for i, v in pairs(plr.Backpack:GetChildren()) do
+			if v.Name == "Dragon Throw" then
+				v.Parent = game.Workspace.Live[plr.name]
+				v:Activate()
+				wait(0.3)
+				v.Parent = Char["Dragon Throw"].Activator.Flip:Destroy()
+				v:Activate()
+			end
+		end
+		Run.Heartbeat:connect(function()
+			HRP.CFrame = CFrame.new(-59.8994, 237.834, -194.409)
+			plr.Backpack.ServerTraits.EatSenzu:FireServer(true)
+		end)
+		Run.Heartbeat:connect(function()
+			if tonumber(plr.PlayerGui.HUD.Bottom.Stats.LVL.Val.Text) == 101 or tonumber(plr.PlayerGui.HUD.Bottom.Stats.LVL.Val.Text) == 181 or tonumber(plr.PlayerGui.HUD.Bottom.Stats.LVL.Val.Text) == 251 then 
+				Int:Teleport(882375367)
+			end
+			for i, v in pairs(workspace.Live[plr.Name]:GetChildren()) do
+				if v.Name == "Justice Combination" then
+					local action = game.Players.LocalPlayer.Character:WaitForChild("Action")
+					if action then
+						wait()
+						action:Destroy()
+					end
+				end
+				if v.Name == "Action" or v.Name == "Attacking" or v.Name == "Using" or v.Name == "hyper" or v.Name == "Hyper" or v.Name == "KiBlasted" or v.Name == "Tele" or v.Name == "tele" or v.Name == "Killed"
+				or v.Name == "Slow" or v.Name == "MoveStart" or v.Name == "KnockBacked" or v.Name == "Dodging" or v.Name == "zDASZzxc" or v.Name == "evasive" or v.Name == "BStun" or v.Name == "Ki Blasting"
+				or v.Name == "NotHardBack" or v.Name == "Velocity" then
+					v:Destroy()
+				end
+				if v.Name == "Block" and v.Value == true then
+					v.Value = false
+				end
+			end
+		end)
+		Run.Stepped:connect(function()
+            for _, Move in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if table.find(Moves, Move.Name) then
+                    Move.Parent = workspace.Live[plr.Name]
+                    Move:Activate()
+                    wait(.3)
+                    Move.Parent = game.Players.LocalPlayer.Backpack
+                end
+            end
+        end)
+	end
+end)
+Auto:Section("Auto Broly")
+Auto:TextBox("Move 1 (AB)", "Auto Broly Option", "Move 1 (Minimum)", MovesTable, function(move)
+	ABMoves[1] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 2 (AB)", "Auto Broly Option", "Move 2 (Minimum)", MovesTable, function(move)
+	ABMoves[2] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 3 (AB)", "Auto Broly Option", "Move 3 (Minimum)", MovesTable, function(move)
+	ABMoves[3] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 4 (AB)", "Auto Broly Option", "Move 4 (Minimum)", MovesTable, function(move)
+	ABMoves[4] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 5 (AB)", "Auto Broly Option", "Move 5 (Recommended)", MovesTable, function(move)
+	ABMoves[5] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 6 (AB)", "Auto Broly Option", "Move 6 (Recommended)", MovesTable, function(move)
+	ABMoves[6] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 7 (AB)", "Auto Broly Option", "Move 7 (Optional)", MovesTable, function(move)
+	ABMoves[7] = move
+	SaveInfo()
+end)
+Auto:TextBox("Move 8 (AB)", "Auto Broly Option", "Move 8 (Optional)", MovesTable, function(move)
+	ABMoves[8] = move
+	SaveInfo()
+end)
+Auto:Seperator()
+if Settings["AutoBroly"] == true then
+	Auto:Button("Stop Auto Broly", "Stops Auto Broly", function()
+		AB = false
+		SaveInfo()
+		Int:TeleportToPlaceInstance(game.PlaceId, game.JobId)
+	end)
+end
+if Settings["AutoBroly"] == false then
+	Auto:Button("Begin Auto Broly", "Begins Auto Broly with the current settings", function()
+		AB = true
+		SaveInfo()
+		Int:TeleportToPlaceInstance(game.PlaceId, game.JobId)
+	end)
+end
+------------------------------------------------------------------------------------------ STAT TAB
+local Stat = Main:Tab("Stats", "Upgrade")
+Stat:Section("Stat Check")
+Stat:TextBox("Stat Check Player", "Displays Targets Stats!", "Player Name here.", plrs, function(targ)
+	Lib:StatCheckFS(targ)
+end)
+Stat:Section("Auto Stat Points")
+Stat:Toggle("Health Max", "Auto Imports Stat Points Into Health Max.", function(state)
+	if state then
+		StatDist = "Health-Max"
+		SaveInfo()
+		_G.ASHM = true
+		while _G.ASHM and wait() do
+			if plr.PlayerGui.HUD.Bottom.Stats.StatPoints.Val.Text ~= "0" then
+				plr.Backpack.ServerTraits.AttemptUpgrade:FireServer(plr.PlayerGui.HUD.Bottom.Stats:FindFirstChild("Health-Max"))
+			end
+		end
+	else
+		_G.ASHM = false
+		StatDist = ""
+		SaveInfo()
+	end
+end)
+Stat:Toggle("Ki Max", "Auto Imports Stat Points Into Ki Max.", function(state)
+	if state then
+		StatDist = "Ki-Max"
+		SaveInfo()
+		_G.ASKM = true
+		while _G.ASKM and wait() do
+			if plr.PlayerGui.HUD.Bottom.Stats.StatPoints.Val.Text ~= "0" then
+				plr.Backpack.ServerTraits.AttemptUpgrade:FireServer(plr.PlayerGui.HUD.Bottom.Stats:FindFirstChild("Ki-Max"))
+			end
+		end
+	else
+		_G.ASKM = false
+		StatDist = ""
+		SaveInfo()
+	end
+end)
+Stat:Toggle("Melee Damage", "Auto Imports Stat Points Into Melee Damage.", function(state)
+	if state then
+		StatDist = "Phys-Damage"
+		SaveInfo()
+		_G.ASPD = true
+		while _G.ASPD and wait() do
+			if plr.PlayerGui.HUD.Bottom.Stats.StatPoints.Val.Text ~= "0" then
+				plr.Backpack.ServerTraits.AttemptUpgrade:FireServer(plr.PlayerGui.HUD.Bottom.Stats:FindFirstChild("Phys-Damage"))
+			end
+		end
+	else
+		_G.ASPD = false
+		StatDist = ""
+		SaveInfo()
+	end
+end)
+Stat:Toggle("Ki Damage", "Auto Imports Stat Points Into Ki Damage.", function(state)
+	if state then
+		StatDist = "Ki-Damage"
+		SaveInfo()
+		_G.ASKD = true
+		while _G.ASKD and wait() do
+			if plr.PlayerGui.HUD.Bottom.Stats.StatPoints.Val.Text ~= "0" then
+				plr.Backpack.ServerTraits.AttemptUpgrade:FireServer(plr.PlayerGui.HUD.Bottom.Stats:FindFirstChild("Ki-Damage"))
+			end
+		end
+	else
+		_G.ASKD = false
+		StatDist = ""
+		SaveInfo()
+	end
+end)
+Stat:Toggle("Melee Resistance", "Auto Imports Stat Points Into Melee Resistance.", function(state)
+	if state then
+		StatDist = "Phys-Resist"
+		SaveInfo()
+		_G.ASMR = true
+		while _G.ASMR and wait() do
+			if plr.PlayerGui.HUD.Bottom.Stats.StatPoints.Val.Text ~= "0" then
+				plr.Backpack.ServerTraits.AttemptUpgrade:FireServer(plr.PlayerGui.HUD.Bottom.Stats:FindFirstChild("Phys-Resist"))
+			end
+		end
+	else
+		_G.ASMR = false
+		StatDist = ""
+		SaveInfo()
+	end
+end)
+Stat:Toggle("Ki Resistance", "Auto Imports Stat Points Into Ki Resistance.", function(state)
+	if state then
+		StatDist = "Ki-Resist"
+		SaveInfo()
+		_G.ASKR = true
+		while _G.ASKR and wait() do
+			if plr.PlayerGui.HUD.Bottom.Stats.StatPoints.Val.Text ~= "0" then
+				plr.Backpack.ServerTraits.AttemptUpgrade:FireServer(plr.PlayerGui.HUD.Bottom.Stats:FindFirstChild("Ki-Resist"))
+			end
+		end
+	else
+		_G.ASKR = false
+		StatDist = ""
+		SaveInfo()
+	end
+end)
+Stat:Toggle("Speed", "Auto Imports Stat Points Into Speed.", function(state)
+	if state then
+		StatDist = "Speed"
+		SaveInfo()
+		_G.ASS = true
+		while _G.ASS and wait() do
+			if plr.PlayerGui.HUD.Bottom.Stats.StatPoints.Val.Text ~= "0" then
+				plr.Backpack.ServerTraits.AttemptUpgrade:FireServer(plr.PlayerGui.HUD.Bottom.Stats:FindFirstChild("Speed"))
+			end
+		end
+	else
+		_G.ASS = false
+		StatDist = ""
+		SaveInfo()
+	end
+end)
+------------------------------------------------------------------------------------------ TELEPORT TAB
+local Teleport = Main:Tab("Teleport", "Planet")
+Teleport:Section("Teleports")
+Teleport:Button("Earth", "Teleports You To Earth.", function()
+	Int:Teleport(536102540)
+end)
+Teleport:Button("Namek", "Teleports You To Namek.", function()
+	Int:Teleport(882399924)
+end)
+Teleport:Button("Space", "Teleports You To Space.", function()
+	Int:Teleport(478132461)
+end)
+Teleport:Button("Future", "Teleports You To Future.", function()
+	Int:Teleport(569994010)
+end)
+Teleport:Button("Secret World", "Teleports You To Secret World.", function()
+	Int:Teleport(2046990924)
+end)
+Teleport:Button("Queue", "Teleports You To Queue.", function()
+	Int:Teleport(3565304751)
+end)
+Teleport:Button("Zaros", "Teleports You To Zaros.", function()
+	Int:Teleport(2651456105)
+end)
+Teleport:Button("Heaven", "Teleports You To Heaven.", function()
+	Int:Teleport(3552157537)
+end)
+Teleport:Button("Heaven Ranked", "Teleports You To Heaven Ranked.", function()
+	Int:Teleport(3618359401)
+end)
+Teleport:Button("HTC", "Teleports You To HTC.", function()
+	Int:Teleport(882375367)
+end)
+------------------------------------------------------------------------------------------ OTHERS TAB
+local Other = Main:Tab("Others", "Extra")
+Other:Section("Misc")
+Other:TextBox("Goto Target", "Teleports you to the Target (Player).", "Player Name Here", plrs, function(targ)
+	HRP.Anchored = false
+	ts:create(HRP, TweenInfo.new(.6), {CFrame = workspace.Live[targ].HumanoidRootPart.CFrame * CFrame.new(0, 0 , 2)}):Play()
+	workspace.CurrentCamera.CFrame = workspace.Live[targ].Head.CFrame
+end)
+Other:TextBox("Loop Follow Target", "Folows the Target (Player).", "Player Name Here", plrs, function(targ)
+	VPLR = targ
+end)
+Other:Toggle("Loop Follow", "Activates Loop Follow.", function(state)
+	if state then
+		local BodyVel = Instance.new("BodyVelocity")
+        BodyVel.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+        BodyVel.Velocity = Vector3.new(0, 0, 0)
+        BodyVel.Parent = HRP
+		BodyVel.Name = "CACA"
+		HRP.Anchored = false
+		LoopCon = Run.Hearbeat:connect(function()
+			ts:create(HRP, TweenInfo.new(.6), {CFrame = workspace.Live[VPLR].HumanoidRootPart.CFrame * CFrame.new(0, 0 , 2)}):Play()
+			workspace.CurrentCamera.CFrame = workspace.Live[VPLR].Head.CFrame
+		end)
+	else
+		LoopCon:Disconnect()
+		workspace.Live[plr.Name].HumanoidRootPart:FindFirstChild("CACA"):Destroy()
+	end
+end)
+
+
+Other:Button("Inf Yeild", "Enables Inf Yeild", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+
+Other:Section("Utilities")
+Other:Button("Rejoin", "Rejoins The Current Instance.", function()
+
+
+	local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+
+local function rejoin()
+    local player = Players.LocalPlayer
+    if not player then return end -- Ensures there's a player instance.
+
+    if #Players:GetPlayers() <= 1 then
+        player:Kick("\nRejoining.")
+        wait(0.5) -- Small delay to ensure the kick message shows.
+        TeleportService:Teleport(game.PlaceId, player)
+    else
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
+    end
+end
+
+-- Call the rejoin function or bind it to a command system if necessary.
+rejoin()
+
+
+
+end)
+Other:Section("Move Spam")
+Other:TextBox("Move 1 (Move Spam)", "Move Spam Option", "Move 1 (Minimum)", MovesTable, function(move)
+	SPAMMoves[1] = move
+	SaveInfo()
+end)
+Other:TextBox("Move 2 (Move Spam)", "Move Spam Option", "Move 2 (Minimum)", MovesTable, function(move)
+	SPAMMoves[2] = move
+	SaveInfo()
+end)
+Other:TextBox("Move 3 (Move Spam)", "Move Spam Option", "Move 3 (Minimum)", MovesTable, function(move)
+	SPAMMoves[3] = move
+	SaveInfo()
+end)
+Other:TextBox("Move 4 (Move Spam)", "Move Spam Option", "Move 4 (Recommended)", MovesTable, function(move)
+	SPAMMoves[4] = move
+	SaveInfo()
+end)
+Other:TextBox("Move 5 (Move Spam)", "Move Spam Option", "Move 5 (Recommended)", MovesTable, function(move)
+	SPAMMoves[5] = move
+	SaveInfo()
+end)
+Other:TextBox("Move 6 (Move Spam)", "Move Spam Option", "Move 6 (Optional)", MovesTable, function(move)
+	SPAMMoves[6] = move
+	SaveInfo()
+end)
+Other:TextBox("Move 7 (Move Spam)", "Move Spam Option", "Move 7 (Optional)", MovesTable, function(move)
+	SPAMMoves[7] = move
+	SaveInfo()
+end)
+Other:TextBox("Move 8 (Move Spam)", "Move Spam Option", "Move 8 (Optional)", MovesTable, function(move)
+	SPAMMoves[8] = move
+	SaveInfo()
+end)
+Other:TextBox("Move 8 (Move Spam)", "Move Spam Option", "Move 8 (Optional)", MovesTable, function(move)
+	SPAMMoves[9] = move
+	SaveInfo()
+end)
+Other:Toggle("Spam Moves", "Uses the Chosen Moves", function(state)
+	if state then
+		_G.ImSpam = true
+		while _G.ImSpam == true do
+			wait()
+			for _, Move in next, plr.Backpack:GetChildren() do
+				if table.find(SPAMMoves, Move.Name) then
+				Move.Parent = workspace.Live[plr.Name]
+				Move:Activate()
+				wait()
+				Move.Parent = plr.Backpack
+				end
+			end
+		end
+	else
+		_G.ImSpam = false
+	end
+end)
+
+Other:Section("Glitches")
+if game.PlaceId ~= 478132461 then
+	Other:KeyBind('Dragon Throw', 'Equip Throw and Click Keybind!', Enum.KeyCode.Zero, function(state)
+		workspace.Live[plr.Name]['Dragon Throw'].Activator['Flip']:Destroy()
+	end)
+end
+Other:KeyBind('Dragon Crush', 'Equip Crush and Click Keybind!', Enum.KeyCode.Zero,  function(state)
+	workspace.Live[plr.Name]['Dragon Crush'].Activator['Flip']:Destroy()
+end)
+Other:Seperator()
+Lib:AdminEnabled(function()
+	Admin = true
+	SaveInfo()
+	Lib:InternalNotification("Good", "Relaunch Nova.")
+end)
+if Settings["Admin"] == true then
+    local CMDS = {}
+    local Place = {
+        536102540,
+        882399924,
+        478132461,
+        569994010,
+        2046990924,
+        535527772,
+        882375367,
+        3552158750 
+    }
+
+    -------------------------------------------------------------------------------- GUI
+
+    local CmdMain = Instance.new("Frame")
+    local MainCorner = Instance.new("UICorner")
+    local shadowHolder = Instance.new("Frame")
+    local umbraShadow = Instance.new("ImageLabel")
+    local penumbraShadow = Instance.new("ImageLabel")
+    local ambientShadow = Instance.new("ImageLabel")
+    local create = Instance.new("ImageButton")
+    local CmdTextBox = Instance.new("TextBox")
+    local EnterLabel = Instance.new("TextLabel")
+    local BackText = Instance.new("TextLabel")
+    local Popup = Instance.new("Sound")
+    local Entered = Instance.new("Sound")
+    local CmdPreview = Instance.new("Frame")
+    local CmdPreviewCorner = Instance.new("UICorner")
+    local CmdTitle = Instance.new("TextLabel")
+    local CmdDesc = Instance.new("TextLabel")
+    local CmdFrame = Instance.new("Frame")
+    local CmdFrameCorner = Instance.new("UICorner")
+    local CmdFrameScrollingFrame = Instance.new("ScrollingFrame")
+    local CmdFrameScrollingFrameListLayout = Instance.new("UIListLayout")
+    local CmdFrameTitle = Instance.new("TextLabel")
+    local removebtn = Instance.new("ImageButton")
+
+    local ErrorDebounce = false
+
+    do
+
+
+        CmdMain.Name = "CmdMain"
+        CmdMain.Parent = game.CoreGui.Holder
+        CmdMain.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+        CmdMain.BackgroundTransparency = 1.000
+        CmdMain.BorderSizePixel = 0
+        CmdMain.Position = UDim2.new(0.349, 0, 0.35, 0)
+        CmdMain.Size = UDim2.new(0, 600, 0, 35)
+
+        MainCorner.CornerRadius = UDim.new(0, 4)
+        MainCorner.Name = "MainCorner"
+        MainCorner.Parent = CmdMain
+
+        shadowHolder.Name = "shadowHolder"
+        shadowHolder.Parent = CmdMain
+        shadowHolder.BackgroundTransparency = 1.000
+        shadowHolder.Size = UDim2.new(1, 0, 1, 0)
+
+        umbraShadow.Name = "umbraShadow"
+        umbraShadow.Parent = shadowHolder
+        umbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        umbraShadow.BackgroundTransparency = 1.000
+        umbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+        umbraShadow.Size = UDim2.new(1, 10, 1, 10)
+        umbraShadow.Image = "rbxassetid://1316045217"
+        umbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        umbraShadow.ImageTransparency = 1
+        umbraShadow.ScaleType = Enum.ScaleType.Slice
+        umbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+        penumbraShadow.Name = "penumbraShadow"
+        penumbraShadow.Parent = shadowHolder
+        penumbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        penumbraShadow.BackgroundTransparency = 1.000
+        penumbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+        penumbraShadow.Size = UDim2.new(1, 10, 1, 10)
+        penumbraShadow.Image = "rbxassetid://1316045217"
+        penumbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        penumbraShadow.ImageTransparency = 1
+        penumbraShadow.ScaleType = Enum.ScaleType.Slice
+        penumbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+        ambientShadow.Name = "ambientShadow"
+        ambientShadow.Parent = shadowHolder
+        ambientShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        ambientShadow.BackgroundTransparency = 1.000
+        ambientShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+        ambientShadow.Size = UDim2.new(1, 10, 1, 10)
+        ambientShadow.Image = "rbxassetid://1316045217"
+        ambientShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        ambientShadow.ImageTransparency = 1
+        ambientShadow.ScaleType = Enum.ScaleType.Slice
+        ambientShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+        create.Name = "create"
+        create.Parent = CmdMain
+        create.BackgroundTransparency = 1.000
+        create.Position = UDim2.new(0.941666663, 0, 0.128571421, 0)
+        create.Size = UDim2.new(0, 25, 0, 25)
+        create.ZIndex = 2
+        create.Image = "rbxassetid://3926305904"
+        create.ImageRectOffset = Vector2.new(284, 644)
+        create.ImageRectSize = Vector2.new(36, 36)
+        create.ImageTransparency = 1.000
+
+        CmdTextBox.Name = "CmdTextBox"
+        CmdTextBox.Parent = CmdMain
+        CmdTextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        CmdTextBox.BackgroundTransparency = 1.000
+        CmdTextBox.Position = UDim2.new(0.0333333351, 0, 0.128571436, 0)
+        CmdTextBox.Size = UDim2.new(0, 385, 0, 25)
+        CmdTextBox.Font = Enum.Font.Gotham
+        CmdTextBox.PlaceholderText = "Type command here."
+        CmdTextBox.Text = ""
+        CmdTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+        CmdTextBox.TextSize = 14.000
+        CmdTextBox.TextXAlignment = Enum.TextXAlignment.Left
+        CmdTextBox.Visible = false
+
+        EnterLabel.Name = "EnterLabel"
+        EnterLabel.Parent = CmdMain
+        EnterLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        EnterLabel.BackgroundTransparency = 1.000
+        EnterLabel.Position = UDim2.new(0.593333364, 0, 0.128571436, 0)
+        EnterLabel.Size = UDim2.new(0, 200, 0, 25)
+        EnterLabel.Font = Enum.Font.Gotham
+        EnterLabel.Text = "Tap Enter"
+        EnterLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        EnterLabel.TextSize = 14.000
+        EnterLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+        EnterLabel.TextXAlignment = Enum.TextXAlignment.Right
+        EnterLabel.TextTransparency = 1.000
+
+        BackText.Name = "BackText"
+        BackText.Parent = CmdMain
+        BackText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        BackText.BackgroundTransparency = 1.000
+        BackText.Position = UDim2.new(0.0329999998, 0, 0.128999993, 0)
+        BackText.Size = UDim2.new(0, 385, 0, 25)
+        BackText.Font = Enum.Font.Gotham
+        BackText.TextColor3 = Color3.fromRGB(255, 255, 255)
+        BackText.TextSize = 14.000
+        BackText.TextXAlignment = Enum.TextXAlignment.Left
+        BackText.TextTransparency = 1.000
+        BackText.ZIndex = 1
+
+        Popup.Name = "InteractionSound"
+        Popup.Parent = CmdMain
+        Popup.SoundId = "rbxassetid://8747340426"
+
+        Entered.Name = "EnteredSound"
+        Entered.Parent = CmdMain
+        Entered.SoundId = "rbxassetid://4086034503"
+
+        CmdPreview.Name = "CmdPreview"
+        CmdPreview.Parent = CmdMain
+        CmdPreview.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+        CmdPreview.BackgroundTransparency = 1.000
+        CmdPreview.Position = UDim2.new(0.003, 0,0, 0)
+        CmdPreview.Size = UDim2.new(0, 595, 0, 60)
+
+        CmdPreviewCorner.CornerRadius = UDim.new(0, 4)
+        CmdPreviewCorner.Name = "CmdPreviewCorner"
+        CmdPreviewCorner.Parent = CmdPreview
+
+        CmdTitle.Name = "CmdTitle"
+        CmdTitle.Parent = CmdPreview
+        CmdTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        CmdTitle.BackgroundTransparency = 1.000
+        CmdTitle.Position = UDim2.new(0.0168067235, 0, 0.116666675, 0)
+        CmdTitle.Size = UDim2.new(0, 200, 0, 25)
+        CmdTitle.Font = Enum.Font.Gotham
+        CmdTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        CmdTitle.TextSize = 14.000
+        CmdTitle.TextXAlignment = Enum.TextXAlignment.Left
+        CmdTitle.TextTransparency = 1.000
+
+        CmdDesc.Name = "CmdDesc"
+        CmdDesc.Parent = CmdTitle
+        CmdDesc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        CmdDesc.BackgroundTransparency = 1.000
+        CmdDesc.Position = UDim2.new(0, 0, 1, 0)
+        CmdDesc.Size = UDim2.new(0, 200, 0, 25)
+        CmdDesc.Font = Enum.Font.Gotham
+        CmdDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+        CmdDesc.TextSize = 14.000
+        CmdDesc.TextXAlignment = Enum.TextXAlignment.Left
+        CmdDesc.TextTransparency = 1.000
+
+        CmdFrame.Name = "CmdFrame"
+        CmdFrame.Parent = game.CoreGui.Holder
+        CmdFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+        CmdFrame.BackgroundTransparency = 0.000
+        CmdFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+        CmdFrame.BorderSizePixel = 0
+        CmdFrame.Position = UDim2.new(0.732, 0,0.324, 0)
+        CmdFrame.Size = UDim2.new(0, 300, 0, 300)
+        CmdFrame.Visible = false
+
+        CmdFrameCorner.CornerRadius = UDim.new(0, 4)
+        CmdFrameCorner.Name = "CmdFrameCorner"
+        CmdFrameCorner.Parent = CmdFrame
+
+        CmdFrameScrollingFrame.Name = "CmdFrameScrolling Frame"
+        CmdFrameScrollingFrame.Parent = CmdFrame
+        CmdFrameScrollingFrame.Active = true
+        CmdFrameScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        CmdFrameScrollingFrame.BackgroundTransparency = 1.000
+        CmdFrameScrollingFrame.BorderSizePixel = 0
+        CmdFrameScrollingFrame.Position = UDim2.new(0.0500000045, 0, 0.153333336, 0)
+        CmdFrameScrollingFrame.Size = UDim2.new(0, 270, 0, 245)
+        CmdFrameScrollingFrame.ScrollBarThickness = 0
+
+        CmdFrameScrollingFrameListLayout.Name = "CmdFrameScrolling FrameListLayout"
+        CmdFrameScrollingFrameListLayout.Parent = CmdFrameScrollingFrame
+        CmdFrameScrollingFrameListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+        CmdFrameScrollingFrameListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+        CmdFrameScrollingFrameListLayout.Padding = UDim.new(0, 5)
+
+        CmdFrameTitle.Name = "CmdFrameTitle"
+        CmdFrameTitle.Parent = CmdFrame
+        CmdFrameTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        CmdFrameTitle.BackgroundTransparency = 1.000
+        CmdFrameTitle.Position = UDim2.new(0.166666672, 0, 0, 0)
+        CmdFrameTitle.Size = UDim2.new(0, 200, 0, 30)
+        CmdFrameTitle.Font = Enum.Font.GothamBold
+        CmdFrameTitle.Text = "Commands."
+        CmdFrameTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        CmdFrameTitle.TextSize = 16.000
+
+        removebtn.Name = "removebtn"
+        removebtn.Parent = CmdFrame
+        removebtn.BackgroundTransparency = 1.000
+        removebtn.LayoutOrder = 6
+        removebtn.Position = UDim2.new(0.876666665, 0, 0.00666667335, 0)
+        removebtn.Size = UDim2.new(0, 25, 0, 25)
+        removebtn.ZIndex = 2
+        removebtn.Image = "rbxassetid://3926307971"
+        removebtn.ImageRectOffset = Vector2.new(884, 284)
+        removebtn.ImageRectSize = Vector2.new(36, 36)
+
+        removebtn.MouseButton1Click:connect(function()
+            if CmdFrame.Visible == true then
+                CmdFrame.Visible = false
+            end
+        end)
+    end
+
+    local function AddCmd(CommandName, CommandDesc, Type, Func)
+        CMDS[#CMDS + 1] = {
+            ["Name"] = CommandName,
+            ["Description"] = CommandDesc,
+            ["Event"] = Func,
+        }
+        local Img
+        local Offset1
+        local Offset2
+        local CommandLabel = Instance.new("TextLabel")
+        local public = Instance.new("ImageButton")
+
+        if Type == "TP" or Type == "Teleport" or Type == "Teleportation" then
+            Img = "rbxassetid://3926305904"
+            Offset1 = Vector2.new(604, 324)
+            Offset2 = Vector2.new(36, 36)
+        elseif Type == "Tween" or Type == "Locate" or Type == "Location" then
+            Img = "rbxassetid://3926307971"
+            Offset1 = Vector2.new(884, 444)
+            Offset2 = Vector2.new(36, 36)
+        elseif Type == "Client" or Type == "User" or Type == "Player" then
+            Img = "rbxassetid://3926307971"
+            Offset1 = Vector2.new(884, 4)
+            Offset2 = Vector2.new(36, 36)
+        elseif Type == "List" then
+            Img = "rbxassetid://3926307971"
+            Offset1 = Vector2.new(404, 44)
+            Offset2 = Vector2.new(36, 36)
+        elseif Type == "Target" or Type == "Goal" or Type == "Bullseye" then
+            Img = "rbxassetid://3926305904"
+            Offset1 = Vector2.new(404, 764)
+            Offset2 = Vector2.new(36, 36)
+        elseif Type == "Auto" or Type == "Automatically" or Type == "Renew" or Type == "Redo" then
+            Img = "rbxassetid://3926307971"
+            Offset1 = Vector2.new(564, 444)
+            Offset2 = Vector2.new(36, 36)
+        end
+
+        CommandLabel.Name = "CommandLabel"
+        CommandLabel.Parent = CmdFrameScrollingFrame
+        CommandLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        CommandLabel.BackgroundTransparency = 1.000
+        CommandLabel.Position = UDim2.new(0.0500000045, 0, 0.193333328, 0)
+        CommandLabel.Size = UDim2.new(0, 270, 0, 30)
+        CommandLabel.Font = Enum.Font.Gotham
+        CommandLabel.Text = CommandName.." - "..CommandDesc
+        CommandLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        CommandLabel.TextSize = 12.000
+        CommandLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+        public.Name = "public"
+        public.Parent = CommandLabel
+        public.BackgroundTransparency = 1.000
+        public.Position = UDim2.new(0.907407403, 0, 0.0666666478, 0)
+        public.Size = UDim2.new(0, 25, 0, 25)
+        public.ZIndex = 2
+        public.Image = Img
+        public.ImageRectOffset = Offset1
+        public.ImageRectSize = Offset2
+
+        CmdFrameScrollingFrame.CanvasSize = UDim2.new(0,0,0,CmdFrameScrollingFrameListLayout.AbsoluteContentSize.Y)
+    end
+
+    -------------------------------------------------------------------------------- Functions.
+
+    local function Notify(NotifMsg)
+        local NotifyFrame = Instance.new("Frame")
+        local NotifyTitle = Instance.new("TextLabel")
+        local NotifyCorner = Instance.new("UICorner")
+        local notifications = Instance.new("ImageButton")
+        local shadowHolder = Instance.new("Frame")
+        local umbraShadow = Instance.new("ImageLabel")
+        local penumbraShadow = Instance.new("ImageLabel")
+        local ambientShadow = Instance.new("ImageLabel")
+
+        --Properties:
+
+        NotifyFrame.Name = "Notify"
+        NotifyFrame.Parent = CmdMain
+        NotifyFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+        NotifyFrame.Position = UDim2.new(-1.975, 0, 15.4, 0)
+        NotifyFrame.Size = UDim2.new(0, 265, 0, 50)
+
+        NotifyTitle.Name = "NotifyTitle"
+        NotifyTitle.Parent = NotifyFrame
+        NotifyTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        NotifyTitle.BackgroundTransparency = 1.000
+        NotifyTitle.Position = UDim2.new(0.0339622647, 0, 0.239999995, 0)
+        NotifyTitle.Size = UDim2.new(0, 215, 0, 25)
+        NotifyTitle.Font = Enum.Font.Gotham
+        NotifyTitle.Text = NotifMsg
+        NotifyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        NotifyTitle.TextSize = 14.000
+        NotifyTitle.TextXAlignment = Enum.TextXAlignment.Left
+        NotifyTitle.TextTransparency = 1.000
+
+        NotifyCorner.CornerRadius = UDim.new(0, 4)
+        NotifyCorner.Name = "NotifyCorner"
+        NotifyCorner.Parent = NotifyFrame
+
+        notifications.Name = "notifications"
+        notifications.Parent = NotifyFrame
+        notifications.BackgroundTransparency = 1.000
+        notifications.Position = UDim2.new(0.869811296, 0, 0.24000001, 0)
+        notifications.Size = UDim2.new(0, 25, 0, 25)
+        notifications.ZIndex = 2
+        notifications.Image = "rbxassetid://3926305904"
+        notifications.ImageRectOffset = Vector2.new(844, 564)
+        notifications.ImageRectSize = Vector2.new(36, 36)
+
+        shadowHolder.Name = "shadowHolder"
+        shadowHolder.Parent = NotifyFrame
+        shadowHolder.BackgroundTransparency = 1.000
+        shadowHolder.Size = UDim2.new(1, 0, 1, 0)
+
+        umbraShadow.Name = "umbraShadow"
+        umbraShadow.Parent = shadowHolder
+        umbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        umbraShadow.BackgroundTransparency = 1.000
+        umbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+        umbraShadow.Size = UDim2.new(1, 10, 1, 10)
+        umbraShadow.Image = "rbxassetid://1316045217"
+        umbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        umbraShadow.ImageTransparency = 0.860
+        umbraShadow.ScaleType = Enum.ScaleType.Slice
+        umbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+        penumbraShadow.Name = "penumbraShadow"
+        penumbraShadow.Parent = shadowHolder
+        penumbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        penumbraShadow.BackgroundTransparency = 1.000
+        penumbraShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+        penumbraShadow.Size = UDim2.new(1, 10, 1, 10)
+        penumbraShadow.Image = "rbxassetid://1316045217"
+        penumbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        penumbraShadow.ImageTransparency = 0.880
+        penumbraShadow.ScaleType = Enum.ScaleType.Slice
+        penumbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+        ambientShadow.Name = "ambientShadow"
+        ambientShadow.Parent = shadowHolder
+        ambientShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        ambientShadow.BackgroundTransparency = 1.000
+        ambientShadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+        ambientShadow.Size = UDim2.new(1, 10, 1, 10)
+        ambientShadow.Image = "rbxassetid://1316045217"
+        ambientShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        ambientShadow.ImageTransparency = 0.880
+        ambientShadow.ScaleType = Enum.ScaleType.Slice
+        ambientShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+        ts:create(NotifyFrame, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2.new(-1.075, 0,15.4, 0)}):Play()
+        ts:create(NotifyTitle, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+        wait(2)
+        ts:create(NotifyTitle, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+        ts:create(NotifyFrame, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2.new(-1.975, 0, 15.4, 0)}):Play()
+        wait(.7)
+        NotifyFrame:Destroy()
+    end
+    local function findCmd(name)
+        for i = 1, #CMDS do
+            local cmd = CMDS[i]
+            if cmd.Name:lower() == name:lower() then
+                return cmd
+            end
+        end
+    end
+
+    local function feedbackFound(name, desc)
+        CmdTitle.Text = name
+        CmdDesc.Text = desc
+        CmdTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ts:create(CmdPreview, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2.new(0.00333333318, 0, 1.2571429, 0)}):Play()
+        ts:create(CmdPreview, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = .4}):Play()
+        ts:create(CmdTitle, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+        ts:create(CmdDesc, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+    end
+
+    local function feedbackError(string)
+        if not ErrorDebounce then
+            ErrorDebounce = true 
+            CmdTitle.TextColor3 = Color3.fromRGB(235, 0, 0)
+            CmdTitle.TextStrokeTransparency = 0
+            CmdTitle.Font = Enum.Font.GothamBold
+            CmdTitle.Text = string
+            CmdDesc.Text = "Please try again."
+            ts:create(CmdPreview, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2.new(0.00333333318, 0, 1.2571429, 0)}):Play()
+            ts:create(CmdPreview, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = .4}):Play()
+            ts:create(CmdTitle, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+            ts:create(CmdDesc, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+            wait(2)
+            ts:create(CmdPreview, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2.new(0.003, 0,0, 0)}):Play()
+            ts:create(CmdPreview, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+            ts:create(CmdTitle, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+            ts:create(CmdDesc, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+            CmdTitle.Font = Enum.Font.Gotham
+            CmdTitle.TextColor3 = Color3.fromRGB(235, 0, 0)
+            CmdTitle.TextStrokeTransparency = 1.000
+            ErrorDebounce = false
+        end
+    end
+
+    local function feedbackClose()
+        repeat wait() until not ErrorDebounce
+        ts:create(CmdPreview, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2.new(0.003, 0,0, 0)}):Play()
+        ts:create(CmdPreview, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+        ts:create(CmdTitle, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+        ts:create(CmdDesc, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+    end
+
+    -------------------------------------------------------------------------------- Commands.
+
+    AddCmd("cmd", "Display commands.", "List", function()
+        CmdFrame.Visible = true
+    end)
+    AddCmd("Earth", "Teleports you to earth.", "TP", function()
+        Int:Teleport(536102540)
+    end)
+    AddCmd("Namek", "Teleports you to namek.", "TP", function()
+        Int:Teleport(882399924)
+    end)
+    AddCmd("Space", "Teleports you to space.", "TP", function()
+        Int:Teleport(478132461)
+    end)
+    AddCmd("Future", "Teleports you to future.", "TP", function()
+        Int:Teleport(569994010)
+    end)
+    AddCmd("Sw", "Teleports you to secret world.", "TP", function()
+        Int:Teleport(2046990924)
+    end)
+    AddCmd("Zaros", "Teleports you to zaros.", "TP", function()
+        Int:Teleport(2651456105)
+    end)
+    AddCmd("Qw", "Teleports you to queue world.", "TP", function()
+        Int:Teleport(3565304751)
+    end)
+    AddCmd("Heaven", "Teleports you to Heaven.", "TP", function()
+        Int:Teleport(3552157537)
+    end)
+    AddCmd("Htc", "Teleports you to htc.", "TP", function()
+        Int:Teleport(882375367)
+    end)
+    AddCmd("Rejoin", "rejoin", "Client", function()
+        Int:TeleportToPlaceInstance(game.PlaceId, game.JobId)
+    end)
+    AddCmd("Reset", "Resets your character.", "Client", function()
+        plr.Character:BreakJoints()
+    end)
+    AddCmd("Find", "Finds and redirects you the target.", "Client", function(Args)
+
+        local Args = table.concat(Args, " ")
+
+        local function findPlr(name)
+            for i, v in pairs(game.Players:GetPlayers()) do
+                if v.Name:lower():match(name:lower()) then
+                    return v
+                end
+            end
+        end
+
+        local foundPlr = findPlr(Args)
+        if not foundPlr then feedbackError("Failed to find '" .. Args .. "'.") return end
+        ts:create(HRP, TweenInfo.new(1.2), {CFrame = foundPlr.Character.HumanoidRootPart.CFrame}):Play()
+        Notify("Player Found - "..foundPlr.Name)
+    end)
+    AddCmd("NoSlow", "Removes Slow Values.", "Client", function()
+        _G.NS = true
+        local SteppyNigger = Run.RenderStepped:connect(function()
+                if _G.NS == true then
+                    for i,p in pairs(workspace.Live[plr.Name]:GetDescendants()) do
+                        if p:IsA('BodyVelocity') and p.Name~="Flying" then
+                            p:Destroy()
+                        end
+                    end
+                    for i, v in pairs(Char:GetChildren()) do
+                        if v.Name == "Action" or v.Name == "Attacking" or v.Name == "Using" or v.Name == "hyper" or v.Name == "Hyper" or v.Name == "KiBlasted" or v.Name == "Tele" or v.Name == "tele" or v.Name == "Killed"
+                        or v.Name == "Slow" or v.Name == "MoveStart" or v.Name == "KnockBacked" or v.Name == "Dodging" or v.Name == "zDASZzxc" or v.Name == "evasive" or v.Name == "BStun" or v.Name == "Ki Blasting"
+                        or v.Name == "NotHardBack" or v.Name == "Velocity" then
+                        v:Destroy()
+                    end
+                    if v.Name == "Block" and v.Value == true then
+                        v.Value = false
+                    end
+                end
+            end
+        end)
+    end)
+	AddCmd("Slow", "Disables No Slow.", "Client", function()
+		_G.NS = false
+	end)
+
+
+    AddCmd("LowGFX", "Low GFX For Your Game", "Auto", function()
+
+        local decalsyeeted = true
+        local g = game
+        local w = g.Workspace
+        local l = g.Lighting
+        local t = w.Terrain
+        t.WaterWaveSize = 0
+        t.WaterWaveSpeed = 0
+        t.WaterReflectance = 0
+        t.WaterTransparency = 0
+        l.GlobalShadows = false
+        l.FogEnd = 9e9
+        l.Brightness = 0
+        settings().Rendering.QualityLevel = "Level01"
+        for i, v in pairs(g:GetDescendants()) do
+            if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+                v.Material = "Plastic"
+                v.Reflectance = 0
+            elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+                v.Transparency = 1
+            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+                v.Lifetime = NumberRange.new(0)
+            elseif v:IsA("Explosion") then
+                v.BlastPressure = 1
+                v.BlastRadius = 1
+            elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+                v.Enabled = false
+            elseif v:IsA("MeshPart") then
+                v.Material = "Plastic"
+                v.Reflectance = 0
+                v.TextureID = 10385902758728957
+            end
+        end
+        for i, e in pairs(l:GetChildren()) do
+            if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+                e.Enabled = false
+            end
+        end
+
+        Lib:Notification("Low GFX On", "Low GFX Is On Rejoin To Romove")
+    end)
+
+
+    AddCmd("GodMode", "Enables GodMode for your character.", "Auto", function()
+        if not godModeEnabled then
+            godModeEnabled = true
+            game:GetService("RunService").RenderStepped:connect(function()
+                if godModeEnabled then
+                    -- Fire the events to prevent interaction with the part (immunity)
+                    firetouchinterest(game:GetService("Workspace").Touchy.Part, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
+                    firetouchinterest(game:GetService("Workspace").Touchy.Part, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+                    -- Disable any popups
+                    game:GetService("Players").LocalPlayer.PlayerGui.Popup.Enabled = false
+                end
+            end)
+            Lib:Notification("GodMode Enabled", "Your character is now in GodMode.")
+        else
+            Lib:Notification("GodMode Already Enabled", "GodMode is already active.")
+        end
+    end)
+
+    AddCmd("GodModeOff", "Disables GodMode for your character.", "Auto", function()
+        if godModeEnabled then
+            godModeEnabled = false
+            Lib:Notification("GodMode Disabled", "Your character is no longer in GodMode.")
+        else
+            Lib:Notification("GodMode Not Active", "GodMode is already disabled.")
+        end
+    end)
+
+    AddCmd("Anchor", "Toggles anchoring for your character.", "Auto", function()
+        -- Anchor the character when the command "Anchor" is used
+        local player = game:GetService("Players").LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        
+        -- Anchor the character
+        humanoidRootPart.Anchored = true
+        Lib:Notification("Anchored", "Your character has been anchored.")
+    end)
+    
+    AddCmd("AnchorOff", "Disables anchoring for your character.", "Auto", function()
+        local player = game:GetService("Players").LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        
+        humanoidRootPart.Anchored = false
+        Lib:Notification("Unanchored", "Your character has been unanchored.")
+    end)
+    
+    AddCmd("Fling All", "Flings All", "Auto", function()
+
+
+    loadstring(game:HttpGet("https://pastebin.com/raw/zqyDSUWX"))()
+
+
+    end)
+
+    AddCmd("KiSpam", "Spams Ki Moves.", "Auto", function()
+        _G.KS = true
+        while _G.KS and wait() do
+            for i,v in pairs(plr.Backpack:GetChildren()) do
+                if v.Name == "Super Volley" or v.Name == "Unrelenting Volley" or v.Name == "Sudden Storm"  or v.Name == "Chain Destructo Disk" or v.Name == "Blaster Meteor" then
+                    v.Parent = Char
+                    wait()
+                    v:Activate()
+                    v:Deactivate()
+                    v.Parent = plr.Backpack
+                end
+            end
+        end
+    end)
+    AddCmd("MeleeSpam", "Spams Melee Moves.", "Auto", function()
+        _G.MS = true
+        while _G.MS and wait() do
+            for i,v in pairs(plr.Backpack:GetChildren()) do
+                if v.Name == "Anger Rush" or v.Name == "TS Molotov" or v.Name == "Flash Skewer" or v.Name == "Neo Wolf Fang Fist"  or v.Name == "Sweep Kick" or v.Name == "Meteor Crash" or v.Name == "Wolf Fang Fist" then
+                    v.Parent = Char
+                    wait()
+                    v:Activate()
+                    v:Deactivate()
+                    v.Parent = plr.Backpack
+                end
+            end
+        end
+    end)
+    AddCmd("Unload", "Unloads Nova Command bar.", "List", function()
+        if _G.MS == true then
+            _G.MS = false
+        elseif _G.KS == true then
+            _G.KS = false
+        elseif _G.NS == true then
+            _G.NS = false
+        end
+        Holder:Destroy()
+    end)
+    AddCmd("DisableAdmin", "Disables Admin", "List", function()
+        Admin = false
+        SaveInfo()
+        Notify("Relaunch Nova.")
+    end)
+
+    if game.PlaceId == Place[1] then
+        AddCmd("respawn", "respawns you.", "Client", function()
+            currentframe = workspace.Live[plr.Name].HumanoidRootPart
+            local Step = game:service'RunService'.Heartbeat:Connect(function()
+                HRP.CFrame = currentframe.CFrame
+                if workspace.FriendlyNPCs:FindFirstChild'Hair Stylist' then
+                    plr.Backpack.ServerTraits.ChatStart:FireServer(workspace.FriendlyNPCs["Hair Stylist"])
+                    wait()
+                    plr.Backpack.ServerTraits.ChatAdvance:FireServer({"Yes"})
+                    repeat
+                        wait()
+                    until
+                    plr.Backpack.HairScript.RemoteEvent:FireServer("woah")
+                end
+            end)
+            local Step2 = game:service'RunService'.Heartbeat:Connect(function()
+                HRP.CFrame = currentframe.CFrame
+            end)
+            wait(.9)
+            Step:Disconnect()
+            wait(1.2)
+            Step2:Disconnect()
+        end)
+        AddCmd("South", "Tweens you to South City.", "Location", function()
+            ts:create(HRP, TweenInfo.new(1.2), {CFrame = CFrame.new(-457, 28, -6412)}):Play()
+        end)
+        AddCmd("West", "Tweens you to West City.", "Location", function()
+            ts:create(HRP, TweenInfo.new(1.2), {CFrame = CFrame.new(-571, 23, -2885)}):Play()
+        end)
+        AddCmd("Central", "Tweens you to Central City.", "Location", function()
+            ts:create(HRP, TweenInfo.new(1.2), {CFrame = CFrame.new(-3835, 23, -1428)}):Play()
+        end)
+        AddCmd("East", "Tweens you to East City.", "Location", function()
+            ts:create(HRP, TweenInfo.new(1.2), {CFrame = CFrame.new(-6541, 22, -918)}):Play()
+        end)
+        AddCmd("Satan", "Tweens you to Satan City.", "Location", function()
+            ts:create(HRP, TweenInfo.new(1.2), {CFrame = CFrame.new(-5781, 140, -3043)}):Play()
+        end)
+        AddCmd("Parsley", "Tweens you to Parsley City.", "Location", function()
+            ts:create(HRP, TweenInfo.new(1.2), {CFrame = CFrame.new(-1979, 22, -3152)}):Play()
+        end)
+        AddCmd("Korin", "Tweens you to Korin Tower.", "Location", function()
+            ts:create(HRP, TweenInfo.new(1.2), {CFrame = CFrame.new(2071, 1496, -2279)}):Play()
+        end)
+        AddCmd("Lookout", "Tweens you to The Lookout.", "Location", function()
+            ts:create(HRP, TweenInfo.new(1.2), {CFrame = CFrame.new(2470, 3945, -2275)}):Play()
+        end)
+    end
+
+    -------------------------------------------------------------------------------- Interactions.
+
+    mouse.KeyDown:connect(function(key)
+        if key == Settings["Prefix"] and not CmdTextBox:IsFocused() then
+            ts:create(CmdMain, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+            ts:create(umbraShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 0.860}):Play()
+            ts:create(penumbraShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 0.880}):Play()
+            ts:create(ambientShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 0.880}):Play()
+            ts:create(CmdTextBox, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+            Popup:Play()
+            CmdTextBox.Visible = true
+            CmdTextBox:CaptureFocus()
+            task.wait()
+            CmdTextBox.Text = ""
+        end
+    end)
+
+    CmdTextBox.FocusLost:connect(function(EnterPressed)
+		if EnterPressed then
+	
+			local String = CmdTextBox.Text 
+			local fullArgs = String:split(" ") 
+			local Command = findCmd(table.remove(fullArgs, 1)) 
+	
+			if not Command then
+				CmdTextBox.Text = ""
+				feedbackError("Unknown command '" .. String .. "'")
+
+				wait(.5)
+				ts:create(CmdMain, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				ts:create(CmdTextBox, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+				ts:create(EnterLabel, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+				ts:create(create, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+				ts:create(umbraShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+				ts:create(penumbraShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+				ts:create(ambientShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+			else
+				Entered:Play()
+				Command.Event(fullArgs)
+				feedbackClose()
+				CmdTextBox.Text = ""
+				feedbackClose()
+
+				wait(.5)
+				ts:create(CmdMain, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				ts:create(CmdTextBox, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+				ts:create(EnterLabel, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+				ts:create(create, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+				ts:create(umbraShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+				ts:create(penumbraShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+				ts:create(ambientShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+			end
+		else
+			feedbackClose()
+			ts:create(CmdMain, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+			ts:create(CmdTextBox, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+			ts:create(EnterLabel, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+			ts:create(create, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+			ts:create(umbraShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+			ts:create(penumbraShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+			ts:create(ambientShadow, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+		end
+	end)
+
+    CmdTextBox:GetPropertyChangedSignal("Text"):connect(function()
+        if CmdTextBox.Text:len() > 0 then
+            local Command = findCmd(CmdTextBox.Text)
+            if Command then
+                ts:create(EnterLabel, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+                feedbackFound(Command.Name, Command.Description)
+            else
+                feedbackClose()
+                ts:create(EnterLabel, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+            end
+            ts:create(create, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+        else
+            feedbackClose()
+            ts:create(EnterLabel, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+            ts:create(create, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+            ts:create(BackText, TweenInfo.new(.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+        end
+    end)
+end
+plr.CharacterAdded:Connect(function(Char)
+	Char = Char
+	HRP = Char:WaitForChild"HumanoidRootPart"
+	Hum = Char:WaitForChild"Humanoid"
+end)
+Lib:Notification("Loaded.")
+
+-- Screen Blur Setup
+local lighting = game:GetService("Lighting")
+local blurEffect = Instance.new("BlurEffect")
+blurEffect.Parent = lighting
+blurEffect.Size = 10  -- Adjust the blur size (higher = stronger blur)
+blurEffect.Enabled = false  -- Initially disabled
+
+-- Function to toggle screen blur based on Nova visibility
+local function toggleBlur(state)
+    blurEffect.Enabled = state
+end
+
+-- Listen for F1 key press to toggle visibility of Nova and screen blur
+game:GetService("UserInputService").InputBegan:connect(function(a, b)
+    if a.KeyCode == Enum.KeyCode.F1 and not b then
+        -- Toggle the visibility of Nova (or your GUI element)
+        local novaVisible = not game.CoreGui.Holder.Main.Visible
+        game.CoreGui.Holder.Main.Visible = novaVisible
+
+        -- Enable or disable screen blur based on Nova visibility
+        toggleBlur(novaVisible)
+
+        -- Handle notification based on Nova visibility
+        if novaVisible then
+            Lib:Notification("Nova Visible", "Nova Blur and screen blur are now active.")
+        else
+            Lib:Notification("Nova Hidden", "Nova Blur and screen blur are now inactive.")
+        end
+    end
+end)
