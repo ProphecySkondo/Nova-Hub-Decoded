@@ -1527,7 +1527,7 @@ function Lib:Window()
     NovaLogo.BackgroundTransparency = 1.000
     NovaLogo.Position = UDim2.new(-5.58793545e-09, 0, 0, 0)
     NovaLogo.Size = UDim2.new(0, 119, 0, 60)
-    NovaLogo.Image = "rbxassetid://104921730169154"
+    NovaLogo.Image = "rbxassetid://134987786801260"
     NovaLogo.ScaleType = Enum.ScaleType.Crop
 
     Title.Name = "Title"
